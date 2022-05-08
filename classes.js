@@ -9,16 +9,14 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   } else {
     // If member is logged in then do this logic
-    const airtableID = member["AirtableID"];
-    console.log("airtable id is ", airtableID);
-    console.log("name is ", member["First Name"]);
-    console.log("name is ", member["first name"]);
-  }
+    const airtableID = member["airtableid"];
 
-  const airtableID = member["airtableid"];
-  console.log("airtable id is ", airtableID);
-  console.log("name is ", member["first-name"]);
-  console.log("name is ", member["last-name"]);
+    fetch(`https://apguru-server.herokuapp.com/api/v1/student/classes/${airtableID}`)
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+      });
+  }
 
   // do things with the member object
 });
