@@ -15,10 +15,10 @@ MemberStack.onReady.then(function (member) {
     console.log("name is ", member["first name"]);
   }
 
-  const airtableID = member["AirtableID"];
+  const airtableID = member["airtableid"];
   console.log("airtable id is ", airtableID);
-  console.log("name is ", member["First Name"]);
-  console.log("name is ", member["first name"]);
+  console.log("name is ", member["first-name"]);
+  console.log("name is ", member["last-name"]);
 
   // do things with the member object
 });
