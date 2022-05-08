@@ -11,7 +11,14 @@ MemberStack.onReady.then(function (member) {
     // If member is logged in then do this logic
     const airtableID = member["AirtableID"];
     console.log("airtable id is ", airtableID);
+    console.log("name is ", member["First Name"]);
+    console.log("name is ", member["first name"]);
   }
+
+  const airtableID = member["AirtableID"];
+  console.log("airtable id is ", airtableID);
+  console.log("name is ", member["First Name"]);
+  console.log("name is ", member["first name"]);
 
   // do things with the member object
 });
