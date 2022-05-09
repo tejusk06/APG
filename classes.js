@@ -1,4 +1,4 @@
-console.log("loggin from github pages");
+console.log("code from github pages");
 
 MemberStack.onReady.then(function (member) {
   // check if member is logged in
@@ -9,12 +9,12 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   } else {
     // If member is logged in then do this logic
-    const airtableID = member["airtableid"];
+    const studentAirtableID = member["airtableid"];
 
-    fetch(`https://apguru-server.herokuapp.com/api/v1/student/classes/${airtableID}`)
+    fetch(`https://apguru-server.herokuapp.com/api/v1/student/classes/${studentAirtableID}`)
       .then((response) => response.json())
       .then((res) => {
-        console.log(res);
+        console.log("res", res);
       });
   }
 
