@@ -1,22 +1,32 @@
 console.log("code from github pages");
 
 MemberStack.onReady.then(function (member) {
-  // check if member is logged in
-  // returns true or false
-
+  //   If member is not logged in redirect to main page
   if (!member.loggedIn) {
-    //   If member is not logged in redirect to main page
     window.location.replace(window.location.hostname);
-  } else {
-    // If member is logged in then do this logic
-    const studentAirtableID = member["airtableid"];
-
-    fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}`)
-      .then((response) => response.json())
-      .then((res) => {
-        console.log("res", res);
-      });
   }
+
+  // If member is logged in then continue this logic
+  const studentAirtableID = member["airtableid"];
+
+  fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}`)
+    .then((response) => response.json())
+    .then((response) => {
+      const classesHolder = document.querySelector(".classes-holder");
+      const upcomingTemplate = document.querySelector(".class-wrap .upcoming");
+      const completedTemplate = document.querySelector(".class-wrap .completed");
+      const missedTemplate = document.querySelector(".class-wrap .missed");
+
+      console.log("response", response);
+
+      response.upcomingClasses.forEach((upcomingClassData) => {
+        const upcomingClassDiv = upcomingTemplate.cloneNode(true);
+        upcomingClassDiv.querySelector(".class-date").innerHTML = `${upcomingClassData.formattedTime}`;
+
+        // Appending the result Item
+        classesHolder.appendChild(upcomingClassDiv);
+      });
+    });
 
   // do things with the member object
 });
