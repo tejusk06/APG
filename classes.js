@@ -9,15 +9,17 @@ MemberStack.onReady.then(function (member) {
   // If member is logged in then continue this logic
   const studentAirtableID = member["airtableid"];
 
+  //   Making the api call to get classes data for the student
   fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates
-      const classesHolder = document.querySelector(".classes-holder");
-      const upcomingTemplate = document.querySelector(".class-wrap .upcoming");
-      const completedTemplate = document.querySelector(".class-wrap .completed");
-      const missedTemplate = document.querySelector(".class-wrap .missed");
+      const classesHolder = document.querySelectorAll(".classes-holder")[0];
+      const upcomingTemplate = document.querySelectorAll(".class-wrap.upcoming")[0];
+      const completedTemplate = document.querySelectorAll(".class-wrap.completed")[0];
+      const missedTemplate = document.querySelectorAll(".class-wrap.missed")[0];
 
+      //   Logging the templates
       console.log("response", response);
       console.log("upcomingTemplate", upcomingTemplate);
       console.log("completedTemplate", completedTemplate);
