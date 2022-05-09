@@ -12,18 +12,23 @@ MemberStack.onReady.then(function (member) {
   fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
+      // Getting the Classes holder and all the templates
       const classesHolder = document.querySelector(".classes-holder");
       const upcomingTemplate = document.querySelector(".class-wrap .upcoming");
       const completedTemplate = document.querySelector(".class-wrap .completed");
       const missedTemplate = document.querySelector(".class-wrap .missed");
 
       console.log("response", response);
+      console.log("upcomingTemplate", upcomingTemplate);
+      console.log("completedTemplate", completedTemplate);
+      console.log("missedTemplate", missedTemplate);
 
+      //   Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date").innerHTML = `${upcomingClassData.formattedTime}`;
 
-        // Appending the result Item
+        // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
       });
     });
