@@ -11,7 +11,7 @@ MemberStack.onReady.then(function (member) {
     // If member is logged in then do this logic
     const studentAirtableID = member["airtableid"];
 
-    fetch(`https://apguru-server.herokuapp.com/api/v1/student/classes/${studentAirtableID}`)
+    fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}`)
       .then((response) => response.json())
       .then((res) => {
         console.log("res", res);
