@@ -29,6 +29,11 @@ MemberStack.onReady.then(function (member) {
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date").innerHTML = `${upcomingClassData.formattedTime}`;
+        upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
+        upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
+        upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
+        upcomingClassDiv.querySelector(".topic-text").innerHTML = `${upcomingClassData.classTopics}`;
+        upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
