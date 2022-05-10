@@ -88,18 +88,6 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Logic for Filter all button
-  /*
-  filterAllButton.onClick = function () {
-    allButtonsInactive();
-    filterAllButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
-    });
-  };
-*/
-
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
@@ -111,43 +99,22 @@ MemberStack.onReady.then(function (member) {
   });
 
   //   Logic for filter Upcoming Button
-  /*
-  filterUpcomingButton.onClick = function () {
-    allButtonsInactive();
-    filterUpcomingButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll("class-wrap");
-    const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
-
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "none";
-    });
-    upcomingClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
-    });
-  };
-  */
-
   filterUpcomingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
     const allClasses = document.querySelectorAll(".class-wrap");
     const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
 
-    console.log("allClasses", allClasses);
-    console.log("upcomingClasses", upcomingClasses);
-
     allClasses.forEach((eachClass) => {
       eachClass.style.display = "none";
-      console.log("setting all to display none");
     });
     upcomingClasses.forEach((eachClass) => {
       eachClass.style.display = "block";
-      console.log("setting upcoming to display block");
     });
   });
 
   //   Logic for filter Completed Button
-  filterCompletedButton.onClick = function () {
+  filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
     const allClasses = document.querySelectorAll(".class-wrap");
@@ -159,10 +126,10 @@ MemberStack.onReady.then(function (member) {
     completedClasses.forEach((eachClass) => {
       eachClass.style.display = "block";
     });
-  };
+  });
 
   //   Logic for filter Missed Button
-  filterMissedButton.onClick = function () {
+  filterMissedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterMissedButton.classList.add("filter-button-active");
     const allClasses = document.querySelectorAll(".class-wrap");
@@ -174,7 +141,7 @@ MemberStack.onReady.then(function (member) {
     missedClasses.forEach((eachClass) => {
       eachClass.style.display = "block";
     });
-  };
+  });
 
   // do things with the member object
 });
