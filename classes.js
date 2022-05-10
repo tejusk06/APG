@@ -21,9 +21,9 @@ MemberStack.onReady.then(function (member) {
 
       //   Logging the templates
       console.log("response", response);
-      console.log("upcomingTemplate", upcomingTemplate);
-      console.log("completedTemplate", completedTemplate);
-      console.log("missedTemplate", missedTemplate);
+      //   console.log("upcomingTemplate", upcomingTemplate);
+      //   console.log("completedTemplate", completedTemplate);
+      //   console.log("missedTemplate", missedTemplate);
 
       //   Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
@@ -32,7 +32,7 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
-        upcomingClassDiv.querySelector(".topic-text").innerHTML = `${upcomingClassData.classTopics}`;
+        upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
         upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
 
         // Appending the upcoming class Div
