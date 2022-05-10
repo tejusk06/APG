@@ -5,8 +5,14 @@ MemberStack.onReady.then(function (member) {
   if (!member.loggedIn) {
     window.location.replace(window.location.hostname);
   }
-
+  let courseID = null;
   // If member is logged in then continue this logic
+
+  if (member.membership.name == "AP Guru SAT Students") {
+    courseID = "recQ9LlXahxGsLY8I";
+  } else if (member.membership.name == "AP Guru ACT Students") {
+    courseID = "reccXht5MjmINAccQ";
+  }
 
   // Hiding the templates
   const classTemplates = document.querySelector(".class-templates");
@@ -15,7 +21,7 @@ MemberStack.onReady.then(function (member) {
   const studentAirtableID = member["airtableid"];
 
   //   Making the api call to get classes data for the student
-  fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}`)
+  fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}-${courseID}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates
