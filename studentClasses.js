@@ -1,4 +1,4 @@
-console.log("code from github pages");
+console.log("student classes logic from github pages");
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -33,7 +33,9 @@ MemberStack.onReady.then(function (member) {
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
-        upcomingClassDiv.querySelector(".class-date").innerHTML = `${upcomingClassData.formattedTime}`;
+
+        console.log("upcomingClassDiv", upcomingClassDiv);
+        console.log("upcoming date text", upcomingClassDiv.querySelector(".class-date-text"));
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
@@ -47,7 +49,6 @@ MemberStack.onReady.then(function (member) {
       //   Rendering divs for each missed class
       response.completedClasses.forEach((completedClassData) => {
         const completedClassDiv = completedTemplate.cloneNode(true);
-        completedClassDiv.querySelector(".class-date").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
@@ -61,7 +62,6 @@ MemberStack.onReady.then(function (member) {
       //   Rendering divs for each completed class
       response.missedClasses.forEach((missedClassData) => {
         const missedClassDiv = missedTemplate.cloneNode(true);
-        missedClassDiv.querySelector(".class-date").innerHTML = `${missedClassData.formattedTime}`;
         missedClassDiv.querySelector(".class-date-text").innerHTML = `${missedClassData.formattedTime}`;
         missedClassDiv.querySelector(".class-name").innerHTML = `${missedClassData.className}`;
         missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
