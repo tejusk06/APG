@@ -130,7 +130,7 @@ MemberStack.onReady.then(function (member) {
   filterUpcomingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll("class-wrap");
+    const allClasses = document.querySelectorAll(".class-wrap");
     const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
 
     console.log("allClasses", allClasses);
@@ -150,7 +150,7 @@ MemberStack.onReady.then(function (member) {
   filterCompletedButton.onClick = function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll("class-wrap");
+    const allClasses = document.querySelectorAll(".class-wrap");
     const completedClasses = document.querySelectorAll(".class-wrap.completed");
 
     allClasses.forEach((eachClass) => {
@@ -165,7 +165,7 @@ MemberStack.onReady.then(function (member) {
   filterMissedButton.onClick = function () {
     allButtonsInactive();
     filterMissedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll("class-wrap");
+    const allClasses = document.querySelectorAll(".class-wrap");
     const missedClasses = document.querySelectorAll(".class-wrap.missed");
 
     allClasses.forEach((eachClass) => {
