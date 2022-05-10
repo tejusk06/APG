@@ -133,11 +133,16 @@ MemberStack.onReady.then(function (member) {
     const allClasses = document.querySelectorAll("class-wrap");
     const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
 
+    console.log("allClasses", allClasses);
+    console.log("upcomingClasses", upcomingClasses);
+
     allClasses.forEach((eachClass) => {
       eachClass.style.display = "none";
+      console.log("setting all to display none");
     });
     upcomingClasses.forEach((eachClass) => {
       eachClass.style.display = "block";
+      console.log("setting upcoming to display block");
     });
   });
 
