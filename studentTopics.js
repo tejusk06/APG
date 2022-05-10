@@ -48,7 +48,7 @@ MemberStack.onReady.then(function (member) {
           topicDiv.classList.add("math");
         } else if (topicData.courseSection == "sat-reading") {
           topicDiv.classList.add("reading");
-        } else if (topicData.courseSection == "sat-writinglanguage") {
+        } else if (topicData.courseSection == "sat-writing-language") {
           topicDiv.classList.add("writing");
         }
 
