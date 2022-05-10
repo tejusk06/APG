@@ -33,9 +33,6 @@ MemberStack.onReady.then(function (member) {
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
-
-        console.log("upcomingClassDiv", upcomingClassDiv);
-        console.log("upcoming date text", upcomingClassDiv.querySelector(".class-date-text"));
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
