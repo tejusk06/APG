@@ -77,57 +77,55 @@ MemberStack.onReady.then(function (member) {
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
+    const allTopics = document.querySelectorAll(".topic-wrap");
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
+    allTopics.forEach((eachTopic) => {
+      eachTopic.style.display = "block";
     });
   });
 
-  //   Logic for filter Upcoming Button
-  filterUpcomingButton.addEventListener("click", function () {
+  //   Logic for filter Math Button
+  filterMathButton.addEventListener("click", function () {
     allButtonsInactive();
-    filterUpcomingButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
+    filterMathButton.classList.add("filter-button-active");
+    const allTopics = document.querySelectorAll(".topic-wrap");
+    const mathTopics = document.querySelectorAll(".topic-wrap.math");
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "none";
+    allTopics.forEach((eachTopic) => {
+      eachTopic.style.display = "none";
     });
-    upcomingClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
+    mathTopics.forEach((eachTopic) => {
+      eachTopic.style.display = "block";
     });
   });
 
-  //   Logic for filter Completed Button
-  filterCompletedButton.addEventListener("click", function () {
+  //   Logic for filter Reading Button
+  filterReadingButton.addEventListener("click", function () {
     allButtonsInactive();
-    filterCompletedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const completedClasses = document.querySelectorAll(".class-wrap.completed");
+    filterReadingButton.classList.add("filter-button-active");
+    const allTopics = document.querySelectorAll(".topic-wrap");
+    const readingTopics = document.querySelectorAll(".topic-wrap.reading");
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "none";
+    allTopics.forEach((eachTopic) => {
+      eachTopic.style.display = "none";
     });
-    completedClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
+    readingTopics.forEach((eachTopic) => {
+      eachTopic.style.display = "block";
     });
   });
 
-  //   Logic for filter Missed Button
-  filterMissedButton.addEventListener("click", function () {
+  //   Logic for filter Writing Button
+  filterWritingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterMissedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const missedClasses = document.querySelectorAll(".class-wrap.missed");
+    const allTopics = document.querySelectorAll(".topic-wrap");
+    const writingTopics = document.querySelectorAll(".topic-wrap.writing");
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "none";
+    allTopics.forEach((eachTopic) => {
+      eachTopic.style.display = "none";
     });
-    missedClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
+    writingTopics.forEach((eachTopic) => {
+      eachTopic.style.display = "block";
     });
   });
-
-  // do things with the member object
 });
