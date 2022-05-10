@@ -38,6 +38,34 @@ MemberStack.onReady.then(function (member) {
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
       });
+
+      //   Rendering divs for each missed class
+      response.completedClasses.forEach((completedClassData) => {
+        const completedClassDiv = completedTemplate.cloneNode(true);
+        completedClassDiv.querySelector(".class-date").innerHTML = `${completedClassData.formattedTime}`;
+        completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
+        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
+        completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
+        completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
+        completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+
+        // Appending the upcoming class Div
+        classesHolder.appendChild(completedClassDiv);
+      });
+
+      //   Rendering divs for each completed class
+      response.missedClasses.forEach((missedClassData) => {
+        const missedClassDiv = missedTemplate.cloneNode(true);
+        missedClassDiv.querySelector(".class-date").innerHTML = `${missedClassData.formattedTime}`;
+        missedClassDiv.querySelector(".class-date-text").innerHTML = `${missedClassData.formattedTime}`;
+        missedClassDiv.querySelector(".class-name").innerHTML = `${missedClassData.className}`;
+        missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
+        missedClassDiv.querySelector(".topics-text").innerHTML = `${missedClassData.classTopics}`;
+        missedClassDiv.querySelector(".homework-text").innerHTML = `${missedClassData.classTopics}`;
+
+        // Appending the upcoming class Div
+        classesHolder.appendChild(missedClassDiv);
+      });
     });
 
   // do things with the member object
