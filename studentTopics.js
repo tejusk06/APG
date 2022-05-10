@@ -39,9 +39,9 @@ MemberStack.onReady.then(function (member) {
         topicDiv.querySelector(".topic-name").innerHTML = `${topicData.topicName}`;
 
         if (topicData.topicCompleted) {
-          topicDiv.querySelector(".topic-missed-icon").style.display = "none";
+          topicDiv.querySelector(".topic-missed_icon").style.display = "none";
         } else {
-          topicDiv.querySelector(".topic-completed-icon").style.display = "none";
+          topicDiv.querySelector(".topic-completed_icon").style.display = "none";
         }
 
         if (topicData.courseSection == "sat-math") {
