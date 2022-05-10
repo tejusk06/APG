@@ -38,7 +38,7 @@ MemberStack.onReady.then(function (member) {
         topicDiv.querySelector(".topic-image").src = `${topicData.imgURL}`;
         topicDiv.querySelector(".topic-name").innerHTML = `${topicData.topicName}`;
 
-        if (topicData.topicCompleted) {
+        if (topicData.topicCompleted == "true") {
           topicDiv.querySelector(".topic-missed_icon").style.display = "none";
         } else {
           topicDiv.querySelector(".topic-completed_icon").style.display = "none";
@@ -80,7 +80,7 @@ MemberStack.onReady.then(function (member) {
     const allTopics = document.querySelectorAll(".topic-wrap");
 
     allTopics.forEach((eachTopic) => {
-      eachTopic.style.display = "block";
+      eachTopic.style.display = "flex";
     });
   });
 
@@ -95,7 +95,7 @@ MemberStack.onReady.then(function (member) {
       eachTopic.style.display = "none";
     });
     mathTopics.forEach((eachTopic) => {
-      eachTopic.style.display = "block";
+      eachTopic.style.display = "flex";
     });
   });
 
@@ -110,14 +110,14 @@ MemberStack.onReady.then(function (member) {
       eachTopic.style.display = "none";
     });
     readingTopics.forEach((eachTopic) => {
-      eachTopic.style.display = "block";
+      eachTopic.style.display = "flex";
     });
   });
 
   //   Logic for filter Writing Button
   filterWritingButton.addEventListener("click", function () {
     allButtonsInactive();
-    filterMissedButton.classList.add("filter-button-active");
+    filterWritingButton.classList.add("filter-button-active");
     const allTopics = document.querySelectorAll(".topic-wrap");
     const writingTopics = document.querySelectorAll(".topic-wrap.writing");
 
@@ -125,7 +125,7 @@ MemberStack.onReady.then(function (member) {
       eachTopic.style.display = "none";
     });
     writingTopics.forEach((eachTopic) => {
-      eachTopic.style.display = "block";
+      eachTopic.style.display = "flex";
     });
   });
 });
