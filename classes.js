@@ -88,6 +88,7 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Logic for Filter all button
+  /*
   filterAllButton.onClick = function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
@@ -97,8 +98,20 @@ MemberStack.onReady.then(function (member) {
       eachClass.style.display = "block";
     });
   };
+*/
+
+  filterAllButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterAllButton.classList.add("filter-button-active");
+    const allClasses = document.querySelectorAll(".class-wrap");
+
+    allClasses.forEach((eachClass) => {
+      eachClass.style.display = "block";
+    });
+  });
 
   //   Logic for filter Upcoming Button
+  /*
   filterUpcomingButton.onClick = function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
@@ -112,6 +125,21 @@ MemberStack.onReady.then(function (member) {
       eachClass.style.display = "block";
     });
   };
+  */
+
+  filterUpcomingButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterUpcomingButton.classList.add("filter-button-active");
+    const allClasses = document.querySelectorAll("class-wrap");
+    const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
+
+    allClasses.forEach((eachClass) => {
+      eachClass.style.display = "none";
+    });
+    upcomingClasses.forEach((eachClass) => {
+      eachClass.style.display = "block";
+    });
+  });
 
   //   Logic for filter Completed Button
   filterCompletedButton.onClick = function () {
