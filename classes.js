@@ -7,6 +7,9 @@ MemberStack.onReady.then(function (member) {
   }
 
   // If member is logged in then continue this logic
+  const templates = document.querySelector(".templates");
+  templates.style.display = "none";
+
   const studentAirtableID = member["airtableid"];
 
   //   Making the api call to get classes data for the student
@@ -75,6 +78,7 @@ MemberStack.onReady.then(function (member) {
   const filterCompletedButton = document.querySelector("#filter-completed");
   const filterMissedButton = document.querySelector("#filter-missed");
 
+  //   Common logic to make all button inactive
   const allButtonsInactive = () => {
     filterButtons.forEach((button) => {
       if (button.classList.contains("filter-button-active")) {
