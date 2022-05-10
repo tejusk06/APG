@@ -7,8 +7,10 @@ MemberStack.onReady.then(function (member) {
   }
 
   // If member is logged in then continue this logic
-  const templates = document.querySelector(".templates");
-  templates.style.display = "none";
+
+  // Hiding the templates
+  const classTemplates = document.querySelector(".class-templates");
+  classTemplates.style.display = "none";
 
   const studentAirtableID = member["airtableid"];
 
