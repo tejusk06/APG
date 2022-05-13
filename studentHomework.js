@@ -23,11 +23,13 @@ MemberStack.onReady.then(function (member) {
 
       completedHomework.forEach((eachHomework) => {
         homeworkItems.forEach((item) => {
-          const itemName = topic.querySelector(".hw-name");
+          const itemName = item.querySelector(".hw-name");
 
           if (eachHomework.name == itemName) {
             item.style.display = "flex";
-            document.querySelector(".hw-completed").style.display = "flex";
+            if (eachHomework.completed) {
+              document.querySelector(".hw-completed").style.display = "flex";
+            }
           }
         });
       });
