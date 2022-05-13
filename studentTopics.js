@@ -32,7 +32,6 @@ MemberStack.onReady.then(function (member) {
 
       //   Logging the templates
       console.log("response", response);
-      console.log("topicsItems", topicsItems);
 
       topicsItems.forEach((topic) => {
         const topicName = topic.querySelector(".topic-name").innerHTML;
@@ -48,14 +47,15 @@ MemberStack.onReady.then(function (member) {
     });
 
   const filterAllButton = document.querySelector(".filter-all");
-  const filterTopicButtons = document.querySelector(".filter-topic");
+  const filterTopicButtons = document.querySelectorAll(".filter-topic");
 
   filterAllButton.addEventListener("click", function () {
-    filterAllButton.classList.add("filter-button-active");
+    this.classList.add("filter-button-active");
   });
 
   filterTopicButtons.forEach((button) => {
     button.addEventListener("click", function () {
+      const filterAllButton = document.querySelector(".filter-all");
       filterAllButton.classList.remove("filter-button-active");
     });
   });
