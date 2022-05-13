@@ -111,8 +111,7 @@ MemberStack.onReady.then(function (member) {
   filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
-    const completedHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-completed");
+    const allHomework = document.querySelectorAll(".homework-wrap");
 
     console.log("all", allHomework);
     allHomework.forEach((eachHomework) => {
@@ -128,8 +127,7 @@ MemberStack.onReady.then(function (member) {
   filterDueButton.addEventListener("click", function () {
     allButtonsInactive();
     filterDueButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
-    const dueHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-due");
+    const allHomework = document.querySelectorAll(".homework-wrap");
 
     console.log("all", allHomework);
     allHomework.forEach((eachHomework) => {
