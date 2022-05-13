@@ -61,15 +61,12 @@ MemberStack.onReady.then(function (member) {
 
       */
 
-
       response.completedTopics.forEach((completedTopic) => {
-          console.log(completedTopic);
-      }
-
+        console.log(completedTopic);
+      });
     });
 
-
-    /*
+  /*
 
   // Adding show and hide logic for filter buttons
   const filterButtons = document.querySelectorAll(".filter-button");
@@ -145,6 +142,4 @@ MemberStack.onReady.then(function (member) {
 
 
   */
-
-
 });
