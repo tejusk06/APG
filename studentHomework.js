@@ -39,11 +39,10 @@ MemberStack.onReady.then(function (member) {
 
             if (eachHomework.completed) {
               item.querySelector(".hw-completed").style.display = "flex";
-              console.log("status item", item.querySelector(".hw-completed"));
+
               item.classList.add(".homework-completed");
             } else {
               const isPast = dateInPast(new Date(eachHomework.date));
-              console.log("due?", isPast);
 
               if (isPast) {
                 item.querySelector(".hw-due").style.display = "flex";
@@ -85,14 +84,19 @@ MemberStack.onReady.then(function (member) {
     allHomework.forEach((eachHomework) => {
       eachHomework.style.display = "flex";
     });
+
+    console.log("all", allHomework);
   });
 
-  //   Logic for filter Upcoming Button
+  //   Logic for filter Pending Button
   filterPendingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterPendingButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-show");
     const pendingHomework = document.querySelectorAll(".homework-pending");
+
+    console.log("all", allHomework);
+    console.log("pending", pendingHomework);
 
     allHomework.forEach((eachHomework) => {
       eachHomework.style.display = "none";
@@ -109,6 +113,9 @@ MemberStack.onReady.then(function (member) {
     const allHomework = document.querySelectorAll(".homework-show");
     const completedHomework = document.querySelectorAll(".homework-completed");
 
+    console.log("all", allHomework);
+    console.log("completed", completedHomework);
+
     allHomework.forEach((eachHomework) => {
       eachHomework.style.display = "none";
     });
@@ -117,12 +124,15 @@ MemberStack.onReady.then(function (member) {
     });
   });
 
-  //   Logic for filter Missed Button
+  //   Logic for filter due Button
   filterDueButton.addEventListener("click", function () {
     allButtonsInactive();
     filterDueButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-show");
     const dueHomework = document.querySelectorAll(".homework-due");
+
+    console.log("all", allHomework);
+    console.log("due", dueHomework);
 
     allHomework.forEach((eachHomework) => {
       eachHomework.style.display = "none";
