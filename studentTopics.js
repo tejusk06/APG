@@ -40,9 +40,9 @@ MemberStack.onReady.then(function (member) {
         const notCompletedStatus = topic.querySelector(".topic-not-completed");
 
         if (completedTopics.includes(topicName)) {
-          completedStatus.style.display = "block";
+          completedStatus.style.display = "flex";
         } else {
-          notCompletedStatus.style.display = "block";
+          notCompletedStatus.style.display = "flex";
         }
       });
 
