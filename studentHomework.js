@@ -41,9 +41,20 @@ MemberStack.onReady.then(function (member) {
             item.style.display = "flex";
             if (eachHomework.completed) {
               document.querySelector(".hw-completed").style.display = "flex";
+              item.classList.add(".hw-completed");
             } else {
               const isPast = dateInPast(new Date(eachHomework.date));
               console.log("due?", isPast);
+
+              if (isPast) {
+                item.querySelector(".hw-due").style.display = flex;
+                item.querySelector(".hw-due-date").innerHTML = eachHomework.date;
+                item.classList.add(".hw-due");
+              } else {
+                item.querySelector(".hw-pending").style.display = flex;
+                item.querySelector(".hw-pending-date").innerHTML = eachHomework.date;
+                item.classList.add(".hw-pending");
+              }
             }
           }
         });
