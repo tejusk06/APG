@@ -16,7 +16,6 @@ MemberStack.onReady.then(function (member) {
       const completedHomework = response.homeworkArray;
 
       const homeworkItems = document.querySelectorAll(".topic-wrap-hw");
-      console.log("homework", homeworkItems);
 
       //   Logging the templates
       console.log("response", response);
@@ -34,9 +33,6 @@ MemberStack.onReady.then(function (member) {
         homeworkItems.forEach((item) => {
           const itemName = item.querySelector(".hw-name").innerHTML;
 
-          console.log("itemName", itemName);
-          console.log("homework name", eachHomework.name);
-
           if (eachHomework.name == itemName) {
             item.style.display = "flex";
             if (eachHomework.completed) {
@@ -47,11 +43,11 @@ MemberStack.onReady.then(function (member) {
               console.log("due?", isPast);
 
               if (isPast) {
-                item.querySelector(".hw-due").style.display = flex;
+                item.querySelector(".hw-due").style.display = "flex";
                 item.querySelector(".hw-due-date").innerHTML = eachHomework.date;
                 item.classList.add(".hw-due");
               } else {
-                item.querySelector(".hw-pending").style.display = flex;
+                item.querySelector(".hw-pending").style.display = "flex";
                 item.querySelector(".hw-pending-date").innerHTML = eachHomework.date;
                 item.classList.add(".hw-pending");
               }
