@@ -46,16 +46,15 @@ MemberStack.onReady.then(function (member) {
       });
     });
 
-  const filterAllButton = document.querySelector(".filter-all");
+  const filterAllButton = document.querySelector("#filter-all");
   const filterTopicButtons = document.querySelectorAll(".filter-topic");
 
   filterAllButton.addEventListener("click", function () {
-    this.classList.add("filter-button-active");
+    filterAllButton.classList.add("filter-button-active");
   });
 
   filterTopicButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const filterAllButton = document.querySelector(".filter-all");
       filterAllButton.classList.remove("filter-button-active");
     });
   });
