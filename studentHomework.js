@@ -9,7 +9,7 @@ MemberStack.onReady.then(function (member) {
   const studentAirtableID = member["airtableid"];
 
   //   Making the api call to get classes data for the student
-  fetch(`https://apguru-server.herokuapp.com/api/v1/topics/student/${studentAirtableID}-${courseID}`)
+  fetch(`https://apguru-server.herokuapp.com/api/v1/topics/student/${studentAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates
