@@ -15,7 +15,7 @@ MemberStack.onReady.then(function (member) {
       // Getting the Classes holder and all the templates
       const completedHomework = response.homeworkArray;
 
-      const homeworkItems = document.querySelectorAll(".topic-wrap-hw");
+      const homeworkItems = document.querySelectorAll(".homework-wrap");
 
       //   Logging the templates
       console.log("response", response);
@@ -35,6 +35,8 @@ MemberStack.onReady.then(function (member) {
 
           if (eachHomework.name == itemName) {
             item.style.display = "flex";
+            item.classList.add(".homework-show");
+
             if (eachHomework.completed) {
               item.querySelector(".hw-completed").style.display = "flex";
               console.log("status item", item.querySelector(".hw-completed"));
@@ -57,4 +59,76 @@ MemberStack.onReady.then(function (member) {
         });
       });
     });
+
+  // Adding show and hide logic for filter buttons
+  const filterButtons = document.querySelectorAll(".filter-button");
+  const filterAllButton = document.querySelector("#filter-all");
+  const filterPendingButton = document.querySelector("#filter-pending");
+  const filterCompletedButton = document.querySelector("#filter-completed");
+  const filterDueButton = document.querySelector("#filter-due");
+
+  //   Common logic to make all button inactive
+  const allButtonsInactive = () => {
+    filterButtons.forEach((button) => {
+      if (button.classList.contains("filter-button-active")) {
+        button.classList.remove("filter-button-active");
+      }
+    });
+  };
+
+  //   Logic for Filter all button
+  filterAllButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterAllButton.classList.add("filter-button-active");
+    const allHomework = document.querySelectorAll(".homework-show");
+
+    allHomework.forEach((eachHomework) => {
+      eachHomework.style.display = "flex";
+    });
+  });
+
+  //   Logic for filter Upcoming Button
+  filterPendingButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterPendingButton.classList.add("filter-button-active");
+    const allHomework = document.querySelectorAll(".homework-show");
+    const pendingHomework = document.querySelectorAll(".homework-pending");
+
+    allHomework.forEach((eachHomework) => {
+      eachHomework.style.display = "none";
+    });
+    pendingHomework.forEach((eachHomework) => {
+      eachHomework.style.display = "flex";
+    });
+  });
+
+  //   Logic for filter Completed Button
+  filterCompletedButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterCompletedButton.classList.add("filter-button-active");
+    const allHomework = document.querySelectorAll(".homework-show");
+    const completedHomework = document.querySelectorAll(".homework-completed");
+
+    allHomework.forEach((eachHomework) => {
+      eachHomework.style.display = "none";
+    });
+    completedHomework.forEach((eachHomework) => {
+      eachHomework.style.display = "flex";
+    });
+  });
+
+  //   Logic for filter Missed Button
+  filterDueButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterDueButton.classList.add("filter-button-active");
+    const allHomework = document.querySelectorAll(".homework-show");
+    const dueHomework = document.querySelectorAll(".homework-due");
+
+    allHomework.forEach((eachHomework) => {
+      eachHomework.style.display = "none";
+    });
+    dueHomework.forEach((eachHomework) => {
+      eachHomework.style.display = "flex";
+    });
+  });
 });
