@@ -27,10 +27,13 @@ MemberStack.onReady.then(function (member) {
       // Getting the Classes holder and all the templates
       const topicsHolder = document.querySelectorAll(".topics-holder")[0];
       const topicTemplate = document.querySelectorAll(".topic-wrap")[0];
+      const topicsItems = document.querySelectorAll(".topic-wrap-c");
 
       //   Logging the templates
       console.log("response", response);
-      console.log("topicTemplate", topicTemplate);
+      console.log("topicsItems", topicsItems);
+
+      /*
 
       //     Rendering divs for each upcoming class
       response.formattedTopics.forEach((topicData) => {
@@ -55,7 +58,18 @@ MemberStack.onReady.then(function (member) {
         // Appending the upcoming class Div
         topicsHolder.appendChild(topicDiv);
       });
+
+      */
+
+
+      response.completedTopics.forEach((completedTopic) => {
+          console.log(completedTopic);
+      }
+
     });
+
+
+    /*
 
   // Adding show and hide logic for filter buttons
   const filterButtons = document.querySelectorAll(".filter-button");
@@ -128,4 +142,9 @@ MemberStack.onReady.then(function (member) {
       eachTopic.style.display = "flex";
     });
   });
+
+
+  */
+
+
 });
