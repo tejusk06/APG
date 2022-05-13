@@ -27,11 +27,24 @@ MemberStack.onReady.then(function (member) {
       // Getting the Classes holder and all the templates
       const topicsHolder = document.querySelectorAll(".topics-holder")[0];
       const topicTemplate = document.querySelectorAll(".topic-wrap")[0];
-      const topicsItems = document.querySelectorAll(".topic-wrap-c");
+      const topicsItems = document.querySelectorAll(".topic-wrap-cms");
+      const completedTopics = response.completedTopics;
 
       //   Logging the templates
       console.log("response", response);
       console.log("topicsItems", topicsItems);
+
+      topicsItems.forEach((topic) => {
+        const topicName = topic.querySelector(".topic-name").innerHTML;
+        const completedStatus = topic.querySelector(".topic-completed");
+        const notCompletedStatus = topic.querySelector(".topic-not-completed");
+
+        if (completedTopics.includes(topicName)) {
+          completedStatus.style.display = "block";
+        } else {
+          notCompletedStatus.style.display = "block";
+        }
+      });
 
       /*
 
@@ -60,10 +73,6 @@ MemberStack.onReady.then(function (member) {
       });
 
       */
-
-      response.completedTopics.forEach((completedTopic) => {
-        console.log(completedTopic);
-      });
     });
 
   /*
