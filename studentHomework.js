@@ -36,20 +36,21 @@ MemberStack.onReady.then(function (member) {
           if (eachHomework.name == itemName) {
             item.style.display = "flex";
             if (eachHomework.completed) {
-              document.querySelector(".hw-completed").style.display = "flex";
-              item.classList.add(".hw-completed");
+              item.querySelector(".hw-completed").style.display = "flex";
+              console.log("status item", item.querySelector(".hw-completed"));
+              item.classList.add(".homework-completed");
             } else {
               const isPast = dateInPast(new Date(eachHomework.date));
               console.log("due?", isPast);
 
               if (isPast) {
                 item.querySelector(".hw-due").style.display = "flex";
-                item.querySelector(".hw-due-date").innerHTML = eachHomework.date;
-                item.classList.add(".hw-due");
+                item.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
+                item.classList.add(".homework-due");
               } else {
                 item.querySelector(".hw-pending").style.display = "flex";
-                item.querySelector(".hw-pending-date").innerHTML = eachHomework.date;
-                item.classList.add(".hw-pending");
+                item.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
+                item.classList.add(".homework-pending");
               }
             }
           }
