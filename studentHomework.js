@@ -79,7 +79,7 @@ MemberStack.onReady.then(function (member) {
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
+    const allHomework = document.querySelectorAll(".homework-wrap");
 
     allHomework.forEach((eachHomework) => {
       eachHomework.style.display = "flex";
