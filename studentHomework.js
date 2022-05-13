@@ -23,9 +23,16 @@ MemberStack.onReady.then(function (member) {
 
       const today = new Date();
 
+      const dateInPast = function (firstDate) {
+        if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
+          return true;
+        }
+        return false;
+      };
+
       completedHomework.forEach((eachHomework) => {
         homeworkItems.forEach((item) => {
-          const itemName = item.querySelector(".hw-name");
+          const itemName = item.querySelector(".hw-name").innerHTML;
 
           console.log("itemName", itemName);
           console.log("homework name", eachHomework.name);
@@ -34,6 +41,9 @@ MemberStack.onReady.then(function (member) {
             item.style.display = "flex";
             if (eachHomework.completed) {
               document.querySelector(".hw-completed").style.display = "flex";
+            } else {
+              const isPast = dateInPast(new Date(eachHomework.date));
+              console.log("due?", isPast);
             }
           }
         });
