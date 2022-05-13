@@ -79,7 +79,7 @@ MemberStack.onReady.then(function (member) {
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-show");
+    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
 
     allHomework.forEach((eachHomework) => {
       eachHomework.style.display = "flex";
@@ -92,8 +92,8 @@ MemberStack.onReady.then(function (member) {
   filterPendingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterPendingButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-show");
-    const pendingHomework = document.querySelectorAll(".homework-pending");
+    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
+    const pendingHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-pending");
 
     console.log("all", allHomework);
     console.log("pending", pendingHomework);
@@ -110,8 +110,8 @@ MemberStack.onReady.then(function (member) {
   filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-show");
-    const completedHomework = document.querySelectorAll(".homework-completed");
+    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
+    const completedHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-completed");
 
     console.log("all", allHomework);
     console.log("completed", completedHomework);
@@ -128,8 +128,8 @@ MemberStack.onReady.then(function (member) {
   filterDueButton.addEventListener("click", function () {
     allButtonsInactive();
     filterDueButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-show");
-    const dueHomework = document.querySelectorAll(".homework-due");
+    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
+    const dueHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-due");
 
     console.log("all", allHomework);
     console.log("due", dueHomework);
