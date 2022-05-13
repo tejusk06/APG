@@ -35,23 +35,21 @@ MemberStack.onReady.then(function (member) {
 
           if (eachHomework.name == itemName) {
             item.style.display = "flex";
-            item.classList.add(".homework-show");
 
             if (eachHomework.completed) {
               item.querySelector(".hw-completed").style.display = "flex";
-
-              item.classList.add(".homework-completed");
+              item.querySelector(".homework-status").innerHTML = "completed";
             } else {
               const isPast = dateInPast(new Date(eachHomework.date));
 
               if (isPast) {
                 item.querySelector(".hw-due").style.display = "flex";
                 item.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
-                item.classList.add(".homework-due");
+                item.querySelector(".homework-status").innerHTML = "due";
               } else {
                 item.querySelector(".hw-pending").style.display = "flex";
                 item.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
-                item.classList.add(".homework-pending");
+                item.querySelector(".homework-status").innerHTML = "pending";
               }
             }
           }
@@ -82,7 +80,11 @@ MemberStack.onReady.then(function (member) {
     const allHomework = document.querySelectorAll(".homework-wrap");
 
     allHomework.forEach((eachHomework) => {
-      eachHomework.style.display = "flex";
+      if (eachHomework.querySelector(".homework-status").innerHTML != "null") {
+        eachHomework.style.display = "flex";
+      } else {
+        eachHomework.style.display = "none";
+      }
     });
 
     console.log("all", allHomework);
@@ -92,17 +94,16 @@ MemberStack.onReady.then(function (member) {
   filterPendingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterPendingButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap.homework-show");
-    const pendingHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-pending");
+    const allHomework = document.querySelectorAll(".homework-wrap");
 
     console.log("all", allHomework);
-    console.log("pending", pendingHomework);
 
     allHomework.forEach((eachHomework) => {
-      eachHomework.style.display = "none";
-    });
-    pendingHomework.forEach((eachHomework) => {
-      eachHomework.style.display = "flex";
+      if (eachHomework.querySelector(".homework-status").innerHTML == "pending") {
+        eachHomework.style.display = "flex";
+      } else {
+        eachHomework.style.display = "none";
+      }
     });
   });
 
@@ -114,13 +115,12 @@ MemberStack.onReady.then(function (member) {
     const completedHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-completed");
 
     console.log("all", allHomework);
-    console.log("completed", completedHomework);
-
     allHomework.forEach((eachHomework) => {
-      eachHomework.style.display = "none";
-    });
-    completedHomework.forEach((eachHomework) => {
-      eachHomework.style.display = "flex";
+      if (eachHomework.querySelector(".homework-status").innerHTML == "completed") {
+        eachHomework.style.display = "flex";
+      } else {
+        eachHomework.style.display = "none";
+      }
     });
   });
 
@@ -132,13 +132,12 @@ MemberStack.onReady.then(function (member) {
     const dueHomework = document.querySelectorAll(".homework-wrap.homework-show.homework-due");
 
     console.log("all", allHomework);
-    console.log("due", dueHomework);
-
     allHomework.forEach((eachHomework) => {
-      eachHomework.style.display = "none";
-    });
-    dueHomework.forEach((eachHomework) => {
-      eachHomework.style.display = "flex";
+      if (eachHomework.querySelector(".homework-status").innerHTML == "due") {
+        eachHomework.style.display = "flex";
+      } else {
+        eachHomework.style.display = "none";
+      }
     });
   });
 });
