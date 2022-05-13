@@ -21,9 +21,14 @@ MemberStack.onReady.then(function (member) {
       //   Logging the templates
       console.log("response", response);
 
+      const today = new Date();
+
       completedHomework.forEach((eachHomework) => {
         homeworkItems.forEach((item) => {
           const itemName = item.querySelector(".hw-name");
+
+          console.log("itemName", itemName);
+          console.log("homework name", eachHomework.name);
 
           if (eachHomework.name == itemName) {
             item.style.display = "flex";
