@@ -30,28 +30,35 @@ MemberStack.onReady.then(function (member) {
       };
 
       completedHomework.forEach((eachHomework) => {
-        homeworkItems.forEach((item) => {
-          const itemName = item.querySelector(".hw-name").innerHTML;
+        homeworkItems.forEach((hwItem) => {
+          const hwItemName = hwItem.querySelector(".hw-name").innerHTML;
+          const hwTopicId = hwItem.querySelector(".topic-id");
 
-          if (eachHomework.name == itemName) {
-            item.style.display = "flex";
+          //   First check if topic ID has been set in webflow CMS
+          if (hwTopicId) {
+            const hwTopicNumber = hwTopicId.innerHTML;
+            if (eachHomework.topicId == hwTopicNumber) {
+              hwItem.style.display = "flex";
 
-            if (eachHomework.completed) {
-              item.querySelector(".hw-completed").style.display = "flex";
-              item.querySelector(".homework-status").innerHTML = "completed";
-            } else {
-              const isPast = dateInPast(new Date(eachHomework.date));
-
-              if (isPast) {
-                item.querySelector(".hw-due").style.display = "flex";
-                item.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
-                item.querySelector(".homework-status").innerHTML = "due";
+              if (eachHomework.completed) {
+                hwItem.querySelector(".hw-completed").style.display = "flex";
+                hwItem.querySelector(".homework-status").innerHTML = "completed";
               } else {
-                item.querySelector(".hw-pending").style.display = "flex";
-                item.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
-                item.querySelector(".homework-status").innerHTML = "pending";
+                const isPast = dateInPast(new Date(eachHomework.date));
+
+                if (isPast) {
+                  hwItem.querySelector(".hw-due").style.display = "flex";
+                  hwItem.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
+                  hwItem.querySelector(".homework-status").innerHTML = "due";
+                } else {
+                  hwItem.querySelector(".hw-pending").style.display = "flex";
+                  hwItem.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
+                  hwItem.querySelector(".homework-status").innerHTML = "pending";
+                }
               }
             }
+
+            //   Check if topic ID matches
           }
         });
       });
