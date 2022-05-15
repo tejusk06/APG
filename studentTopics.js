@@ -34,14 +34,17 @@ MemberStack.onReady.then(function (member) {
       console.log("response", response);
 
       topicsItems.forEach((topic) => {
-        const topicName = topic.querySelector(".topic-name").innerHTML;
+        const topicId = topic.querySelector(".topic-id");
         const completedStatus = topic.querySelector(".topic-completed");
         const notCompletedStatus = topic.querySelector(".topic-not-completed");
 
-        if (completedTopics.includes(topicName)) {
-          completedStatus.style.display = "flex";
-        } else {
-          notCompletedStatus.style.display = "flex";
+        if (topicId) {
+          const topicIdNumber = topicId.innerHTML;
+          if (completedTopics.includes(topicIdNumber)) {
+            completedStatus.style.display = "flex";
+          } else {
+            notCompletedStatus.style.display = "flex";
+          }
         }
       });
     });
