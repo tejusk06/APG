@@ -93,8 +93,6 @@ MemberStack.onReady.then(function (member) {
         eachHomework.style.display = "none";
       }
     });
-
-    console.log("all", allHomework);
   });
 
   //   Logic for filter Pending Button
@@ -102,8 +100,6 @@ MemberStack.onReady.then(function (member) {
     allButtonsInactive();
     filterPendingButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-wrap");
-
-    console.log("all", allHomework);
 
     allHomework.forEach((eachHomework) => {
       if (eachHomework.querySelector(".homework-status").innerHTML == "pending") {
@@ -120,7 +116,6 @@ MemberStack.onReady.then(function (member) {
     filterCompletedButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-wrap");
 
-    console.log("all", allHomework);
     allHomework.forEach((eachHomework) => {
       if (eachHomework.querySelector(".homework-status").innerHTML == "completed") {
         eachHomework.style.display = "flex";
@@ -136,7 +131,6 @@ MemberStack.onReady.then(function (member) {
     filterDueButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-wrap");
 
-    console.log("all", allHomework);
     allHomework.forEach((eachHomework) => {
       if (eachHomework.querySelector(".homework-status").innerHTML == "due") {
         eachHomework.style.display = "flex";
