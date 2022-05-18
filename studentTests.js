@@ -72,6 +72,7 @@ MemberStack.onReady.then(function (member) {
           // Appending the completed test Div
           testsHolder.appendChild(completedTestDiv);
         } else if (!isPast || eachTest.dueDate == null) {
+          // This logic runs if test is upcoming and date is not selected
           const upcomingTestDiv = upcomingTest.cloneNode(true);
           upcomingTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
 
@@ -86,7 +87,11 @@ MemberStack.onReady.then(function (member) {
           } else {
             upcomingTestDiv.querySelector(".date-upcoming").innerHTML = `${eachTest.momentDate}`;
           }
+
+          // Appending the completed test Div
+          testsHolder.appendChild(upcomingTestDiv);
         } else if (isPast) {
+          // this logic runs is test is past due date
           const missedTestDiv = missedTest.cloneNode(true);
           missedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           missedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
@@ -94,6 +99,9 @@ MemberStack.onReady.then(function (member) {
           missedTestDiv.querySelector(".download-test-wrap").onclick = function () {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
+
+          // Appending the completed test Div
+          testsHolder.appendChild(missedTestDiv);
         }
       });
     });
