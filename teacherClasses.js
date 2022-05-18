@@ -35,9 +35,8 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
         upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
-        upcomingClassDiv.querySelectorAll(
-          ".view-class-button"
-        )[0].href = `/teacher/class/:${upcomingClassData.classID}`;
+        console.log("view class button", upcomingClassDiv.querySelector(".view-class-button"));
+        // .href = `/teacher/class/:${upcomingClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
