@@ -57,10 +57,13 @@ MemberStack.onReady.then(function (member) {
           //   completedTestDiv
           //     .querySelector(".download-test-wrap")
           //     .setAttribute("download", `${eachTest.name} - Question Paper`);
-          completedTestDiv.querySelector(".download-test-wrap").onclick = forceDown(
-            `${eachTest.questionPaper}`,
-            `${eachTest.name} - Question Paper`
-          );
+          completedTestDiv.querySelector(".download-test-wrap").onclick = function () {
+            forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+          };
+
+          //   completedTestDiv
+          //     .querySelector(".download-test-wrap")
+          //     .addEventListener("click", forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`));
 
           if (eachTest.report) {
             completedTestDiv.querySelector(".download-report-wrap").href = `${eachTest.report}`;
