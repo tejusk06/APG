@@ -109,9 +109,9 @@ MemberStack.onReady.then(function (member) {
   // Adding show and hide logic for filter buttons
   const filterButtons = document.querySelectorAll(".filter-button");
   const filterAllButton = document.querySelector("#filter-all");
-  const filterPendingButton = document.querySelector("#filter-pending");
+  const filterUpcomingButton = document.querySelector("#filter-upcoming");
   const filterCompletedButton = document.querySelector("#filter-completed");
-  const filterDueButton = document.querySelector("#filter-due");
+  const filterMissedButton = document.querySelector("#filter-missed");
 
   //   Common logic to make all button inactive
   const allButtonsInactive = () => {
@@ -123,62 +123,62 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Logic for Filter all button
-  filterAllButton.addEventListener("click", function () {
-    allButtonsInactive();
-    filterAllButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap");
+  //   filterAllButton.addEventListener("click", function () {
+  //     allButtonsInactive();
+  //     filterAllButton.classList.add("filter-button-active");
+  //     const allHomework = document.querySelectorAll(".homework-wrap");
 
-    allHomework.forEach((eachHomework) => {
-      if (eachHomework.querySelector(".homework-status").innerHTML != "null") {
-        eachHomework.style.display = "flex";
-      } else {
-        eachHomework.style.display = "none";
-      }
-    });
-  });
+  //     allHomework.forEach((eachHomework) => {
+  //       if (eachHomework.querySelector(".homework-status").innerHTML != "null") {
+  //         eachHomework.style.display = "flex";
+  //       } else {
+  //         eachHomework.style.display = "none";
+  //       }
+  //     });
+  //   });
 
-  //   Logic for filter Pending Button
-  filterPendingButton.addEventListener("click", function () {
-    allButtonsInactive();
-    filterPendingButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap");
+  //   //   Logic for filter Pending Button
+  //   filterUpcomingButton.addEventListener("click", function () {
+  //     allButtonsInactive();
+  //     filterPendingButton.classList.add("filter-button-active");
+  //     const allHomework = document.querySelectorAll(".homework-wrap");
 
-    allHomework.forEach((eachHomework) => {
-      if (eachHomework.querySelector(".homework-status").innerHTML == "pending") {
-        eachHomework.style.display = "flex";
-      } else {
-        eachHomework.style.display = "none";
-      }
-    });
-  });
+  //     allHomework.forEach((eachHomework) => {
+  //       if (eachHomework.querySelector(".homework-status").innerHTML == "pending") {
+  //         eachHomework.style.display = "flex";
+  //       } else {
+  //         eachHomework.style.display = "none";
+  //       }
+  //     });
+  //   });
 
-  //   Logic for filter Completed Button
-  filterCompletedButton.addEventListener("click", function () {
-    allButtonsInactive();
-    filterCompletedButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap");
+  //   //   Logic for filter Completed Button
+  //   filterCompletedButton.addEventListener("click", function () {
+  //     allButtonsInactive();
+  //     filterCompletedButton.classList.add("filter-button-active");
+  //     const allHomework = document.querySelectorAll(".homework-wrap");
 
-    allHomework.forEach((eachHomework) => {
-      if (eachHomework.querySelector(".homework-status").innerHTML == "completed") {
-        eachHomework.style.display = "flex";
-      } else {
-        eachHomework.style.display = "none";
-      }
-    });
-  });
+  //     allHomework.forEach((eachHomework) => {
+  //       if (eachHomework.querySelector(".homework-status").innerHTML == "completed") {
+  //         eachHomework.style.display = "flex";
+  //       } else {
+  //         eachHomework.style.display = "none";
+  //       }
+  //     });
+  //   });
 
-  //   Logic for filter due Button
-  filterDueButton.addEventListener("click", function () {
-    allButtonsInactive();
-    filterDueButton.classList.add("filter-button-active");
-    const allHomework = document.querySelectorAll(".homework-wrap");
+  //   //   Logic for filter due Button
+  //   filterMissedButton.addEventListener("click", function () {
+  //     allButtonsInactive();
+  //     filterDueButton.classList.add("filter-button-active");
+  //     const allHomework = document.querySelectorAll(".homework-wrap");
 
-    allHomework.forEach((eachHomework) => {
-      if (eachHomework.querySelector(".homework-status").innerHTML == "due") {
-        eachHomework.style.display = "flex";
-      } else {
-        eachHomework.style.display = "none";
-      }
-    });
-  });
+  //     allHomework.forEach((eachHomework) => {
+  //       if (eachHomework.querySelector(".homework-status").innerHTML == "due") {
+  //         eachHomework.style.display = "flex";
+  //       } else {
+  //         eachHomework.style.display = "none";
+  //       }
+  //     });
+  //   });
 });
