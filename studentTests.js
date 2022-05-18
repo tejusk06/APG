@@ -8,6 +8,17 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
+  function forceDown(url, filename) {
+    fetch(url).then(function (t) {
+      return t.blob().then((b) => {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(b);
+        a.setAttribute("download", filename);
+        a.click();
+      });
+    });
+  }
+
   //   Hide the test templates on webflow
   document.querySelectorAll(".tests-templates")[0].style.display = "none";
 
@@ -39,37 +50,20 @@ MemberStack.onReady.then(function (member) {
         // Checking if test has report or status is checked
         if (eachTest.report || eachTest.status) {
           //   Function to force download Files
-          function forceDown(url, filename) {
-            fetch(url).then(function (t) {
-              return t.blob().then((b) => {
-                var a = document.createElement("a");
-                a.href = URL.createObjectURL(b);
-                a.setAttribute("download", filename);
-                a.click();
-              });
-            });
-          }
 
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
-          //   completedTestDiv.querySelector(".download-test-wrap").href = `${eachTest.questionPaper}`;
-          //   completedTestDiv
-          //     .querySelector(".download-test-wrap")
-          //     .setAttribute("download", `${eachTest.name} - Question Paper`);
+
           completedTestDiv.querySelector(".download-test-wrap").onclick = function () {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
 
-          //   completedTestDiv
-          //     .querySelector(".download-test-wrap")
-          //     .addEventListener("click", forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`));
-
           if (eachTest.report) {
             completedTestDiv.querySelector(".download-report-wrap").href = `${eachTest.report}`;
-            completedTestDiv
-              .querySelector(".download-report-wrap")
-              .setAttribute("download", `${eachTest.name} - Report`);
+            completedTestDiv.querySelector(".download-report-wrap").onclick = function () {
+              forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
+            };
             completedTestDiv.querySelector(".download-report-wrap").style.display = "flex";
           }
 
