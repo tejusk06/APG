@@ -52,8 +52,6 @@ MemberStack.onReady.then(function (member) {
         const isPast = dateInPast(new Date(eachTest.dueDate));
 
         if (eachTest.report || eachTest.status) {
-          //   Function to force download Files
-
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
@@ -166,7 +164,7 @@ MemberStack.onReady.then(function (member) {
   //   Logic for filter due Button
   filterMissedButton.addEventListener("click", function () {
     allButtonsInactive();
-    filterDueButton.classList.add("filter-button-active");
+    filterMissedButton.classList.add("filter-button-active");
     const allTests = document.querySelectorAll(".test-wrap");
 
     allTests.forEach((eachTest) => {
