@@ -51,6 +51,7 @@ MemberStack.onReady.then(function (member) {
         const notCompletedStatus = topic.querySelector(".topic-not-completed");
         const topicfileButton = topic.querySelector(".topic-notes-button");
         const topicFileUrl = topicfileButton.href;
+        topicfileButton.href = "#";
         const topicName = topic.querySelector(".topic-name").innerHTML;
 
         topicfileButton.onclick = function () {
@@ -67,20 +68,4 @@ MemberStack.onReady.then(function (member) {
         }
       });
     });
-
-  //   const filterAllButton = document.querySelector("#filter-all");
-  //   const filterAllActiveButton = document.querySelector("#filter-all-active");
-  //   const filterTopicButtons = document.querySelectorAll(".filter-topic");
-
-  //   filterAllButton.addEventListener("click", function () {
-  //     filterAllButton.style.display = "none";
-  //     filterAllActiveButton.style.display = "block";
-  //   });
-
-  //   filterTopicButtons.forEach((button) => {
-  //     button.addEventListener("click", function () {
-  //       filterAllButton.style.display = "block";
-  //       filterAllActiveButton.style.display = "none";
-  //     });
-  //   });
 });
