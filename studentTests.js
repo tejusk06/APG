@@ -60,7 +60,6 @@ MemberStack.onReady.then(function (member) {
           };
 
           if (eachTest.report) {
-            completedTestDiv.querySelector(".download-report-wrap").href = `${eachTest.report}`;
             completedTestDiv.querySelector(".download-report-wrap").onclick = function () {
               forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
             };
