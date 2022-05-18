@@ -14,6 +14,18 @@ MemberStack.onReady.then(function (member) {
     courseID = "reccXht5MjmINAccQ";
   }
 
+  //   Function to force download
+  function forceDown(url, filename) {
+    fetch(url).then(function (t) {
+      return t.blob().then((b) => {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(b);
+        a.setAttribute("download", filename);
+        a.click();
+      });
+    });
+  }
+
   // Hiding the templates
   const topicTemplates = document.querySelector(".topic-templates");
   topicTemplates.style.display = "none";
@@ -37,6 +49,13 @@ MemberStack.onReady.then(function (member) {
         const topicId = topic.querySelector(".topic-id");
         const completedStatus = topic.querySelector(".topic-completed");
         const notCompletedStatus = topic.querySelector(".topic-not-completed");
+        const topicfileButton = topic.querySelector(".topic-notes-button");
+        const topicFileUrl = topicfileButton.href;
+        const topicName = topic.querySelector(".topic-name").innerHTML;
+
+        topicfileButton.onclick = function () {
+          forceDown(`${topicFileUrl}`, `${topicName} - Topic Notes`);
+        };
 
         if (topicId) {
           const topicIdNumber = topicId.innerHTML;
