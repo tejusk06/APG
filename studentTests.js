@@ -6,6 +6,18 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   }
 
+  //   Function to force download Files
+  function forceDown(url, filename) {
+    fetch(url).then(function (t) {
+      return t.blob().then((b) => {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(b);
+        a.setAttribute("download", filename);
+        a.click();
+      });
+    });
+  }
+
   const studentAirtableID = member["airtableid"];
 
   //   Hide the test templates on webflow
@@ -41,10 +53,13 @@ MemberStack.onReady.then(function (member) {
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
-          completedTestDiv.querySelector(".download-test-wrap").href = `${eachTest.questionPaper}`;
+          //   completedTestDiv.querySelector(".download-test-wrap").href = `${eachTest.questionPaper}`;
+          //   completedTestDiv
+          //     .querySelector(".download-test-wrap")
+          //     .setAttribute("download", `${eachTest.name} - Question Paper`);
           completedTestDiv
             .querySelector(".download-test-wrap")
-            .setAttribute("download", `${eachTest.name} - Question Paper`);
+            .setAttribute("onClick", `forceDown('${eachTest.questionPaper}', '${eachTest.name} - Question Paper')`);
 
           if (eachTest.report) {
             completedTestDiv.querySelector(".download-report-wrap").href = `${eachTest.report}`;
