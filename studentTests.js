@@ -42,9 +42,12 @@ MemberStack.onReady.then(function (member) {
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
           completedTestDiv.querySelector(".download-test-wrap").href = `${eachTest.questionPaper}`;
+          completedTestDiv.querySelector(".download-test-wrap").setAttribute("download", "");
 
           if (eachTest.report) {
             completedTestDiv.querySelector(".download-report-wrap").href = `${eachTest.report}`;
+            completedTestDiv.querySelector(".download-report-wrap").setAttribute("download", "");
+            completedTestDiv.querySelector(".download-report-wrap").style.display = "flex";
           }
 
           // Appending the completed test Div
