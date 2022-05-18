@@ -26,9 +26,6 @@ MemberStack.onReady.then(function (member) {
 
       //   Logging the templates
       console.log("response", response);
-      //   console.log("upcomingTemplate", upcomingTemplate);
-      //   console.log("completedTemplate", completedTemplate);
-      //   console.log("missedTemplate", missedTemplate);
 
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
@@ -38,6 +35,7 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
         upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+        upcomingClassDiv.querySelector(".view-class-button").href = `/teacher/class/:${upcomingClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
@@ -51,23 +49,11 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
         completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+        completedClassDiv.querySelector(".view-class-button").href = `/teacher/class/:${completedClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
       });
-
-      //   Rendering divs for each completed class
-      // response.missedClasses.forEach((missedClassData) => {
-      //   const missedClassDiv = missedTemplate.cloneNode(true);
-      //   missedClassDiv.querySelector(".class-date-text").innerHTML = `${missedClassData.formattedTime}`;
-      //   missedClassDiv.querySelector(".class-name").innerHTML = `${missedClassData.className}`;
-      //   missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
-      //   missedClassDiv.querySelector(".topics-text").innerHTML = `${missedClassData.classTopics}`;
-      //   missedClassDiv.querySelector(".homework-text").innerHTML = `${missedClassData.classTopics}`;
-
-      //   // Appending the upcoming class Div
-      //   classesHolder.appendChild(missedClassDiv);
-      // });
     });
 
   // Adding show and hide logic for filter buttons
@@ -123,21 +109,6 @@ MemberStack.onReady.then(function (member) {
       eachClass.style.display = "none";
     });
     completedClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
-    });
-  });
-
-  //   Logic for filter Missed Button
-  filterMissedButton.addEventListener("click", function () {
-    allButtonsInactive();
-    filterMissedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const missedClasses = document.querySelectorAll(".class-wrap.missed");
-
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "none";
-    });
-    missedClasses.forEach((eachClass) => {
       eachClass.style.display = "block";
     });
   });
