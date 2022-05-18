@@ -57,9 +57,10 @@ MemberStack.onReady.then(function (member) {
           //   completedTestDiv
           //     .querySelector(".download-test-wrap")
           //     .setAttribute("download", `${eachTest.name} - Question Paper`);
-          completedTestDiv
-            .querySelector(".download-test-wrap")
-            .setAttribute("onClick", `forceDown('${eachTest.questionPaper}', '${eachTest.name} - Question Paper')`);
+          completedTestDiv.querySelector(".download-test-wrap").onclick = forceDown(
+            `${eachTest.questionPaper}`,
+            `${eachTest.name} - Question Paper`
+          );
 
           if (eachTest.report) {
             completedTestDiv.querySelector(".download-report-wrap").href = `${eachTest.report}`;
