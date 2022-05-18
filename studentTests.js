@@ -6,18 +6,6 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   }
 
-  //   Function to force download Files
-  function forceDown(url, filename) {
-    fetch(url).then(function (t) {
-      return t.blob().then((b) => {
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(b);
-        a.setAttribute("download", filename);
-        a.click();
-      });
-    });
-  }
-
   const studentAirtableID = member["airtableid"];
 
   //   Hide the test templates on webflow
@@ -50,6 +38,18 @@ MemberStack.onReady.then(function (member) {
       allTests.forEach((eachTest) => {
         // Checking if test has report or status is checked
         if (eachTest.report || eachTest.status) {
+          //   Function to force download Files
+          function forceDown(url, filename) {
+            fetch(url).then(function (t) {
+              return t.blob().then((b) => {
+                var a = document.createElement("a");
+                a.href = URL.createObjectURL(b);
+                a.setAttribute("download", filename);
+                a.click();
+              });
+            });
+          }
+
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
