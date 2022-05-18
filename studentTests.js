@@ -123,62 +123,58 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Logic for Filter all button
-  //   filterAllButton.addEventListener("click", function () {
-  //     allButtonsInactive();
-  //     filterAllButton.classList.add("filter-button-active");
-  //     const allHomework = document.querySelectorAll(".homework-wrap");
+  filterAllButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterAllButton.classList.add("filter-button-active");
+    const allTests = document.querySelectorAll(".test-wrap");
 
-  //     allHomework.forEach((eachHomework) => {
-  //       if (eachHomework.querySelector(".homework-status").innerHTML != "null") {
-  //         eachHomework.style.display = "flex";
-  //       } else {
-  //         eachHomework.style.display = "none";
-  //       }
-  //     });
-  //   });
+    allTests.forEach((eachTest) => {
+      eachTest.style.display = "flex";
+    });
+  });
 
-  //   //   Logic for filter Pending Button
-  //   filterUpcomingButton.addEventListener("click", function () {
-  //     allButtonsInactive();
-  //     filterPendingButton.classList.add("filter-button-active");
-  //     const allHomework = document.querySelectorAll(".homework-wrap");
+  //   Logic for filter Pending Button
+  filterUpcomingButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterUpcomingButton.classList.add("filter-button-active");
+    const allTests = document.querySelectorAll(".test-wrap");
 
-  //     allHomework.forEach((eachHomework) => {
-  //       if (eachHomework.querySelector(".homework-status").innerHTML == "pending") {
-  //         eachHomework.style.display = "flex";
-  //       } else {
-  //         eachHomework.style.display = "none";
-  //       }
-  //     });
-  //   });
+    allTests.forEach((eachTest) => {
+      if (eachTest.querySelector(".test-status").innerHTML == "Upcoming") {
+        eachTest.style.display = "flex";
+      } else {
+        eachTest.style.display = "none";
+      }
+    });
+  });
 
-  //   //   Logic for filter Completed Button
-  //   filterCompletedButton.addEventListener("click", function () {
-  //     allButtonsInactive();
-  //     filterCompletedButton.classList.add("filter-button-active");
-  //     const allHomework = document.querySelectorAll(".homework-wrap");
+  //   Logic for filter Completed Button
+  filterCompletedButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterCompletedButton.classList.add("filter-button-active");
+    const allTests = document.querySelectorAll(".test-wrap");
 
-  //     allHomework.forEach((eachHomework) => {
-  //       if (eachHomework.querySelector(".homework-status").innerHTML == "completed") {
-  //         eachHomework.style.display = "flex";
-  //       } else {
-  //         eachHomework.style.display = "none";
-  //       }
-  //     });
-  //   });
+    allTests.forEach((eachTest) => {
+      if (eachTest.querySelector(".test-status").innerHTML == "Completed") {
+        eachTest.style.display = "flex";
+      } else {
+        eachTest.style.display = "none";
+      }
+    });
+  });
 
-  //   //   Logic for filter due Button
-  //   filterMissedButton.addEventListener("click", function () {
-  //     allButtonsInactive();
-  //     filterDueButton.classList.add("filter-button-active");
-  //     const allHomework = document.querySelectorAll(".homework-wrap");
+  //   Logic for filter due Button
+  filterMissedButton.addEventListener("click", function () {
+    allButtonsInactive();
+    filterDueButton.classList.add("filter-button-active");
+    const allTests = document.querySelectorAll(".test-wrap");
 
-  //     allHomework.forEach((eachHomework) => {
-  //       if (eachHomework.querySelector(".homework-status").innerHTML == "due") {
-  //         eachHomework.style.display = "flex";
-  //       } else {
-  //         eachHomework.style.display = "none";
-  //       }
-  //     });
-  //   });
+    allTests.forEach((eachTest) => {
+      if (eachTest.querySelector(".test-status").innerHTML == "Missed") {
+        eachTest.style.display = "flex";
+      } else {
+        eachTest.style.display = "none";
+      }
+    });
+  });
 });
