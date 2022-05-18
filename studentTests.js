@@ -40,6 +40,8 @@ MemberStack.onReady.then(function (member) {
         if (eachTest.report || eachTest.status) {
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
+          completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
+          completedTestDiv.querySelector(".download-test-wrap").src = `${eachTest.questionPaper}`;
 
           // Appending the completed test Div
           testsHolder.appendChild(completedTestDiv);
