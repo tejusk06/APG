@@ -20,6 +20,15 @@ MemberStack.onReady.then(function (member) {
     });
   }
 
+  //   Function to check if date in past
+  const dateInPast = function (firstDate) {
+    const today = new Date();
+    if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
+      return true;
+    }
+    return false;
+  };
+
   //   Hide the test templates on webflow
   document.querySelectorAll(".tests-templates")[0].style.display = "none";
 
@@ -37,15 +46,6 @@ MemberStack.onReady.then(function (member) {
 
       //   Logging the templates
       console.log("response", response);
-
-      const today = new Date();
-
-      const dateInPast = function (firstDate) {
-        if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
-          return true;
-        }
-        return false;
-      };
 
       allTests.forEach((eachTest) => {
         // Checking if test has report or status is checked
@@ -72,19 +72,19 @@ MemberStack.onReady.then(function (member) {
           // Appending the completed test Div
           testsHolder.appendChild(completedTestDiv);
         } else if (!isPast || eachTest.dueDate == null) {
-          const upcomingTest = upcomingTest.cloneNode(true);
-          upcomingTest.querySelector(".test-name").innerHTML = `${eachTest.name}`;
+          const upcomingTestDiv = upcomingTest.cloneNode(true);
+          upcomingTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
 
-          upcomingTest.querySelector(".download-test-wrap").onclick = function () {
+          upcomingTestDiv.querySelector(".download-test-wrap").onclick = function () {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
 
           if (eachTest.dueDate == null) {
-            upcomingTest.querySelector(".date-upcoming").style.display = "none";
-            upcomingTest.querySelector(".date-select").style.display = "block";
-            upcomingTest.querySelector(".date-select").href = "#";
+            upcomingTestDiv.querySelector(".date-upcoming").style.display = "none";
+            upcomingTestDiv.querySelector(".date-select").style.display = "block";
+            upcomingTestDiv.querySelector(".date-select").href = "#";
           } else {
-            upcomingTest.querySelector(".date-upcoming").innerHTML = `${eachTest.momentDate}`;
+            upcomingTestDiv.querySelector(".date-upcoming").innerHTML = `${eachTest.momentDate}`;
           }
         } else if (isPast) {
           const missedTestDiv = missedTest.cloneNode(true);
