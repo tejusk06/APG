@@ -8,6 +8,7 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
+  //   Function to force download
   function forceDown(url, filename) {
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
@@ -48,6 +49,8 @@ MemberStack.onReady.then(function (member) {
 
       allTests.forEach((eachTest) => {
         // Checking if test has report or status is checked
+        const isPast = dateInPast(new Date(eachTest.dueDate));
+
         if (eachTest.report || eachTest.status) {
           //   Function to force download Files
 
@@ -68,6 +71,29 @@ MemberStack.onReady.then(function (member) {
 
           // Appending the completed test Div
           testsHolder.appendChild(completedTestDiv);
+        } else if (!isPast || eachTest.dueDate == null) {
+          const upcomingTest = upcomingTest.cloneNode(true);
+          upcomingTest.querySelector(".test-name").innerHTML = `${eachTest.name}`;
+
+          upcomingTest.querySelector(".download-test-wrap").onclick = function () {
+            forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+          };
+
+          if (eachTest.dueDate == null) {
+            upcomingTest.querySelector(".date-upcoming").style.display = "none";
+            upcomingTest.querySelector(".date-select").style.display = "block";
+            upcomingTest.querySelector(".date-select").href = "#";
+          } else {
+            upcomingTest.querySelector(".date-upcoming").innerHTML = `${eachTest.momentDate}`;
+          }
+        } else if (isPast) {
+          const missedTestDiv = missedTest.cloneNode(true);
+          missedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
+          missedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
+
+          missedTestDiv.querySelector(".download-test-wrap").onclick = function () {
+            forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+          };
         }
       });
     });
