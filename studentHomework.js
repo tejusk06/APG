@@ -8,6 +8,10 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
+  document.querySelectorAll(".homework-wrap").forEach((eachHomework) => {
+    eachHomework.style.display = "none";
+  });
+
   //   Making the api call to get classes data for the student
   fetch(`https://apguru-server.herokuapp.com/api/v1/homework/student/${studentAirtableID}`)
     .then((response) => response.json())
