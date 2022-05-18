@@ -51,7 +51,10 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
         completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
-        completedClassDiv.querySelector(".view-class-button").href = `/teacher/class/:${completedClassData.classID}`;
+
+        completedClassDiv.querySelector(
+          ".view-class-button"
+        ).href = `/teacher/class/?classID=${completedClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
