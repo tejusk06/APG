@@ -8,6 +8,9 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
+  //   Hide the test templates on webflow
+  document.querySelectorAll(".tests-templates")[0].style.display = "none";
+
   //   Making the api call to get classes data for the student
   fetch(`https://apguru-server.herokuapp.com/api/v1/tests/student/${studentAirtableID}`)
     .then((response) => response.json())
@@ -15,51 +18,33 @@ MemberStack.onReady.then(function (member) {
       // Getting the Classes holder and all the templates
       const allTests = response.testsArray;
 
+      const testsHolder = document.querySelectorAll(".tests-holder")[0];
+      const upcomingTest = document.querySelectorAll(".test-wrap.test-upcoming")[0];
+      const completedTest = document.querySelectorAll(".test-wrap.test-completed")[0];
+      const missedTest = document.querySelectorAll(".test-wrap.test-missed")[0];
+
       //   Logging the templates
       console.log("response", response);
 
       const today = new Date();
 
-      //   const dateInPast = function (firstDate) {
-      //     if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
-      //       return true;
-      //     }
-      //     return false;
-      //   };
+      const dateInPast = function (firstDate) {
+        if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
+          return true;
+        }
+        return false;
+      };
 
-      //   completedHomework.forEach((eachHomework) => {
-      //     homeworkItems.forEach((hwItem) => {
-      //       const hwItemName = hwItem.querySelector(".hw-name").innerHTML;
-      //       const hwTopicId = hwItem.querySelector(".topic-id");
+      allTests.forEach((eachTest) => {
+        // Checking if test has report or status is checked
+        if (eachTest.report || eachTest.status) {
+          const completedTestDiv = completedTest.cloneNode(true);
+          completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
 
-      //       //   First check if topic ID has been set in webflow CMS
-      //       if (hwTopicId) {
-      //         const hwTopicNumber = hwTopicId.innerHTML;
-      //         if (eachHomework.topicId == hwTopicNumber) {
-      //           hwItem.style.display = "flex";
-
-      //           if (eachHomework.completed) {
-      //             hwItem.querySelector(".hw-completed").style.display = "flex";
-      //             hwItem.querySelector(".homework-status").innerHTML = "completed";
-      //           } else {
-      //             const isPast = dateInPast(new Date(eachHomework.date));
-
-      //             if (isPast) {
-      //               hwItem.querySelector(".hw-due").style.display = "flex";
-      //               hwItem.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
-      //               hwItem.querySelector(".homework-status").innerHTML = "due";
-      //             } else {
-      //               hwItem.querySelector(".hw-pending").style.display = "flex";
-      //               hwItem.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
-      //               hwItem.querySelector(".homework-status").innerHTML = "pending";
-      //             }
-      //           }
-      //         }
-
-      //         //   Check if topic ID matches
-      //       }
-      //     });
-      //   });
+          // Appending the completed test Div
+          testsHolder.appendChild(completedTestDiv);
+        }
+      });
     });
 
   // Adding show and hide logic for filter buttons
