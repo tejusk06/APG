@@ -83,7 +83,7 @@ MemberStack.onReady.then(function (member) {
           if (eachTest.dueDate == null) {
             upcomingTestDiv.querySelector(".date-upcoming").style.display = "none";
             upcomingTestDiv.querySelector(".date-select").style.display = "block";
-            upcomingTestDiv.querySelector(".date-select").href = "#";
+            upcomingTestDiv.querySelector(".date-select").href = eachTest.editDateUrl;
           } else {
             upcomingTestDiv.querySelector(".date-upcoming").innerHTML = `${eachTest.momentDate}`;
           }
