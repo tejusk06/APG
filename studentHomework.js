@@ -56,9 +56,14 @@ MemberStack.onReady.then(function (member) {
             if (eachHomework.topicId == hwTopicNumber) {
               hwItem.style.display = "flex";
               const homeworkName = hwItem.querySelector(".hw-name").innerHTML;
-              hwItem.querySelector(".hw-download-btn").onclick = function () {
-                forceDown(`${eachHomework.attachment}`, `${homeworkName} - Homework`);
-              };
+
+              if (eachHomework.attachment) {
+                hwItem.querySelector(".hw-download-btn").onclick = function () {
+                  forceDown(`${eachHomework.attachment}`, `${homeworkName} - Homework`);
+                };
+              } else {
+                hwItem.querySelector(".hw-download-btn").style.display = "none";
+              }
 
               if (eachHomework.completed) {
                 hwItem.querySelector(".hw-completed").style.display = "flex";
