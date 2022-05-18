@@ -20,6 +20,18 @@ MemberStack.onReady.then(function (member) {
       //   Logging the templates
       console.log("response", response);
 
+      //   Function to force download homework
+      function forceDown(url, filename) {
+        fetch(url).then(function (t) {
+          return t.blob().then((b) => {
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(b);
+            a.setAttribute("download", filename);
+            a.click();
+          });
+        });
+      }
+
       const today = new Date();
 
       const dateInPast = function (firstDate) {
@@ -39,6 +51,10 @@ MemberStack.onReady.then(function (member) {
             const hwTopicNumber = hwTopicId.innerHTML;
             if (eachHomework.topicId == hwTopicNumber) {
               hwItem.style.display = "flex";
+              const homeworkName = hwItem.querySelector(".hw-name").innerHTML;
+              hwItem.querySelector(".hw-download-btn").onclick = function () {
+                forceDown(`${eachHomework.attachment}`, `${homeworkName} - Homework`);
+              };
 
               if (eachHomework.completed) {
                 hwItem.querySelector(".hw-completed").style.display = "flex";
