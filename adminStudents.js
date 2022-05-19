@@ -18,9 +18,12 @@ MemberStack.onReady.then(function (member) {
     .then((response) => {
       //   console.log("response", response);
 
+      //   looping through each student and rendering the div
       response.allStudents.forEach((eachStudent) => {
         const studentDiv = studentTemplate.cloneNode(true);
-        studentDiv.querySelector(".student-image").src = eachStudent.image;
+        if (eachStudent.image) {
+          studentDiv.querySelector(".student-image").src = eachStudent.image;
+        }
         studentDiv.querySelector(".student-name-text").innerHTML = eachStudent.name;
         studentDiv.querySelector(".student-location").innerHTML = eachStudent.location;
         studentDiv.querySelector(".student-classes").innerHTML = eachStudent.classes;
