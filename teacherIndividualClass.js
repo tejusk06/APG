@@ -18,6 +18,8 @@ MemberStack.onReady.then(function (member) {
       const topicItems = document.querySelectorAll(".class-topic-wrap");
 
       document.querySelector(".add-topics").href = response.topicsForm;
+      document.querySelector("class-name-heading").innerHTML = response.className;
+      document.querySelector("class-date-subheading").innerHTML = response.momentDate;
 
       topicItems.forEach((eachTopic) => {
         if (response.topicsCompleted.includes(eachTopic.querySelector(".topic-id").innerHTML)) {
