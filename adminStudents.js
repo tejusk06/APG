@@ -30,6 +30,7 @@ MemberStack.onReady.then(function (member) {
         studentDiv.querySelector(".student-tests").innerHTML = eachStudent.tests;
         studentDiv.querySelector(".student-homework").innerHTML = eachStudent.homework;
         studentDiv.querySelector(".student-topics").innerHTML = eachStudent.topics;
+        studentDiv.href = `/admin/student-classes/?studentID=${eachStudent.studentID}&courseID=${eachStudent.courseID}`;
         studentsHolder.append(studentDiv);
       });
     });
