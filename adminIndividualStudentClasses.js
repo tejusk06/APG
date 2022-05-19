@@ -9,9 +9,6 @@ MemberStack.onReady.then(function (member) {
   const studentID = classCourse.split("&")[0].split("=")[1];
   const courseID = classCourse.split("&")[1].split("=")[1];
 
-  console.log("student ID", studentID);
-  console.log("course ID", courseID);
-
   // Hiding the templates
   const classTemplates = document.querySelector(".class-templates");
   classTemplates.style.display = "none";
@@ -20,7 +17,7 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   }
 
-  //   Making the api call to get classes data for the student
+  //   Making the api call to get student data from students table
   fetch(`https://apguru-server.herokuapp.com/api/v1/admin/student/${studentID}`)
     .then((response) => response.json())
     .then((response) => {
@@ -39,7 +36,7 @@ MemberStack.onReady.then(function (member) {
       document.querySelector("#student-classes").classList.add(".w--current");
     });
 
-  //   Making the api call to get classes data for the student
+  //   Making the api call to get classes data for the student from Classes Table
   fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentID}-${courseID}`)
     .then((response) => response.json())
     .then((response) => {
