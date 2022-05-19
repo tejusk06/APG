@@ -13,14 +13,15 @@ MemberStack.onReady.then(function (member) {
   fetch(`https://apguru-server.herokuapp.com/api/v1/class/${classID}`)
     .then((response) => response.json())
     .then((response) => {
-      // Getting the Classes holder and all the templates
-
+      // Getting all the topics
       const topicItems = document.querySelectorAll(".class-topic-wrap");
 
+      // Adding Class details
       document.querySelector(".add-topics").href = response.topicsForm;
-      document.querySelector("class-name-heading").innerHTML = response.className;
-      document.querySelector("class-date-subheading").innerHTML = response.momentDate;
+      document.querySelector(".class-name-heading").innerHTML = response.className;
+      document.querySelector(".class-date-subheading").innerHTML = response.momentDate;
 
+      //   Looping through topics and checking which ones are complete
       topicItems.forEach((eachTopic) => {
         if (response.topicsCompleted.includes(eachTopic.querySelector(".topic-id").innerHTML)) {
           eachTopic.style.display = "block";
