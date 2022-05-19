@@ -32,7 +32,7 @@ MemberStack.onReady.then(function (member) {
   //   Hide the test templates on webflow
   document.querySelectorAll(".tests-templates")[0].style.display = "none";
 
-  //   Making the api call to get classes data for the student
+  //   Making the api call to get tests data for the student
   fetch(`https://apguru-server.herokuapp.com/api/v1/tests/student/${studentAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
