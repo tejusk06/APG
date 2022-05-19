@@ -1,4 +1,5 @@
-console.log("teacher classes logic from github pages");
+console.log("Individual classes logic from github pages");
+// Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -7,5 +8,23 @@ MemberStack.onReady.then(function (member) {
   }
 
   const classID = window.location.href.split("?classID=")[1];
-  console.log("class id is ", classID);
+
+  //   Making the api call to get classes data for the student
+  fetch(`https://apguru-server.herokuapp.com/api/v1/class/${classID}`)
+    .then((response) => response.json())
+    .then((response) => {
+      // Getting the Classes holder and all the templates
+
+      const topicItems = document.querySelectorAll(".class-topic-wrap");
+      console.log("topic Items", topicItems);
+
+      //   Logging the templates
+      console.log("topics completed", response.topicsCompleted);
+
+      topicItems.forEach((eachTopic) => {
+        if (response.topicsCompleted.includes(eachTopic.querySelector(".topic-id").innerHTML)) {
+          eachTopic.style.display = "block";
+        }
+      });
+    });
 });
