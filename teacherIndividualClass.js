@@ -16,10 +16,8 @@ MemberStack.onReady.then(function (member) {
       // Getting the Classes holder and all the templates
 
       const topicItems = document.querySelectorAll(".class-topic-wrap");
-      console.log("topic Items", topicItems);
 
-      //   Logging the templates
-      console.log("topics completed", response.topicsCompleted);
+      document.querySelector(".add-topics").href = response.topicsForm;
 
       topicItems.forEach((eachTopic) => {
         if (response.topicsCompleted.includes(eachTopic.querySelector(".topic-id").innerHTML)) {
