@@ -63,6 +63,9 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
         upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+        upcomingClassDiv.querySelector(
+          ".view-class-button"
+        ).href = `/admin/class/?classID=${upcomingClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
@@ -76,6 +79,9 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
         completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+        completedClassDiv.querySelector(
+          ".view-class-button"
+        ).href = `/admin/class/?classID=${completedClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
@@ -89,6 +95,7 @@ MemberStack.onReady.then(function (member) {
         missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
         missedClassDiv.querySelector(".topics-text").innerHTML = `${missedClassData.classTopics}`;
         missedClassDiv.querySelector(".homework-text").innerHTML = `${missedClassData.classTopics}`;
+        missedClassDiv.querySelector(".view-class-button").href = `/admin/class/?classID=${missedClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(missedClassDiv);
