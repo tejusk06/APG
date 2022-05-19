@@ -14,6 +14,7 @@ MemberStack.onReady.then(function (member) {
     .then((response) => response.json())
     .then((response) => {
       // Getting all the topics
+
       const topicItems = document.querySelectorAll(".class-topic-wrap");
 
       // Adding Class details
