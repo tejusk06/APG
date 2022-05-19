@@ -44,7 +44,7 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
       document.querySelector(".student-subheading").innerHTML = response.student.email;
       document.querySelector("#student-tests").href = `#`;
-      document.querySelector("#student-tests").classList.add(".w--current");
+      document.querySelector("#student-tests").classList.add("w--current");
       document.querySelector(
         "#student-classes"
       ).href = `/admin/student-classes/?studentID=${response.student.id}&courseID=${response.student.courseID}`;
