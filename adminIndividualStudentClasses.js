@@ -32,7 +32,7 @@ MemberStack.onReady.then(function (member) {
 
       document.querySelector("#student-tests").href = `/admin/student-tests?studentID=${studentID}`;
       document.querySelector("#student-classes").href = `#`;
-      document.querySelector("#student-classes").classList.add(".w--current");
+      document.querySelector("#student-classes").classList.add("w--current");
     });
 
   //   Making the api call to get classes data for the student from Classes Table
