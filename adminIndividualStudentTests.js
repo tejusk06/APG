@@ -17,6 +17,18 @@ MemberStack.onReady.then(function (member) {
     return false;
   };
 
+  //   Function to force download
+  function forceDown(url, filename) {
+    fetch(url).then(function (t) {
+      return t.blob().then((b) => {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(b);
+        a.setAttribute("download", filename);
+        a.click();
+      });
+    });
+  }
+
   //   Hide the test templates on webflow
   document.querySelectorAll(".tests-templates")[0].style.display = "none";
 
