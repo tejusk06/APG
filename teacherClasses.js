@@ -1,4 +1,4 @@
-console.log("teacher classes logic from github pages");
+console.log("teacher classes logic ");
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page

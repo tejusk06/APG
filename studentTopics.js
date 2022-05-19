@@ -1,4 +1,4 @@
-console.log("student Topics logic from github pages");
+console.log("student Topics logic");
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page

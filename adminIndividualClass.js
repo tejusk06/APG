@@ -1,4 +1,4 @@
-console.log("Individual classes logic for teacher");
+console.log("Individual classes logic for admin");
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
