@@ -8,6 +8,15 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   }
 
+  //   Function to check if date in past
+  const dateInPast = function (firstDate) {
+    const today = new Date();
+    if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
+      return true;
+    }
+    return false;
+  };
+
   //   Hide the test templates on webflow
   document.querySelectorAll(".tests-templates")[0].style.display = "none";
 
