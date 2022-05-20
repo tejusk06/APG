@@ -28,22 +28,30 @@ MemberStack.onReady.then(function (member) {
 
   const filterStudents = () => {
     const allStudents = document.querySelectorAll(".students-wrap");
+    console.log("got all students");
+    console.log("course filter is -", courseFilter);
 
     // If course filter has a value
     if (courseFilter) {
+      console.log("course filter has value");
       allStudents.forEach((eachStudent) => {
+        console.log("enter student loop");
         if (eachStudent.querySelector(".student-course-id").innerHTML == courseFilter) {
           eachStudent.style.display = "flex";
+          console.log("student belongs to course");
         } else {
           eachStudent.style.display = "none";
+          console.log("student doesn't belong to course");
         }
       });
     }
 
     // If neither search or course filter have value
-    allStudents.forEach((eachStudent) => {
-      eachStudent.style.display = "flex";
-    });
+    if (!courseFilter && !searchFilter) {
+      allStudents.forEach((eachStudent) => {
+        eachStudent.style.display = "flex";
+      });
+    }
   };
 
   //   Making the api call to get classes data for the student
