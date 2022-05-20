@@ -60,7 +60,7 @@ MemberStack.onReady.then(function (member) {
       console.log("course filter has value");
       // TODO
       allStudents.forEach((eachStudent) => {
-        if (eachStudent.querySelector(".student-name-text").includes(searchFilter)) {
+        if (eachStudent.querySelector(".student-name-text").innerHTML.includes(searchFilter)) {
           eachStudent.style.display = "flex";
         } else {
           eachStudent.style.display = "none";
