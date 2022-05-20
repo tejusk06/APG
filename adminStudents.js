@@ -35,6 +35,7 @@ MemberStack.onReady.then(function (member) {
         studentDiv.querySelector(".student-tests").innerHTML = eachStudent.tests + " assigned";
         studentDiv.querySelector(".student-homework").innerHTML = eachStudent.homework + " assigned";
         studentDiv.querySelector(".student-topics").innerHTML = eachStudent.topics + " assigned";
+        studentDiv.querySelector(".student-course-id").innerHTML = eachStudent.courseID;
         studentDiv.href = `/admin/student-classes/?studentID=${eachStudent.studentID}&courseID=${eachStudent.courseID}`;
         studentsHolder.append(studentDiv);
       });
