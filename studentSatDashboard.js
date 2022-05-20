@@ -16,6 +16,17 @@ MemberStack.onReady.then(function (member) {
     .then((response) => {
       console.log("response", response);
 
-      //   document.querySelector(".upcoming-classes").innerHTML = response.stats.upcomingClasses;
+      document.querySelector(".upcoming-classes-stat").innerHTML = response.stats.upcomingClasses;
+      document.querySelector(".all-classes-stat").innerHTML = response.stats.upcomingClasses;
+      document.querySelector(".math-topics-stat").innerHTML = response.stats.mathTopicsCompleted;
+      document.querySelector(".reading-topics-stat").innerHTML = response.stats.readingTopicsCompleted;
+      document.querySelector(".writing-topics-stat").innerHTML = response.stats.writingTopicsCompleted;
+
+      document.querySelector(".pending-homework-stat").innerHTML = response.stats.homeworkPending;
+      document.querySelector(".due-homework-stat").innerHTML = response.stats.homeworkDue;
+      document.querySelector(".completed-homework-stat").innerHTML = response.stats.homeworkCompleted;
+      document.querySelector(".upcoming-test-stat").innerHTML = response.stats.testsUpcoming;
+      document.querySelector(".completed-test-stat").innerHTML = response.stats.testsCompleted;
+      document.querySelector(".missed-test-stat").innerHTML = response.stats.testsMissed;
     });
 });
