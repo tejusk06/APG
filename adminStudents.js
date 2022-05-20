@@ -11,10 +11,13 @@ MemberStack.onReady.then(function (member) {
 
   const studentTemplate = document.querySelector(".students-wrap");
   const studentsHolder = document.querySelector(".students-holder");
+
+  //   Getting value or fitlers
   const studentCourse = document.querySelector(".students-course");
+  const studentSearch = document.querySelector(".students-search");
 
   let courseFilter = null;
-  let studentSearch = null;
+  let searchFilter = null;
 
   studentCourse.addEventListener("change", (event) => {
     console.log(`You selected ${event.target.value}`);
@@ -29,7 +32,7 @@ MemberStack.onReady.then(function (member) {
     // If course filter has a value
     if (courseFilter) {
       allStudents.forEach((eachStudent) => {
-        if (eachStudent.querySelector("student-course-id").innerHTML == courseFilter) {
+        if (eachStudent.querySelector(".student-course-id").innerHTML == courseFilter) {
           eachStudent.style.display = "flex";
         } else {
           eachStudent.style.display = "none";
