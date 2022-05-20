@@ -28,7 +28,7 @@ MemberStack.onReady.then(function (member) {
 
   studentSearch.addEventListener("input", (event) => {
     console.log(`You selected search ${event.target.value}`);
-    searchFilter = event.target.value;
+    searchFilter = event.target.value.toLowerCase();
 
     filterStudents();
   });
@@ -39,8 +39,8 @@ MemberStack.onReady.then(function (member) {
     console.log("course filter is -", courseFilter);
     console.log("search filter is -", searchFilter);
 
-    // If course filter has a value
-    if (courseFilter) {
+    // If only course filter has a value
+    if (courseFilter && !searchFilter) {
       //   console.log("course filter has value");
       allStudents.forEach((eachStudent) => {
         // console.log("enter student loop");
@@ -55,12 +55,12 @@ MemberStack.onReady.then(function (member) {
       });
     }
 
-    // If search filter has value
-    if (searchFilter) {
+    // If only search filter has value
+    if (searchFilter && !courseFilter) {
       console.log("course filter has value");
       // TODO
       allStudents.forEach((eachStudent) => {
-        if (eachStudent.querySelector(".student-name-text").innerHTML.includes(searchFilter)) {
+        if (eachStudent.querySelector(".student-name-text").innerHTML.toLowerCase().includes(searchFilter)) {
           eachStudent.style.display = "flex";
         } else {
           eachStudent.style.display = "none";
