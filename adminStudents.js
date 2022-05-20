@@ -26,7 +26,7 @@ MemberStack.onReady.then(function (member) {
     filterStudents();
   });
 
-  studentSearch.addEventListener("change", (event) => {
+  studentSearch.addEventListener("input", (event) => {
     console.log(`You selected search ${event.target.value}`);
     searchFilter = event.target.value;
 
