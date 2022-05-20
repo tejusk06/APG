@@ -11,6 +11,11 @@ MemberStack.onReady.then(function (member) {
 
   const studentTemplate = document.querySelector(".students-wrap");
   const studentsHolder = document.querySelector(".students-holder");
+  const studentCourse = document.querySelector(".students-course");
+
+  studentCourse.addEventListener("change", (event) => {
+    console.log(`You selected ${event.target.value}`);
+  });
 
   //   Making the api call to get classes data for the student
   fetch("https://apguru-server.herokuapp.com/api/v1/admin/students")
