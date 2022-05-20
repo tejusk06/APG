@@ -28,7 +28,7 @@ MemberStack.onReady.then(function (member) {
 
   studentSearch.addEventListener("input", (event) => {
     console.log(`You selected search ${event.target.value}`);
-    searchFilter = event.target.value.toLowerCase();
+    searchFilter = event.target.value.trim().toLowerCase();
 
     filterStudents();
   });
