@@ -20,8 +20,15 @@ MemberStack.onReady.then(function (member) {
   let searchFilter = null;
 
   studentCourse.addEventListener("change", (event) => {
-    console.log(`You selected ${event.target.value}`);
+    console.log(`You selected course ${event.target.value}`);
     courseFilter = event.target.value;
+
+    filterStudents();
+  });
+
+  studentSearch.addEventListener("change", (event) => {
+    console.log(`You selected search ${event.target.value}`);
+    searchFilter = event.target.value;
 
     filterStudents();
   });
@@ -30,18 +37,33 @@ MemberStack.onReady.then(function (member) {
     const allStudents = document.querySelectorAll(".students-wrap");
     console.log("got all students");
     console.log("course filter is -", courseFilter);
+    console.log("search filter is -", searchFilter);
 
     // If course filter has a value
     if (courseFilter) {
-      console.log("course filter has value");
+      //   console.log("course filter has value");
       allStudents.forEach((eachStudent) => {
-        console.log("enter student loop");
+        // console.log("enter student loop");
+
         if (eachStudent.querySelector(".student-course-id").innerHTML == courseFilter) {
           eachStudent.style.display = "flex";
-          console.log("student belongs to course");
+          //   console.log("student belongs to course");
         } else {
           eachStudent.style.display = "none";
-          console.log("student doesn't belong to course");
+          //   console.log("student doesn't belong to course");
+        }
+      });
+    }
+
+    // If search filter has value
+    if (searchFilter) {
+      console.log("course filter has value");
+      // TODO
+      allStudents.forEach((eachStudent) => {
+        if (eachStudent.querySelector(".student-name-text").includes(searchFilter)) {
+          eachStudent.style.display = "flex";
+        } else {
+          eachStudent.style.display = "none";
         }
       });
     }
