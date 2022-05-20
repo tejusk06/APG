@@ -1,5 +1,4 @@
-console.log("Admin Dashboard logic");
-// Logic for Class form embed is in the webflow page below attendance
+console.log("Student Dashboard logic");
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -10,14 +9,14 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
-  //   Making the api call to get student data from students table
+  //   Making the api call to get student stats from students table
   fetch(`https://apguru-server.herokuapp.com/api/v1/student/dashboard/${studentAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
       console.log("response", response);
 
       document.querySelector(".upcoming-classes-stat").innerHTML = response.stats.upcomingClasses;
-      document.querySelector(".all-classes-stat").innerHTML = response.stats.upcomingClasses;
+      document.querySelector(".all-classes-stat").innerHTML = response.stats.allClasses;
       document.querySelector(".math-topics-stat").innerHTML = response.stats.mathTopicsCompleted;
       document.querySelector(".reading-topics-stat").innerHTML = response.stats.readingTopicsCompleted;
       document.querySelector(".writing-topics-stat").innerHTML = response.stats.writingTopicsCompleted;
