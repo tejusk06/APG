@@ -13,9 +13,35 @@ MemberStack.onReady.then(function (member) {
   const studentsHolder = document.querySelector(".students-holder");
   const studentCourse = document.querySelector(".students-course");
 
+  let courseFilter = null;
+  let studentSearch = null;
+
   studentCourse.addEventListener("change", (event) => {
     console.log(`You selected ${event.target.value}`);
+    courseFilter = event.target.value;
+
+    filterStudents();
   });
+
+  const filterStudents = () => {
+    const allStudents = document.querySelectorAll(".students-wrap");
+
+    // If course filter has a value
+    if (courseFilter) {
+      allStudents.forEach((eachStudent) => {
+        if (eachStudent.querySelector("student-course-id").innerHTML == courseFilter) {
+          eachStudent.style.display = "flex";
+        } else {
+          eachStudent.style.display = "none";
+        }
+      });
+    }
+
+    // If neither search or course filter have value
+    allStudents.forEach((eachStudent) => {
+      eachStudent.style.display = "flex";
+    });
+  };
 
   //   Making the api call to get classes data for the student
   fetch("https://apguru-server.herokuapp.com/api/v1/admin/students")
