@@ -39,6 +39,19 @@ MemberStack.onReady.then(function (member) {
     console.log("course filter is -", courseFilter);
     console.log("search filter is -", searchFilter);
 
+    // If both course and search filter have value
+    if (courseFilter && searchFilter) {
+      allStudents.forEach((eachStudent) => {
+        if (eachStudent.querySelector(".student-course-id").innerHTML != courseFilter) {
+          eachStudent.style.display = "none";
+        } else if (!eachStudent.querySelector(".student-name-text").innerHTML.toLowerCase().includes(searchFilter)) {
+          eachStudent.style.display = "none";
+        } else {
+          eachStudent.style.display = "flex";
+        }
+      });
+    }
+
     // If only course filter has a value
     if (courseFilter && !searchFilter) {
       //   console.log("course filter has value");
