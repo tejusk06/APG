@@ -100,14 +100,28 @@ MemberStack.onReady.then(function (member) {
     }
 
     if (courseFilter) {
+      console.log("has course filter", courseFilter);
       allClasses.forEach((eachClass) => {
-        if (!eachClass.querySelector(".course-id").innerHTML == courseFilter) {
+        console.log("checking for each class");
+        if (eachClass.querySelector(".course-id").innerHTML != courseFilter) {
+          console.log("course filter does not match");
           if (!eachClass.classList.contains("hide")) {
+            console.log("adding class hide");
             eachClass.classList.add("hide");
           }
         }
       });
     }
+
+    // if (subjectFilter) {
+    //   allClasses.forEach((eachClass) => {
+    //     if (!eachClass.querySelector(".course-section").innerHTML == subjectFilter) {
+    //       if (!eachClass.classList.contains("hide")) {
+    //         eachClass.classList.add("hide");
+    //       }
+    //     }
+    //   });
+    // }
   };
 
   classCourse.addEventListener("change", (event) => {
