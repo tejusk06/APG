@@ -67,8 +67,8 @@ MemberStack.onReady.then(function (member) {
 
   //   Getting value of fitlers
   const classCourse = document.querySelector(".classes-course");
-  const classesSearch = document.querySelector(".classes-search");
-  const classesSubject = document.querySelector(".classes-subject");
+  const classSearch = document.querySelector(".classes-search");
+  const classSubject = document.querySelector(".classes-subject");
 
   let courseFilter = "";
   let searchFilter = "";
@@ -98,7 +98,38 @@ MemberStack.onReady.then(function (member) {
         }
       });
     }
+
+    if (courseFilter) {
+      allClasses.forEach((eachClass) => {
+        if (!eachClass.querySelector(".course-id").innerHTML == courseFilter) {
+          if (!eachClass.classList.contains("hide")) {
+            eachClass.classList.add("hide");
+          }
+        }
+      });
+    }
   };
+
+  classCourse.addEventListener("change", (event) => {
+    console.log(`You selected course ${event.target.value}`);
+    courseFilter = event.target.value;
+
+    filterClasses();
+  });
+
+  classSubject.addEventListener("change", (event) => {
+    console.log(`You selected subject ${event.target.value}`);
+    subjectFilter = event.target.value;
+
+    filterClasses();
+  });
+
+  classSearch.addEventListener("input", (event) => {
+    console.log(`You selected search ${event.target.value}`);
+    searchFilter = event.target.value.trim().toLowerCase();
+
+    filterClasses();
+  });
 
   //   Common logic to make all button inactive
   const allButtonsInactive = () => {
