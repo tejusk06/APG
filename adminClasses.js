@@ -58,11 +58,42 @@ MemberStack.onReady.then(function (member) {
       });
     });
 
+  // Filters logic below
+
+  //   Getting value of fitlers
+  const classCourse = document.querySelector(".classes-course");
+  const classesSearch = document.querySelector(".classes-search");
+  const classesSubject = document.querySelector(".classes-subject");
+
+  let courseFilter = "";
+  let searchFilter = "";
+  let subjectFilter = "";
+  let statusFilter = "";
+
   // Adding show and hide logic for filter buttons
   const filterButtons = document.querySelectorAll(".filter-button");
   const filterAllButton = document.querySelector("#filter-all");
   const filterUpcomingButton = document.querySelector("#filter-upcoming");
   const filterCompletedButton = document.querySelector("#filter-completed");
+
+  const filterClasses = () => {
+    //   TODO filter classes logic
+    const allClasses = document.querySelectorAll(".class-wrap");
+
+    allClasses.forEach((eachClass) => {
+      if (eachClass.classList.contains("hide")) {
+        eachClass.classList.remove("hide");
+      }
+    });
+
+    if (statusFilter) {
+      allClasses.forEach((eachClass) => {
+        if (!eachClass.classList.contains(`${statusFilter}`)) {
+          eachClass.classList.add("hide");
+        }
+      });
+    }
+  };
 
   //   Common logic to make all button inactive
   const allButtonsInactive = () => {
@@ -77,41 +108,50 @@ MemberStack.onReady.then(function (member) {
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
+    // const allClasses = document.querySelectorAll(".class-wrap");
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
-    });
+    statusFilter = "";
+    filterClasses();
+
+    // allClasses.forEach((eachClass) => {
+    //   eachClass.style.display = "block";
+    // });
   });
 
   //   Logic for filter Upcoming Button
   filterUpcomingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
+    // const allClasses = document.querySelectorAll(".class-wrap");
+    // const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "none";
-    });
-    upcomingClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
-    });
+    statusFilter = "upcoming";
+    filterClasses();
+
+    // allClasses.forEach((eachClass) => {
+    //   eachClass.style.display = "none";
+    // });
+    // upcomingClasses.forEach((eachClass) => {
+    //   eachClass.style.display = "block";
+    // });
   });
 
   //   Logic for filter Completed Button
   filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const completedClasses = document.querySelectorAll(".class-wrap.completed");
+    // const allClasses = document.querySelectorAll(".class-wrap");
+    // const completedClasses = document.querySelectorAll(".class-wrap.completed");
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = "none";
-    });
-    completedClasses.forEach((eachClass) => {
-      eachClass.style.display = "block";
-    });
+    statusFilter = "completed";
+    filterClasses();
+
+    // allClasses.forEach((eachClass) => {
+    //   eachClass.style.display = "none";
+    // });
+    // completedClasses.forEach((eachClass) => {
+    //   eachClass.style.display = "block";
+    // });
   });
 
   // do things with the member object

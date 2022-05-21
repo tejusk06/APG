@@ -12,7 +12,7 @@ MemberStack.onReady.then(function (member) {
   const studentTemplate = document.querySelector(".students-wrap");
   const studentsHolder = document.querySelector(".students-holder");
 
-  //   Getting value or fitlers
+  //   Getting value of fitlers
   const studentCourse = document.querySelector(".students-course");
   const studentSearch = document.querySelector(".students-search");
 
