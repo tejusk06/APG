@@ -85,12 +85,14 @@ MemberStack.onReady.then(function (member) {
     //   TODO filter classes logic
     const allClasses = document.querySelectorAll(".class-wrap");
 
+    // Show all classes first
     allClasses.forEach((eachClass) => {
       if (eachClass.classList.contains("hide")) {
         eachClass.classList.remove("hide");
       }
     });
 
+    // hide the ones that don't match status
     if (statusFilter) {
       allClasses.forEach((eachClass) => {
         if (!eachClass.classList.contains(`${statusFilter}`)) {
@@ -99,6 +101,7 @@ MemberStack.onReady.then(function (member) {
       });
     }
 
+    // hide if course is different
     if (courseFilter) {
       allClasses.forEach((eachClass) => {
         if (eachClass.querySelector(".course-id").innerHTML != courseFilter) {
@@ -109,9 +112,21 @@ MemberStack.onReady.then(function (member) {
       });
     }
 
+    // hide if subject is different
     if (subjectFilter) {
       allClasses.forEach((eachClass) => {
         if (eachClass.querySelector(".course-section").innerHTML != subjectFilter) {
+          if (!eachClass.classList.contains("hide")) {
+            eachClass.classList.add("hide");
+          }
+        }
+      });
+    }
+
+    // hide if search term does not match name
+    if (searchFilter) {
+      allClasses.forEach((eachClass) => {
+        if (!eachClass.querySelector(".class-name").innerHTML.toLowerCase().includes(searchFilter)) {
           if (!eachClass.classList.contains("hide")) {
             eachClass.classList.add("hide");
           }
