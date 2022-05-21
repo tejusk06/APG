@@ -32,6 +32,9 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
         upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+        upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+        upcomingClassDiv.querySelector(".course-section").innerHTML = `${upcomingClassData.courseSection}`;
+        upcomingClassDiv.querySelector(".course-id").innerHTML = `${upcomingClassData.courseID}`;
         upcomingClassDiv.querySelector(
           ".view-class-button"
         ).href = `/admin/class/?classID=${upcomingClassData.classID}`;
@@ -48,6 +51,8 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
         completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+        completedClassDiv.querySelector(".course-section").innerHTML = `${completedClassData.courseSection}`;
+        completedClassDiv.querySelector(".course-id").innerHTML = `${completedClassData.courseID}`;
 
         completedClassDiv.querySelector(
           ".view-class-button"
