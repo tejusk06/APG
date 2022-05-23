@@ -33,12 +33,12 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
-        upcomingClassDiv.querySelector(".topics-text").innerHTML = `${
-          upcomingClassData.classTopics ? upcomingClassData.classTopics : ""
-        }`;
-        upcomingClassDiv.querySelector(".homework-text").innerHTML = `${
-          upcomingClassData.classTopics ? upcomingClassData.classTopics : ""
-        }`;
+        if (upcomingClassData.classTopics) {
+          upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
+          upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+        } else {
+          upcomingClassDiv.querySelector(".class-details-wrap").style.display = "none";
+        }
         upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
         upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
         upcomingClassDiv.querySelector(
@@ -55,12 +55,14 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
-        completedClassDiv.querySelector(".topics-text").innerHTML = `${
-          completedClassData.classTopics ? completedClassData.classTopics : ""
-        }`;
-        completedClassDiv.querySelector(".homework-text").innerHTML = `${
-          completedClassData.classTopics ? completedClassData.classTopics : ""
-        }`;
+
+        if (completedClassData.classTopics) {
+          completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
+          completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+        } else {
+          completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
+        }
+
         completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
         completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
 
