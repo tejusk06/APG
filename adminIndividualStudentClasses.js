@@ -63,6 +63,8 @@ MemberStack.onReady.then(function (member) {
         } else {
           upcomingClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
+        upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
+        upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
         upcomingClassDiv.querySelector(
           ".view-class-button"
         ).href = `/admin/class/?classID=${upcomingClassData.classID}`;
@@ -83,6 +85,9 @@ MemberStack.onReady.then(function (member) {
         } else {
           completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
+        completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
+        completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
+
         completedClassDiv.querySelector(
           ".view-class-button"
         ).href = `/admin/class/?classID=${completedClassData.classID}`;
@@ -103,6 +108,8 @@ MemberStack.onReady.then(function (member) {
         } else {
           missedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
+        missedClassDiv.querySelector(".button-zoom-link").href = `${missedClassData.zoomLink}`;
+        missedClassDiv.querySelector(".button-zoom-recording").href = `${missedClassData.zoomRecording}`;
         missedClassDiv.querySelector(".view-class-button").href = `/admin/class/?classID=${missedClassData.classID}`;
 
         // Appending the upcoming class Div
