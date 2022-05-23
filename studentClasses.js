@@ -44,8 +44,8 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
         upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
-        upcomingClassDiv.querySelector(".button-zoom-link").innerHTML = `${upcomingClassData.zoomLink}`;
-        upcomingClassDiv.querySelector(".button-zoom-recording").innerHTML = `${upcomingClassData.zoomRecording}`;
+        upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
+        upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
@@ -59,8 +59,8 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
         completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
-        completedClassDiv.querySelector(".button-zoom-link").innerHTML = `${completedClassData.zoomLink}`;
-        completedClassDiv.querySelector(".button-zoom-recording").innerHTML = `${completedClassData.zoomRecording}`;
+        completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
+        completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
@@ -74,8 +74,8 @@ MemberStack.onReady.then(function (member) {
         missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
         missedClassDiv.querySelector(".topics-text").innerHTML = `${missedClassData.classTopics}`;
         missedClassDiv.querySelector(".homework-text").innerHTML = `${missedClassData.classTopics}`;
-        missedClassDiv.querySelector(".button-zoom-link").innerHTML = `${missedClassData.zoomLink}`;
-        missedClassDiv.querySelector(".button-zoom-recording").innerHTML = `${missedClassData.zoomRecording}`;
+        missedClassDiv.querySelector(".button-zoom-link").href = `${missedClassData.zoomLink}`;
+        missedClassDiv.querySelector(".button-zoom-recording").href = `${missedClassData.zoomRecording}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(missedClassDiv);
