@@ -12,6 +12,13 @@ MemberStack.onReady.then(function (member) {
     eachHomework.style.display = "none";
   });
 
+  // Function to add days
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
   //   Making the api call to get classes data for the student
   fetch(`https://apguru-server.herokuapp.com/api/v1/homework/student/${studentAirtableID}`)
     .then((response) => response.json())
@@ -69,7 +76,7 @@ MemberStack.onReady.then(function (member) {
                 hwItem.querySelector(".hw-completed").style.display = "flex";
                 hwItem.querySelector(".homework-status").innerHTML = "completed";
               } else {
-                const isPast = dateInPast(new Date(eachHomework.date));
+                const isPast = dateInPast(new Date(eachHomework.date).addDays(1));
 
                 if (isPast) {
                   hwItem.querySelector(".hw-due").style.display = "flex";

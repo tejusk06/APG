@@ -29,6 +29,13 @@ MemberStack.onReady.then(function (member) {
     return false;
   };
 
+  // Function to add days
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
   //   Hide the test templates on webflow
   document.querySelectorAll(".tests-templates")[0].style.display = "none";
 
@@ -49,7 +56,7 @@ MemberStack.onReady.then(function (member) {
 
       allTests.forEach((eachTest) => {
         // Checking if test has report or status is checked
-        const isPast = dateInPast(new Date(eachTest.dueDate));
+        const isPast = dateInPast(new Date(eachTest.dueDate).addDays(1));
 
         if (eachTest.report || eachTest.status) {
           const completedTestDiv = completedTest.cloneNode(true);
