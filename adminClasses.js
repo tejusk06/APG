@@ -30,9 +30,12 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
-        upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
-        upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
-        upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+        upcomingClassDiv.querySelector(".topics-text").innerHTML = `${
+          upcomingClassData.classTopics ? upcomingClassData.classTopics : ""
+        }`;
+        upcomingClassDiv.querySelector(".homework-text").innerHTML = `${
+          upcomingClassData.classTopics ? upcomingClassData.classTopics : ""
+        }`;
         upcomingClassDiv.querySelector(".course-section").innerHTML = `${upcomingClassData.courseSection}`;
         upcomingClassDiv.querySelector(".course-id").innerHTML = `${upcomingClassData.courseID}`;
         upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
@@ -51,8 +54,12 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
-        completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
-        completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+        completedClassDiv.querySelector(".topics-text").innerHTML = `${
+          completedClassData.classTopics ? completedClassData.classTopics : ""
+        }`;
+        completedClassDiv.querySelector(".homework-text").innerHTML = `${
+          completedClassData.classTopics ? completedClassData.classTopics : ""
+        }`;
         completedClassDiv.querySelector(".course-section").innerHTML = `${completedClassData.courseSection}`;
         completedClassDiv.querySelector(".course-id").innerHTML = `${completedClassData.courseID}`;
         completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
