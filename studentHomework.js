@@ -82,14 +82,14 @@ MemberStack.onReady.then(function (member) {
                   hwItem.querySelector(".hw-due").style.display = "flex";
                   hwItem.querySelector(
                     ".hw-due"
-                  ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${hwTopicId.innerHTML}`;
+                  ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
                   hwItem.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
                   hwItem.querySelector(".homework-status").innerHTML = "due";
                 } else {
                   hwItem.querySelector(".hw-pending").style.display = "flex";
                   hwItem.querySelector(
                     ".hw-pending"
-                  ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${hwTopicId.innerHTML}`;
+                  ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
                   hwItem.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
                   hwItem.querySelector(".homework-status").innerHTML = "pending";
                 }
