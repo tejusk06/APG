@@ -17,7 +17,6 @@ MemberStack.onReady.then(function (member) {
       const topicItems = document.querySelectorAll(".class-topic-wrap");
 
       // Adding Class details
-      document.querySelector(".add-topics").href = response.topicsForm;
       document.querySelector(".class-name-heading").innerHTML = response.className;
       document.querySelector(".class-date-subheading").innerHTML = response.momentDate;
 
