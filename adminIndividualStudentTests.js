@@ -96,10 +96,17 @@ MemberStack.onReady.then(function (member) {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
 
+          upcomingTestDiv.querySelector(
+            ".tests-wrap"
+          ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
+
           if (eachTest.dueDate == null) {
             upcomingTestDiv.querySelector(".date-upcoming").style.display = "none";
             upcomingTestDiv.querySelector(".date-select").style.display = "block";
-            upcomingTestDiv.querySelector(".date-select").href = eachTest.editDateUrl;
+            // upcomingTestDiv.querySelector(".date-select").href = eachTest.editDateUrl;
+            upcomingTestDiv.querySelector(
+              ".date-select"
+            ).href = `https://web.miniextensions.com/JaBjH4um3uXj9mqa7y5S/${eachTest.testId}`;
           } else {
             upcomingTestDiv.querySelector(".date-upcoming").innerHTML = `${eachTest.momentDate}`;
           }
@@ -111,6 +118,10 @@ MemberStack.onReady.then(function (member) {
           const missedTestDiv = missedTest.cloneNode(true);
           missedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           missedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
+
+          missedTestDiv.querySelector(
+            ".tests-wrap"
+          ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
 
           missedTestDiv.querySelector(".download-test-wrap").onclick = function () {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
