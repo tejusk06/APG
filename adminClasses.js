@@ -12,6 +12,11 @@ MemberStack.onReady.then(function (member) {
   const classTemplates = document.querySelector(".class-templates");
   classTemplates.style.display = "none";
 
+  // Function to remove course name from the topic
+  const replaceCourseNames = (classTopics) => {
+    return classTopics.replaceAll("SAT - ", " ").replaceAll("ACT - ", " ");
+  };
+
   //   Making the api call to get classes data for the student
   fetch("https://apguru-server.herokuapp.com/api/v1/classes/admin")
     .then((response) => response.json())
@@ -27,11 +32,12 @@ MemberStack.onReady.then(function (member) {
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
-        const classTopics = upcomingClassData.classTopics.replaceAll("SAT - ", "").replaceAll("ACT - ", "");
+
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         if (upcomingClassData.classTopics) {
+          const classTopics = replaceCourseNames(upcomingClassData.classTopics);
           upcomingClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
           upcomingClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
@@ -52,11 +58,12 @@ MemberStack.onReady.then(function (member) {
       //   Rendering divs for each missed class
       response.completedClasses.forEach((completedClassData) => {
         const completedClassDiv = completedTemplate.cloneNode(true);
-        const classTopics = completedClassData.classTopics.replaceAll("SAT - ", "").replaceAll("ACT - ", "");
+
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         if (completedClassData.classTopics) {
+          const classTopics = replaceCourseNames(completedClassData.classTopics);
           completedClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
           completedClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
