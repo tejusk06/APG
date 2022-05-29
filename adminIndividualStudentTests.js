@@ -83,6 +83,12 @@ MemberStack.onReady.then(function (member) {
               forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
             };
             completedTestDiv.querySelector(".download-report-wrap").style.display = "flex";
+            completedTestDiv.querySelector(".add-report-wrap").style.display = "none";
+          } else {
+            completedTestDiv.querySelector(".add-report-wrap").style.display = "flex";
+            completedTestDiv.querySelector(
+              ".test-report-embed"
+            ).src = `https://web.miniextensions.com/NPGyyM2mTvzbW1G2m9oz/${eachTest.testId}`;
           }
 
           // Appending the completed test Div
