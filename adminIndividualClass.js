@@ -21,6 +21,8 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".class-name-heading").innerHTML = response.className;
       document.querySelector(".class-date-subheading").innerHTML = response.momentDate;
       document.querySelector(".class-teacher-subheading").innerHTML = response.teacherName;
+      document.querySelector(".button-zoom-link").href = response.zoomLink;
+      document.querySelector(".button-zoom-recording").href = response.zoomRecording;
 
       //   Looping through topics and checking which ones are complete
       topicItems.forEach((eachTopic) => {
