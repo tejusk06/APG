@@ -26,9 +26,6 @@ MemberStack.onReady.then(function (member) {
       }
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
       document.querySelector(".student-subheading").innerHTML = response.student.email;
-      document.querySelector(
-        ".add-classes-button"
-      ).href = `https://web.miniextensions.com/obWVQWXI9bSHZEhLEug5/${studentID}`;
 
       document.querySelector("#student-tests").href = `/admin/student-tests?studentID=${studentID}`;
       document.querySelector("#student-classes").href = `#`;
