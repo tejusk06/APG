@@ -87,11 +87,7 @@ MemberStack.onReady.then(function (member) {
           } else {
             completedTestDiv.querySelector(".add-report-wrap").style.display = "flex";
             completedTestDiv.querySelector(".add-report-wrap").onclick = function () {
-              if ((completedTestDiv.querySelector(".add-report-embed").style.display = "block")) {
-                completedTestDiv.querySelector(".add-report-embed").style.display = "none";
-              } else {
-                completedTestDiv.querySelector(".add-report-embed").style.display = "block";
-              }
+              completedTestDiv.querySelector(".add-report-embed").style.display = "block";
             };
             completedTestDiv.querySelector(
               ".test-report-embed"
