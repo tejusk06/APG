@@ -24,8 +24,10 @@ MemberStack.onReady.then(function (member) {
 
       //   Looping through topics and checking which ones are complete
       topicItems.forEach((eachTopic) => {
-        if (response.topicsCompleted.includes(eachTopic.querySelector(".topic-id").innerHTML)) {
-          eachTopic.style.display = "block";
+        if (response.topicsCompleted) {
+          if (response.topicsCompleted.includes(eachTopic.querySelector(".topic-id").innerHTML)) {
+            eachTopic.style.display = "block";
+          }
         }
       });
     });
