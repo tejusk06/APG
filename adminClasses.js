@@ -25,14 +25,15 @@ MemberStack.onReady.then(function (member) {
       console.log("response", response);
 
       //     Rendering divs for each upcoming class
+      const classTopics = this.classTopics.replaceAll("SAT - ", "").replaceAll("ACT - ", "");
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         if (upcomingClassData.classTopics) {
-          upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
-          upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+          upcomingClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
+          upcomingClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
           upcomingClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
@@ -55,8 +56,8 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         if (completedClassData.classTopics) {
-          completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
-          completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+          completedClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
+          completedClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
           completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
