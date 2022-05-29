@@ -25,9 +25,9 @@ MemberStack.onReady.then(function (member) {
       console.log("response", response);
 
       //     Rendering divs for each upcoming class
-      const classTopics = this.classTopics.replaceAll("SAT - ", "").replaceAll("ACT - ", "");
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
+        const classTopics = upcomingClassData.classTopics.replaceAll("SAT - ", "").replaceAll("ACT - ", "");
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
@@ -52,6 +52,7 @@ MemberStack.onReady.then(function (member) {
       //   Rendering divs for each missed class
       response.completedClasses.forEach((completedClassData) => {
         const completedClassDiv = completedTemplate.cloneNode(true);
+        const classTopics = completedClassData.classTopics.replaceAll("SAT - ", "").replaceAll("ACT - ", "");
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
