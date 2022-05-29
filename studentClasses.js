@@ -20,6 +20,11 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
+  // Function to remove course name from the topic
+  const replaceCourseNames = (classTopics) => {
+    return classTopics.replaceAll("SAT - ", " ").replaceAll("ACT - ", " ");
+  };
+
   //   Making the api call to get classes data for the student
   fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentAirtableID}-${courseID}`)
     .then((response) => response.json())
@@ -44,8 +49,9 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
 
         if (upcomingClassData.classTopics) {
-          upcomingClassDiv.querySelector(".topics-text").innerHTML = `${upcomingClassData.classTopics}`;
-          upcomingClassDiv.querySelector(".homework-text").innerHTML = `${upcomingClassData.classTopics}`;
+          const classTopics = replaceCourseNames(upcomingClassData.classTopics);
+          upcomingClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
+          upcomingClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
           upcomingClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
@@ -65,8 +71,9 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
 
         if (completedClassData.classTopics) {
-          completedClassDiv.querySelector(".topics-text").innerHTML = `${completedClassData.classTopics}`;
-          completedClassDiv.querySelector(".homework-text").innerHTML = `${completedClassData.classTopics}`;
+          const classTopics = replaceCourseNames(completedClassData.classTopics);
+          completedClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
+          completedClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
           completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
@@ -86,8 +93,9 @@ MemberStack.onReady.then(function (member) {
         missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
 
         if (missedClassData.classTopics) {
-          missedClassDiv.querySelector(".topics-text").innerHTML = `${missedClassData.classTopics}`;
-          missedClassDiv.querySelector(".homework-text").innerHTML = `${missedClassData.classTopics}`;
+          const classTopics = replaceCourseNames(missedClassData.classTopics);
+          missedClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
+          missedClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
           missedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
