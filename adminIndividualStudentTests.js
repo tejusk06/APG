@@ -86,6 +86,9 @@ MemberStack.onReady.then(function (member) {
             completedTestDiv.querySelector(".add-report-wrap").style.display = "none";
           } else {
             completedTestDiv.querySelector(".add-report-wrap").style.display = "flex";
+            completedTestDiv.querySelector(".add-report-wrap").onclick = function () {
+              completedTestDiv.querySelector(".add-report-embed").style.display = "block";
+            };
             completedTestDiv.querySelector(
               ".test-report-embed"
             ).src = `https://web.miniextensions.com/NPGyyM2mTvzbW1G2m9oz/${eachTest.testId}`;
