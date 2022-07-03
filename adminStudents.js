@@ -102,7 +102,7 @@ MemberStack.onReady.then(function (member) {
           studentDiv.querySelector(".student-image").src = eachStudent.image;
         }
         studentDiv.querySelector(".student-name-text").innerHTML = eachStudent.name;
-        studentDiv.querySelector(".student-location").innerHTML = eachStudent.location ? eachStudent.location : " ";
+        studentDiv.querySelector(".student-location").innerHTML = eachStudent.location ? eachStudent.location : ".";
         studentDiv.querySelector(".student-classes").innerHTML = eachStudent.classes + " assigned";
         studentDiv.querySelector(".student-tests").innerHTML = eachStudent.tests + " assigned";
         studentDiv.querySelector(".student-homework").innerHTML = eachStudent.homework + " assigned";
