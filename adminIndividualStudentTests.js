@@ -66,9 +66,9 @@ MemberStack.onReady.then(function (member) {
       console.log("response", response);
 
       allTests.forEach((eachTest) => {
-        // Checking if test has report or status is checked
         const isPast = dateInPast(new Date(eachTest.dueDate));
 
+        // Checking if test has report or status is checked
         if (eachTest.report || eachTest.status) {
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
@@ -101,6 +101,14 @@ MemberStack.onReady.then(function (member) {
           const upcomingTestDiv = upcomingTest.cloneNode(true);
           upcomingTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
 
+          upcomingTestDiv.querySelector(".add-report-wrap").style.display = "flex";
+          upcomingTestDiv.querySelector(".add-report-wrap").onclick = function () {
+            upcomingTestDiv.querySelector(".add-report-embed").style.display = "block";
+          };
+          upcomingTestDiv.querySelector(
+            ".test-report-embed"
+          ).src = `https://web.miniextensions.com/NPGyyM2mTvzbW1G2m9oz/${eachTest.testId}`;
+
           upcomingTestDiv.querySelector(".download-test-wrap").onclick = function () {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
@@ -126,6 +134,14 @@ MemberStack.onReady.then(function (member) {
           const missedTestDiv = missedTest.cloneNode(true);
           missedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           missedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
+
+          missedTestDiv.querySelector(".add-report-wrap").style.display = "flex";
+          missedTestDiv.querySelector(".add-report-wrap").onclick = function () {
+            missedTestDiv.querySelector(".add-report-embed").style.display = "block";
+          };
+          missedTestDiv.querySelector(
+            ".test-report-embed"
+          ).src = `https://web.miniextensions.com/NPGyyM2mTvzbW1G2m9oz/${eachTest.testId}`;
 
           missedTestDiv.querySelector(
             ".tests-wrap"
