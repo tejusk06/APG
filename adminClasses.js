@@ -36,13 +36,14 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
-        if (upcomingClassData.classTopics) {
-          const classTopics = replaceCourseNames(upcomingClassData.classTopics);
-          upcomingClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
-          upcomingClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
-        } else {
-          upcomingClassDiv.querySelector(".class-details-wrap").style.display = "none";
-        }
+        upcomingClassDiv.querySelector(".location-text").innerHTML = upcomingClassData.location
+          ? upcomingClassData.location
+          : ".";
+
+        upcomingClassDiv.querySelector(".time-text").innerHTML = upcomingClassData.formattedTime
+          ? upcomingClassData.formattedTime
+          : ".";
+
         upcomingClassDiv.querySelector(".course-section").innerHTML = `${upcomingClassData.courseSection}`;
         upcomingClassDiv.querySelector(".course-id").innerHTML = `${upcomingClassData.courseID}`;
         upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
