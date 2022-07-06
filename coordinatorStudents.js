@@ -1,4 +1,4 @@
-console.log("Students logic for admin");
+console.log("Students logic for coordinator");
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
@@ -6,6 +6,8 @@ MemberStack.onReady.then(function (member) {
   if (!member.loggedIn) {
     window.location.replace(window.location.hostname);
   }
+
+  const coordinatorAirtableID = member["airtableid"];
 
   document.querySelector(".student-templates").style.display = "none";
 
@@ -90,7 +92,7 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Making the api call to get classes data for the student
-  fetch("https://apguru-server.herokuapp.com/api/v1/admin/students")
+  fetch(`https://apguru-server.herokuapp.com/api/v1/coordinator/students/${coordinatorAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
       //   console.log("response", response);
