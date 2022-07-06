@@ -34,6 +34,7 @@ MemberStack.onReady.then(function (member) {
 
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
+        document.querySelector(".empty-message").style.display = "none";
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
@@ -58,6 +59,7 @@ MemberStack.onReady.then(function (member) {
 
       //   Rendering divs for each missed class
       response.completedClasses.forEach((completedClassData) => {
+        document.querySelector(".empty-message").style.display = "none";
         const completedClassDiv = completedTemplate.cloneNode(true);
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
@@ -84,6 +86,8 @@ MemberStack.onReady.then(function (member) {
     });
 
   // Adding show and hide logic for filter buttons
+  const emptyMessages = document.querySelectorAll(".empty-text");
+  const classesHolder = document.querySelector(".classes-holder");
   const filterButtons = document.querySelectorAll(".filter-button");
   const filterAllButton = document.querySelector("#filter-all");
   const filterUpcomingButton = document.querySelector("#filter-upcoming");
@@ -99,6 +103,13 @@ MemberStack.onReady.then(function (member) {
     });
   };
 
+  //   Common logic to make empty messages hidden
+  const allEmptyMessagesHide = () => {
+    emptyMessages.forEach((message) => {
+      message.style.display = "none";
+    });
+  };
+
   //   Logic for Filter all button
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
@@ -106,8 +117,15 @@ MemberStack.onReady.then(function (member) {
     const allClasses = document.querySelectorAll(".class-wrap");
 
     allClasses.forEach((eachClass) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachClass.style.display = "block";
     });
+
+    if (allClasses.length == 0) {
+      document.querySelector(".empty-message").style.display = "flex";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.all").style.display = "block";
+    }
   });
 
   //   Logic for filter Upcoming Button
@@ -121,8 +139,15 @@ MemberStack.onReady.then(function (member) {
       eachClass.style.display = "none";
     });
     upcomingClasses.forEach((eachClass) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachClass.style.display = "block";
     });
+
+    if (upcomingClasses.length == 0) {
+      document.querySelector(".empty-message").style.display = "flex";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.upcoming").style.display = "block";
+    }
   });
 
   //   Logic for filter Completed Button
@@ -136,8 +161,15 @@ MemberStack.onReady.then(function (member) {
       eachClass.style.display = "none";
     });
     completedClasses.forEach((eachClass) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachClass.style.display = "block";
     });
+
+    if (completedClasses.length == 0) {
+      document.querySelector(".empty-message").style.display = "flex";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.completed").style.display = "block";
+    }
   });
 
   // do things with the member object
