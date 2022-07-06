@@ -43,6 +43,7 @@ MemberStack.onReady.then(function (member) {
 
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
+        document.querySelector(".empty-message").style.display = "none";
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className.split("-")[0]}`;
@@ -65,6 +66,7 @@ MemberStack.onReady.then(function (member) {
 
       //   Rendering divs for each missed class
       response.completedClasses.forEach((completedClassData) => {
+        document.querySelector(".empty-message").style.display = "none";
         const completedClassDiv = completedTemplate.cloneNode(true);
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
@@ -87,6 +89,7 @@ MemberStack.onReady.then(function (member) {
 
       //   Rendering divs for each completed class
       response.missedClasses.forEach((missedClassData) => {
+        document.querySelector(".empty-message").style.display = "none";
         const missedClassDiv = missedTemplate.cloneNode(true);
         missedClassDiv.querySelector(".class-date-text").innerHTML = `${missedClassData.formattedTime}`;
         missedClassDiv.querySelector(".class-name").innerHTML = `${missedClassData.className}`;
@@ -109,6 +112,8 @@ MemberStack.onReady.then(function (member) {
     });
 
   // Adding show and hide logic for filter buttons
+  const emptyMessages = document.querySelectorAll(".empty-text");
+  const classesHolder = document.querySelector(".classes-holder");
   const filterButtons = document.querySelectorAll(".filter-button");
   const filterAllButton = document.querySelector("#filter-all");
   const filterUpcomingButton = document.querySelector("#filter-upcoming");
@@ -124,60 +129,95 @@ MemberStack.onReady.then(function (member) {
     });
   };
 
+  //   Common logic to make empty messages hidden
+  const allEmptyMessagesHide = () => {
+    emptyMessages.forEach((message) => {
+      message.style.display = "none";
+    });
+  };
+
   //   Logic for Filter all button
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
+    const allClasses = classesHolder.querySelectorAll(".class-wrap");
 
     allClasses.forEach((eachClass) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachClass.style.display = "block";
     });
+
+    if (allClasses.length == 0) {
+      document.querySelector(".empty-message").style.display = "block";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.all").style.display = "block";
+    }
   });
 
   //   Logic for filter Upcoming Button
   filterUpcomingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
+    const allClasses = classesHolder.querySelectorAll(".class-wrap");
+    const upcomingClasses = classesHolder.querySelectorAll(".class-wrap.upcoming");
 
     allClasses.forEach((eachClass) => {
       eachClass.style.display = "none";
     });
     upcomingClasses.forEach((eachClass) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachClass.style.display = "block";
     });
+
+    if (upcomingClasses.length == 0) {
+      document.querySelector(".empty-message").style.display = "block";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.upcoming").style.display = "block";
+    }
   });
 
   //   Logic for filter Completed Button
   filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const completedClasses = document.querySelectorAll(".class-wrap.completed");
+    const allClasses = classesHolder.querySelectorAll(".class-wrap");
+    const completedClasses = classesHolder.querySelectorAll(".class-wrap.completed");
 
     allClasses.forEach((eachClass) => {
       eachClass.style.display = "none";
     });
     completedClasses.forEach((eachClass) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachClass.style.display = "block";
     });
+
+    if (completedClasses.length == 0) {
+      document.querySelector(".empty-message").style.display = "block";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.completed").style.display = "block";
+    }
   });
 
   //   Logic for filter Missed Button
   filterMissedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterMissedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const missedClasses = document.querySelectorAll(".class-wrap.missed");
+    const allClasses = classesHolder.querySelectorAll(".class-wrap");
+    const missedClasses = classesHolder.querySelectorAll(".class-wrap.missed");
 
     allClasses.forEach((eachClass) => {
       eachClass.style.display = "none";
     });
     missedClasses.forEach((eachClass) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachClass.style.display = "block";
     });
+
+    if (missedClasses.length == 0) {
+      document.querySelector(".empty-message").style.display = "block";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.missed").style.display = "block";
+    }
   });
 
   // do things with the member object
