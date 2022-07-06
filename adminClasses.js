@@ -32,7 +32,6 @@ MemberStack.onReady.then(function (member) {
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
-
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
@@ -60,7 +59,6 @@ MemberStack.onReady.then(function (member) {
       //   Rendering divs for each missed class
       response.completedClasses.forEach((completedClassData) => {
         const completedClassDiv = completedTemplate.cloneNode(true);
-
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
@@ -184,6 +182,13 @@ MemberStack.onReady.then(function (member) {
       if (button.classList.contains("filter-button-active")) {
         button.classList.remove("filter-button-active");
       }
+    });
+  };
+
+  //   Common logic to make empty messages hidden
+  const allEmptyMessagesHide = () => {
+    emptyMessages.forEach((message) => {
+      message.style.display = "none";
     });
   };
 
