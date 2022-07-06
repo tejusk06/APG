@@ -148,7 +148,7 @@ MemberStack.onReady.then(function (member) {
     });
 
     if (allClasses.length == 0) {
-      document.querySelector(".empty-message").style.display = "block";
+      document.querySelector(".empty-message").style.display = "flex";
       allEmptyMessagesHide();
       document.querySelector(".empty-text.all").style.display = "block";
     }
@@ -170,7 +170,7 @@ MemberStack.onReady.then(function (member) {
     });
 
     if (upcomingClasses.length == 0) {
-      document.querySelector(".empty-message").style.display = "block";
+      document.querySelector(".empty-message").style.display = "flex";
       allEmptyMessagesHide();
       document.querySelector(".empty-text.upcoming").style.display = "block";
     }
@@ -192,7 +192,7 @@ MemberStack.onReady.then(function (member) {
     });
 
     if (completedClasses.length == 0) {
-      document.querySelector(".empty-message").style.display = "block";
+      document.querySelector(".empty-message").style.display = "flex";
       allEmptyMessagesHide();
       document.querySelector(".empty-text.completed").style.display = "block";
     }
@@ -214,7 +214,7 @@ MemberStack.onReady.then(function (member) {
     });
 
     if (missedClasses.length == 0) {
-      document.querySelector(".empty-message").style.display = "block";
+      document.querySelector(".empty-message").style.display = "flex";
       allEmptyMessagesHide();
       document.querySelector(".empty-text.missed").style.display = "block";
     }
