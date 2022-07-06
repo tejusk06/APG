@@ -88,11 +88,11 @@ MemberStack.onReady.then(function (member) {
             completedTestDiv.querySelector(".download-report-wrap").style.display = "none";
             completedTestDiv.querySelector(".add-report-wrap").style.display = "flex";
             completedTestDiv.querySelector(".add-report-wrap").onclick = function () {
-              const addReportEmbedDisplay = completedTestDiv.querySelector(".add-report-embed").style.display;
-              if ((addReportEmbedDisplay = "block")) {
-                addReportEmbedDisplay = "none";
+              const addReportEmbed = completedTestDiv.querySelector(".add-report-embed");
+              if (addReportEmbed.style.display == "block") {
+                addReportEmbed.style.display = "none";
               } else {
-                addReportEmbedDisplay = "block";
+                addReportEmbed.style.display = "block";
               }
             };
             completedTestDiv.querySelector(
@@ -109,11 +109,11 @@ MemberStack.onReady.then(function (member) {
 
           upcomingTestDiv.querySelector(".add-report-wrap").style.display = "flex";
           upcomingTestDiv.querySelector(".add-report-wrap").onclick = function () {
-            const addReportEmbedDisplay = upcomingTestDiv.querySelector(".add-report-embed").style.display;
-            if ((addReportEmbedDisplay = "block")) {
-              addReportEmbedDisplay = "none";
+            const addReportEmbed = upcomingTestDiv.querySelector(".add-report-embed");
+            if (addReportEmbed.style.display == "block") {
+              addReportEmbed.style.display = "none";
             } else {
-              addReportEmbedDisplay = "block";
+              addReportEmbed.style.display = "block";
             }
           };
           upcomingTestDiv.querySelector(
@@ -148,11 +148,11 @@ MemberStack.onReady.then(function (member) {
 
           missedTestDiv.querySelector(".add-report-wrap").style.display = "flex";
           missedTestDiv.querySelector(".add-report-wrap").onclick = function () {
-            const addReportEmbedDisplay = missedTestDiv.querySelector(".add-report-embed").style.display;
-            if ((addReportEmbedDisplay = "block")) {
-              addReportEmbedDisplay = "none";
+            const addReportEmbed = missedTestDiv.querySelector(".add-report-embed");
+            if (addReportEmbed.style.display == "block") {
+              addReportEmbed.style.display = "none";
             } else {
-              addReportEmbedDisplay = "block";
+              addReportEmbed.style.display = "block";
             }
           };
           missedTestDiv.querySelector(
