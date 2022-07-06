@@ -172,7 +172,7 @@ MemberStack.onReady.then(function (member) {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
     const allTests = testsHolder.querySelectorAll(".test-wrap");
-    const upcomingTests = classesHolder.querySelectorAll(".test-wrap.test-upcoming");
+    const upcomingTests = testsHolder.querySelectorAll(".test-wrap.test-upcoming");
 
     allTests.forEach((eachTest) => {
       eachTest.style.display = "none";
@@ -203,7 +203,7 @@ MemberStack.onReady.then(function (member) {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
     const allTests = testsHolder.querySelectorAll(".test-wrap");
-    const completedTests = classesHolder.querySelectorAll(".test-wrap.test-completed");
+    const completedTests = testsHolder.querySelectorAll(".test-wrap.test-completed");
 
     allTests.forEach((eachTest) => {
       eachTest.style.display = "none";
@@ -234,7 +234,7 @@ MemberStack.onReady.then(function (member) {
     allButtonsInactive();
     filterMissedButton.classList.add("filter-button-active");
     const allTests = testsHolder.querySelectorAll(".test-wrap");
-    const missedTests = classesHolder.querySelectorAll(".test-wrap.test-missed");
+    const missedTests = testsHolder.querySelectorAll(".test-wrap.test-missed");
 
     allTests.forEach((eachTest) => {
       eachTest.style.display = "none";
