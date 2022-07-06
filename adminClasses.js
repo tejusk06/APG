@@ -38,11 +38,11 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         upcomingClassDiv.querySelector(".location-text").innerHTML = upcomingClassData.location
           ? upcomingClassData.location
-          : ".";
+          : "";
 
         upcomingClassDiv.querySelector(".time-text").innerHTML = upcomingClassData.formattedTime
           ? upcomingClassData.formattedTime
-          : ".";
+          : "";
 
         upcomingClassDiv.querySelector(".course-section").innerHTML = `${upcomingClassData.courseSection}`;
         upcomingClassDiv.querySelector(".course-id").innerHTML = `${upcomingClassData.courseID}`;
