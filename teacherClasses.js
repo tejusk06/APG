@@ -92,7 +92,6 @@ MemberStack.onReady.then(function (member) {
   const filterAllButton = document.querySelector("#filter-all");
   const filterUpcomingButton = document.querySelector("#filter-upcoming");
   const filterCompletedButton = document.querySelector("#filter-completed");
-  const filterMissedButton = document.querySelector("#filter-missed");
 
   //   Common logic to make all button inactive
   const allButtonsInactive = () => {
@@ -114,7 +113,7 @@ MemberStack.onReady.then(function (member) {
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
+    const allClasses = classesHolder.querySelectorAll(".class-wrap");
 
     allClasses.forEach((eachClass) => {
       document.querySelector(".empty-message").style.display = "none";
@@ -132,8 +131,8 @@ MemberStack.onReady.then(function (member) {
   filterUpcomingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
+    const allClasses = classesHolder.querySelectorAll(".class-wrap");
+    const upcomingClasses = classesHolder.querySelectorAll(".class-wrap.upcoming");
 
     allClasses.forEach((eachClass) => {
       eachClass.style.display = "none";
@@ -154,8 +153,8 @@ MemberStack.onReady.then(function (member) {
   filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    const allClasses = document.querySelectorAll(".class-wrap");
-    const completedClasses = document.querySelectorAll(".class-wrap.completed");
+    const allClasses = classesHolder.querySelectorAll(".class-wrap");
+    const completedClasses = classesHolder.querySelectorAll(".class-wrap.completed");
 
     allClasses.forEach((eachClass) => {
       eachClass.style.display = "none";
