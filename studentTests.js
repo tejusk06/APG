@@ -55,6 +55,8 @@ MemberStack.onReady.then(function (member) {
       console.log("response", response);
 
       allTests.forEach((eachTest) => {
+        document.querySelector(".empty-message").style.display = "none";
+
         // Checking if test has report or status is checked
         const isPast = dateInPast(new Date(eachTest.dueDate).addDays(1));
 
@@ -123,6 +125,8 @@ MemberStack.onReady.then(function (member) {
     });
 
   // Adding show and hide logic for filter buttons
+  const emptyMessages = document.querySelectorAll(".empty-text");
+  const testsHolder = document.querySelector(".tests-holder");
   const filterButtons = document.querySelectorAll(".filter-button");
   const filterAllButton = document.querySelector("#filter-all");
   const filterUpcomingButton = document.querySelector("#filter-upcoming");
@@ -138,59 +142,121 @@ MemberStack.onReady.then(function (member) {
     });
   };
 
+  //   Common logic to make empty messages hidden
+  const allEmptyMessagesHide = () => {
+    emptyMessages.forEach((message) => {
+      message.style.display = "none";
+    });
+  };
+
   //   Logic for Filter all button
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    const allTests = document.querySelectorAll(".test-wrap");
+    const allTests = testsHolder.querySelectorAll(".test-wrap");
 
     allTests.forEach((eachTest) => {
+      document.querySelector(".empty-message").style.display = "none";
       eachTest.style.display = "flex";
     });
+
+    if (allTests.length == 0) {
+      document.querySelector(".empty-message").style.display = "flex";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.all").style.display = "block";
+    }
   });
 
   //   Logic for filter Pending Button
   filterUpcomingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
-    const allTests = document.querySelectorAll(".test-wrap");
+    const allTests = testsHolder.querySelectorAll(".test-wrap");
+    const upcomingTests = classesHolder.querySelectorAll(".test-wrap.test-upcoming");
 
     allTests.forEach((eachTest) => {
-      if (eachTest.querySelector(".test-status").innerHTML == "Upcoming") {
-        eachTest.style.display = "flex";
-      } else {
-        eachTest.style.display = "none";
-      }
+      eachTest.style.display = "none";
     });
+
+    upcomingTests.forEach((eachTest) => {
+      document.querySelector(".empty-message").style.display = "none";
+      eachTest.style.display = "block";
+    });
+
+    if (upcomingTests.length == 0) {
+      document.querySelector(".empty-message").style.display = "flex";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.upcoming").style.display = "block";
+    }
+
+    // allTests.forEach((eachTest) => {
+    //   if (eachTest.querySelector(".test-status").innerHTML == "Upcoming") {
+    //     eachTest.style.display = "flex";
+    //   } else {
+    //     eachTest.style.display = "none";
+    //   }
+    // });
   });
 
   //   Logic for filter Completed Button
   filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    const allTests = document.querySelectorAll(".test-wrap");
+    const allTests = testsHolder.querySelectorAll(".test-wrap");
+    const completedTests = classesHolder.querySelectorAll(".test-wrap.test-completed");
 
     allTests.forEach((eachTest) => {
-      if (eachTest.querySelector(".test-status").innerHTML == "Completed") {
-        eachTest.style.display = "flex";
-      } else {
-        eachTest.style.display = "none";
-      }
+      eachTest.style.display = "none";
     });
+
+    completedTests.forEach((eachTest) => {
+      document.querySelector(".empty-message").style.display = "none";
+      eachTest.style.display = "block";
+    });
+
+    if (completedTests.length == 0) {
+      document.querySelector(".empty-message").style.display = "flex";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.completed").style.display = "block";
+    }
+
+    // allTests.forEach((eachTest) => {
+    //   if (eachTest.querySelector(".test-status").innerHTML == "Completed") {
+    //     eachTest.style.display = "flex";
+    //   } else {
+    //     eachTest.style.display = "none";
+    //   }
+    // });
   });
 
   //   Logic for filter due Button
   filterMissedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterMissedButton.classList.add("filter-button-active");
-    const allTests = document.querySelectorAll(".test-wrap");
+    const allTests = testsHolder.querySelectorAll(".test-wrap");
+    const missedTests = classesHolder.querySelectorAll(".test-wrap.test-missed");
 
     allTests.forEach((eachTest) => {
-      if (eachTest.querySelector(".test-status").innerHTML == "Missed") {
-        eachTest.style.display = "flex";
-      } else {
-        eachTest.style.display = "none";
-      }
+      eachTest.style.display = "none";
     });
+
+    missedTests.forEach((eachTest) => {
+      document.querySelector(".empty-message").style.display = "none";
+      eachTest.style.display = "block";
+    });
+
+    if (missedTests.length == 0) {
+      document.querySelector(".empty-message").style.display = "flex";
+      allEmptyMessagesHide();
+      document.querySelector(".empty-text.missed").style.display = "block";
+    }
+
+    // allTests.forEach((eachTest) => {
+    //   if (eachTest.querySelector(".test-status").innerHTML == "Missed") {
+    //     eachTest.style.display = "flex";
+    //   } else {
+    //     eachTest.style.display = "none";
+    //   }
+    // });
   });
 });
