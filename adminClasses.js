@@ -185,13 +185,6 @@ MemberStack.onReady.then(function (member) {
     });
   };
 
-  //   Common logic to make empty messages hidden
-  const allEmptyMessagesHide = () => {
-    emptyMessages.forEach((message) => {
-      message.style.display = "none";
-    });
-  };
-
   //   Logic for Filter all button
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
