@@ -69,7 +69,7 @@ MemberStack.onReady.then(function (member) {
       });
     });
 
-  const filterButtons = Arrayfrom(document.querySelectorAll(".filter-button"));
+  const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
 
   filterButtons.forEach((filterButton) => {
     filterButton.onclick = () => {
