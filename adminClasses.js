@@ -168,7 +168,8 @@ MemberStack.onReady.then(function (member) {
         if (
           !eachClass.querySelector(".class-name").innerHTML.toLowerCase().includes(searchFilter) &&
           !eachClass.querySelector(".teacher-name").innerHTML.toLowerCase().includes(searchFilter) &&
-          !eachClass.querySelector(".class-date-text").innerHTML.toLowerCase().includes(searchFilter)
+          !eachClass.querySelector(".class-date-text").innerHTML.toLowerCase().includes(searchFilter) &&
+          !eachClass.querySelector(".student-names").innerHTML.toLowerCase().includes(searchFilter)
         ) {
           if (!eachClass.classList.contains("hide")) {
             eachClass.classList.add("hide");
