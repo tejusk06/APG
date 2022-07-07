@@ -104,15 +104,15 @@ MemberStack.onReady.then(function (member) {
         studentDiv.querySelector(".student-name-text").innerHTML = eachStudent.name;
         studentDiv.querySelector(".student-location").innerHTML = eachStudent.location ? eachStudent.location : ".";
 
-        studentDiv.querySelector(".student-classes").innerHTML = `${eachStudent.classesAttended} Completed,  \n 
+        studentDiv.querySelector(".student-classes").innerHTML = `${eachStudent.classesAttended} Completed, <br>
         ${eachStudent.classes} Assigned`;
 
-        studentDiv.querySelector(".student-tests").innerHTML = `${eachStudent.testsCompleted}  Completed, \n 
-        ${eachStudent.testsUpcoming} Pending,  \n 
+        studentDiv.querySelector(".student-tests").innerHTML = `${eachStudent.testsCompleted}  Completed, <br>
+        ${eachStudent.testsUpcoming} Pending, <br>
         ${eachStudent.tests} Assigned `;
 
-        studentDiv.querySelector(".student-homework").innerHTML = `${eachStudent.homeworkCompleted} Completed,  \n 
-        ${eachStudent.homeworkPending} Pending,  \n 
+        studentDiv.querySelector(".student-homework").innerHTML = `${eachStudent.homeworkCompleted} Completed, <br>
+        ${eachStudent.homeworkPending} Pending, <br>
         ${eachStudent.homework} Assigned `;
 
         studentDiv.querySelector(".student-topics").innerHTML = eachStudent.topics + " completed";
