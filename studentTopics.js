@@ -72,24 +72,24 @@ MemberStack.onReady.then(function (member) {
   // Logic to show completed topics first after clicking the filter buttons
   const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
 
+  const rearrangeTopics = () => {
+    const topicsList = document.querySelector(".topic-list");
+    const topicsItems = document.querySelectorAll(".topic-wrap-cms");
+
+    console.log("rearranging topics");
+
+    topicsItems.forEach((topic) => {
+      const completedStatus = topic.querySelector(".topic-completed");
+
+      if (completedStatus.style.display == "flex") {
+        topicsList.prepend(topic);
+        console.log("prepending");
+      }
+    });
+  };
+
   filterButtons.forEach((filterButton) => {
     filterButton.onclick = () => {
-      const rearrangeTopics = () => {
-        const topicsList = document.querySelector(".topic-list");
-        const topicsItems = document.querySelectorAll(".topic-wrap-cms");
-
-        console.log("rearranging topics");
-
-        topicsItems.forEach((topic) => {
-          const completedStatus = topic.querySelector(".topic-completed");
-
-          if (completedStatus.style.display == "flex") {
-            topicsList.prepend(topic);
-            console.log("prepending");
-          }
-        });
-      };
-
       // giving a timeout so the filtering happens first then the topics get rearranged
       console.log("setting timeout");
       setTimeout(rearrangeTopics(), 5000);
