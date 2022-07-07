@@ -57,8 +57,11 @@ MemberStack.onReady.then(function (member) {
           ? upcomingClassData.formattedTime
           : "";
 
-        upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
-        upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
+        if (upcomingClassData.zoomLink) {
+          upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
+        } else {
+          upcomingClassDiv.querySelector(".button-zoom-link").style.display = "none";
+        }
 
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
@@ -69,7 +72,7 @@ MemberStack.onReady.then(function (member) {
         document.querySelector(".empty-message").style.display = "none";
         const completedClassDiv = completedTemplate.cloneNode(true);
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
-        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
+        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className.split("-")[0]}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
 
         if (completedClassData.classTopics) {
@@ -80,8 +83,11 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
 
-        completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
-        completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
+        if (completedClassData.zoomRecording) {
+          completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
+        } else {
+          completedClassDiv.querySelector(".button-zoom-recording").style.display = "none";
+        }
 
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
@@ -92,7 +98,7 @@ MemberStack.onReady.then(function (member) {
         document.querySelector(".empty-message").style.display = "none";
         const missedClassDiv = missedTemplate.cloneNode(true);
         missedClassDiv.querySelector(".class-date-text").innerHTML = `${missedClassData.formattedTime}`;
-        missedClassDiv.querySelector(".class-name").innerHTML = `${missedClassData.className}`;
+        missedClassDiv.querySelector(".class-name").innerHTML = `${missedClassData.className.split("-")[0]}`;
         missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
 
         if (missedClassData.classTopics) {
@@ -103,8 +109,11 @@ MemberStack.onReady.then(function (member) {
           missedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
 
-        missedClassDiv.querySelector(".button-zoom-link").href = `${missedClassData.zoomLink}`;
-        missedClassDiv.querySelector(".button-zoom-recording").href = `${missedClassData.zoomRecording}`;
+        if (missedClassData.zoomRecording) {
+          missedClassDiv.querySelector(".button-zoom-recording").href = `${missedClassData.zoomRecording}`;
+        } else {
+          missedClassDiv.querySelector(".button-zoom-recording").style.display = "none";
+        }
 
         // Appending the upcoming class Div
         classesHolder.appendChild(missedClassDiv);
