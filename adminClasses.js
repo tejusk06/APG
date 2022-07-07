@@ -158,7 +158,7 @@ MemberStack.onReady.then(function (member) {
     if (searchFilter) {
       allClasses.forEach((eachClass) => {
         if (
-          !eachClass.querySelector(".class-name").innerHTML.toLowerCase().includes(searchFilter) ||
+          !eachClass.querySelector(".class-name").innerHTML.toLowerCase().includes(searchFilter) &&
           !eachClass.querySelector(".teacher-name").innerHTML.toLowerCase().includes(searchFilter)
         ) {
           if (!eachClass.classList.contains("hide")) {
