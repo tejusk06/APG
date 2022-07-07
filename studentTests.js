@@ -70,6 +70,9 @@ MemberStack.onReady.then(function (member) {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
 
+          completedTestDiv.querySelector(".link-written-explanation").href = `${eachTest.writtenExplanation}`;
+          completedTestDiv.querySelector(".link-video-explanation").href = `${eachTest.videoExplanation}`;
+
           if (eachTest.report) {
             completedTestDiv.querySelector(".download-report-wrap").onclick = function () {
               forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
