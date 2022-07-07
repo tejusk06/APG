@@ -78,6 +78,8 @@ MemberStack.onReady.then(function (member) {
         const topicsList = document.querySelector(".topic-list");
         const topicsItems = document.querySelectorAll(".topic-wrap-cms");
 
+        console.log("rearranging topics");
+
         topicsItems.forEach((topic) => {
           const completedStatus = topic.querySelector(".topic-completed");
 
@@ -88,7 +90,7 @@ MemberStack.onReady.then(function (member) {
       };
 
       // giving a timeout so the filtering happens first then the topics get rearranged
-      setTimeout(rearrangeTopics(), 1000);
+      setTimeout(rearrangeTopics(), 500);
     };
   });
 });
