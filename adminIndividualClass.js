@@ -21,9 +21,17 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".class-name-heading").innerHTML = response.className.split("-")[0];
       document.querySelector(".class-date-subheading").innerHTML = response.momentDate;
       document.querySelector(".class-teacher-subheading").innerHTML = response.teacherName;
-      document.querySelector(".button-zoom-link").href = response.zoomLink;
-      document.querySelector(".button-zoom-recording").href = response.zoomRecording;
+      if (response.zoomLink) {
+        document.querySelector(".button-zoom-link").href = response.zoomLink;
+      } else {
+        document.querySelector(".button-zoom-link").style.display = "none";
+      }
 
+      if (response.zoomRecording) {
+        document.querySelector(".button-zoom-recording").href = response.zoomRecording;
+      } else {
+        document.querySelector(".button-zoom-recording").style.display = "none";
+      }
       //   Looping through topics and checking which ones are complete
       topicItems.forEach((eachTopic) => {
         if (response.topicsCompleted) {

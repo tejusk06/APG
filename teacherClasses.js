@@ -177,6 +177,4 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".empty-text.completed").style.display = "block";
     }
   });
-
-  // do things with the member object
 });

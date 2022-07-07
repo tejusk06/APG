@@ -19,8 +19,18 @@ MemberStack.onReady.then(function (member) {
       // Adding Class details
       document.querySelector(".class-name-heading").innerHTML = response.className.split("-")[0];
       document.querySelector(".class-date-subheading").innerHTML = response.momentDate;
-      document.querySelector(".button-zoom-link").href = response.zoomLink;
-      document.querySelector(".button-zoom-recording").href = response.zoomRecording;
+
+      if (response.zoomLink) {
+        document.querySelector(".button-zoom-link").href = response.zoomLink;
+      } else {
+        document.querySelector(".button-zoom-link").style.display = "none";
+      }
+
+      if (response.zoomRecording) {
+        document.querySelector(".button-zoom-recording").href = response.zoomRecording;
+      } else {
+        document.querySelector(".button-zoom-recording").style.display = "none";
+      }
 
       //   Looping through topics and checking which ones are complete
       topicItems.forEach((eachTopic) => {
@@ -31,4 +41,11 @@ MemberStack.onReady.then(function (member) {
         }
       });
     });
+
+  // Logic to refresh the page on updating the classs form
+
+  // const formEmbed = document.querySelector(".class-form-embed");
+  // const formButton = formEmbed.getElementsByTagName("button")[0];
+
+  // console.log(formButton);
 });
