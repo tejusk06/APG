@@ -37,8 +37,7 @@ MemberStack.onReady.then(function (member) {
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates
-      const topicsHolder = document.querySelectorAll(".topics-holder")[0];
-      const topicTemplate = document.querySelectorAll(".topic-wrap")[0];
+      const topicsList = document.querySelector(".topic-list");
       const topicsItems = document.querySelectorAll(".topic-wrap-cms");
       const completedTopics = response.completedTopics;
 
@@ -62,6 +61,7 @@ MemberStack.onReady.then(function (member) {
           const topicIdNumber = topicId.innerHTML;
           if (completedTopics.includes(topicIdNumber)) {
             completedStatus.style.display = "flex";
+            topicsList.prepend(topic);
           } else {
             notCompletedStatus.style.display = "flex";
           }
