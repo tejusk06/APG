@@ -157,7 +157,10 @@ MemberStack.onReady.then(function (member) {
     // hide if search term does not match name
     if (searchFilter) {
       allClasses.forEach((eachClass) => {
-        if (!eachClass.querySelector(".class-name").innerHTML.toLowerCase().includes(searchFilter)) {
+        if (
+          !eachClass.querySelector(".class-name").innerHTML.toLowerCase().includes(searchFilter) ||
+          !eachClass.querySelector(".teacher-name").innerHTML.toLowerCase().includes(searchFilter)
+        ) {
           if (!eachClass.classList.contains("hide")) {
             eachClass.classList.add("hide");
           }
