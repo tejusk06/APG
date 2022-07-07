@@ -76,14 +76,11 @@ MemberStack.onReady.then(function (member) {
     const topicsList = document.querySelector(".topic-list");
     const topicsItems = document.querySelectorAll(".topic-wrap-cms");
 
-    console.log("rearranging topics");
-
     topicsItems.forEach((topic) => {
       const completedStatus = topic.querySelector(".topic-completed");
 
       if (completedStatus.style.display == "flex") {
         topicsList.prepend(topic);
-        console.log("prepending");
       }
     });
   };
@@ -91,7 +88,7 @@ MemberStack.onReady.then(function (member) {
   filterButtons.forEach((filterButton) => {
     filterButton.onclick = () => {
       // giving a timeout so the filtering happens first then the topics get rearranged
-      console.log("setting timeout");
+
       setTimeout(rearrangeTopics, 200);
     };
   });
