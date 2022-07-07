@@ -33,7 +33,7 @@ MemberStack.onReady.then(function (member) {
       response.upcomingClasses.forEach((upcomingClassData) => {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
-        upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
+        upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className.split("-")[0]}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
 
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
@@ -67,7 +67,7 @@ MemberStack.onReady.then(function (member) {
       response.completedClasses.forEach((completedClassData) => {
         const completedClassDiv = completedTemplate.cloneNode(true);
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
-        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
+        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className.split("-")[0]}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
         if (completedClassData.classTopics) {
           const classTopics = replaceCourseNames(completedClassData.classTopics);

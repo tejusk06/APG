@@ -37,7 +37,7 @@ MemberStack.onReady.then(function (member) {
         document.querySelector(".empty-message").style.display = "none";
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
-        upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
+        upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className.split("-")[0]}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
         upcomingClassDiv.querySelector(".location-text").innerHTML = upcomingClassData.location
           ? upcomingClassData.location
@@ -66,7 +66,7 @@ MemberStack.onReady.then(function (member) {
         document.querySelector(".empty-message").style.display = "none";
         const completedClassDiv = completedTemplate.cloneNode(true);
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
-        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
+        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className.split("-")[0]}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
 
         if (completedClassData.classTopics) {
