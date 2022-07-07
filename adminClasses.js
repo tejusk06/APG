@@ -27,7 +27,7 @@ MemberStack.onReady.then(function (member) {
       const completedTemplate = document.querySelectorAll(".class-wrap.completed")[0];
 
       //   Logging the templates
-      console.log("response", response);
+      // console.log("response", response);
 
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
@@ -35,6 +35,9 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className.split("-")[0]}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
+        upcomingClassDiv.querySelector(".student-names").innerHTML = upcomingClassData.studentNames
+          ? `${upcomingClassData.studentNames}`
+          : " ";
 
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
 
@@ -69,6 +72,11 @@ MemberStack.onReady.then(function (member) {
         completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
         completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className.split("-")[0]}`;
         completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
+
+        completedClassDiv.querySelector(".student-names").innerHTML = completedClassData.studentNames
+          ? `${completedClassData.studentNames}`
+          : " ";
+
         if (completedClassData.classTopics) {
           const classTopics = replaceCourseNames(completedClassData.classTopics);
           completedClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
@@ -159,7 +167,8 @@ MemberStack.onReady.then(function (member) {
       allClasses.forEach((eachClass) => {
         if (
           !eachClass.querySelector(".class-name").innerHTML.toLowerCase().includes(searchFilter) &&
-          !eachClass.querySelector(".teacher-name").innerHTML.toLowerCase().includes(searchFilter)
+          !eachClass.querySelector(".teacher-name").innerHTML.toLowerCase().includes(searchFilter) &&
+          !eachClass.querySelector(".class-date-text").innerHTML.toLowerCase().includes(searchFilter)
         ) {
           if (!eachClass.classList.contains("hide")) {
             eachClass.classList.add("hide");
@@ -170,21 +179,21 @@ MemberStack.onReady.then(function (member) {
   };
 
   classCourse.addEventListener("change", (event) => {
-    console.log(`You selected course ${event.target.value}`);
+    // console.log(`You selected course ${event.target.value}`);
     courseFilter = event.target.value;
 
     filterClasses();
   });
 
   classSubject.addEventListener("change", (event) => {
-    console.log(`You selected subject ${event.target.value}`);
+    // console.log(`You selected subject ${event.target.value}`);
     subjectFilter = event.target.value;
 
     filterClasses();
   });
 
   classSearch.addEventListener("input", (event) => {
-    console.log(`You selected search ${event.target.value}`);
+    // console.log(`You selected search ${event.target.value}`);
     searchFilter = event.target.value.trim().toLowerCase();
 
     filterClasses();
