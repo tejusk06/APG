@@ -90,6 +90,7 @@ MemberStack.onReady.then(function (member) {
       };
 
       // giving a timeout so the filtering happens first then the topics get rearranged
+      console.log("setting timeout");
       setTimeout(rearrangeTopics(), 500);
     };
   });
