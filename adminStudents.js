@@ -103,9 +103,16 @@ MemberStack.onReady.then(function (member) {
         }
         studentDiv.querySelector(".student-name-text").innerHTML = eachStudent.name;
         studentDiv.querySelector(".student-location").innerHTML = eachStudent.location ? eachStudent.location : ".";
-        studentDiv.querySelector(".student-classes").innerHTML = eachStudent.classes + " assigned";
-        studentDiv.querySelector(".student-tests").innerHTML = eachStudent.tests + " assigned";
-        studentDiv.querySelector(".student-homework").innerHTML = eachStudent.homework + " assigned";
+        studentDiv.querySelector(".student-classes").innerHTML =
+          eachStudent.classesAttended + " Completed, " + eachStudent.classes + " Assigned";
+        studentDiv.querySelector(
+          ".student-tests"
+        ).innerHTML = `${eachStudent.testsCompleted} + Completed, + ${eachStudent.testsUpcoming} + Pending, + ${eachStudent.tests} + Assigned `;
+
+        studentDiv.querySelector(
+          ".student-homework"
+        ).innerHTML = `${eachStudent.homeworkCompleted} + Completed, + ${eachStudent.homeworkPending} + Pending, + ${eachStudent.homework} + Assigned `;
+
         studentDiv.querySelector(".student-topics").innerHTML = eachStudent.topics + " completed";
         studentDiv.querySelector(".student-course-id").innerHTML = eachStudent.courseID;
         studentDiv.href = `/admin/student-classes/?studentID=${eachStudent.studentID}&courseID=${eachStudent.courseID}`;
