@@ -42,7 +42,7 @@ MemberStack.onReady.then(function (member) {
         document.querySelector(".student-image").src = response.student.image;
       }
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
-      document.querySelector(".student-subheading").innerHTML = response.student.email;
+      document.querySelector(".student-subheading").innerHTML = response.student.email ? response.student.email : "";
       document.querySelector("#student-tests").href = `#`;
       document.querySelector("#student-tests").classList.add("w--current");
       document.querySelector(
