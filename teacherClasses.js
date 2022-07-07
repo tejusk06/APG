@@ -47,8 +47,12 @@ MemberStack.onReady.then(function (member) {
           ? upcomingClassData.formattedTime
           : "";
 
-        upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
-        upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
+        if (upcomingClassData.zoomLink) {
+          upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
+        } else {
+          upcomingClassDiv.querySelector(".button-zoom-link").style.display = "none";
+        }
+
         upcomingClassDiv.querySelector(
           ".view-class-button"
         ).href = `/teacher/class/?classID=${upcomingClassData.classID}`;
@@ -73,8 +77,11 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
 
-        completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
-        completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
+        if (completedClassData.zoomRecording) {
+          completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
+        } else {
+          completedClassDiv.querySelector(".button-zoom-recording").style.display = "none";
+        }
 
         completedClassDiv.querySelector(
           ".view-class-button"

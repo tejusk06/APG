@@ -48,8 +48,13 @@ MemberStack.onReady.then(function (member) {
 
         upcomingClassDiv.querySelector(".course-section").innerHTML = `${upcomingClassData.courseSection}`;
         upcomingClassDiv.querySelector(".course-id").innerHTML = `${upcomingClassData.courseID}`;
-        upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
-        upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
+
+        if (upcomingClassData.zoomLink) {
+          upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
+        } else {
+          upcomingClassDiv.querySelector(".button-zoom-link").style.display = "none";
+        }
+
         upcomingClassDiv.querySelector(
           ".view-class-button"
         ).href = `/admin/class/?classID=${upcomingClassData.classID}`;
@@ -73,8 +78,12 @@ MemberStack.onReady.then(function (member) {
         }
         completedClassDiv.querySelector(".course-section").innerHTML = `${completedClassData.courseSection}`;
         completedClassDiv.querySelector(".course-id").innerHTML = `${completedClassData.courseID}`;
-        completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
-        completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
+
+        if (completedClassData.zoomRecording) {
+          completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
+        } else {
+          completedClassDiv.querySelector(".button-zoom-recording").style.display = "none";
+        }
 
         completedClassDiv.querySelector(
           ".view-class-button"
