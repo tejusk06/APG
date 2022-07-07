@@ -68,4 +68,21 @@ MemberStack.onReady.then(function (member) {
         }
       });
     });
+
+  const filterButtons = Arrayfrom(document.querySelectorAll(".filter-button"));
+
+  filterButtons.forEach((filterButton) => {
+    filterButton.onclick = () => {
+      const topicsList = document.querySelector(".topic-list");
+      const topicsItems = document.querySelectorAll(".topic-wrap-cms");
+
+      topicsItems.forEach((topic) => {
+        const completedStatus = topic.querySelector(".topic-completed");
+
+        if (completedStatus.style.display == "flex") {
+          topicsList.prepend(topic);
+        }
+      });
+    };
+  });
 });
