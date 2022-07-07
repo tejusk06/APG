@@ -53,6 +53,7 @@ MemberStack.onReady.then(function (member) {
       };
 
       completedHomework.forEach((eachHomework) => {
+        document.querySelector(".empty-message").style.display = "none";
         homeworkItems.forEach((hwItem) => {
           const hwItemName = hwItem.querySelector(".hw-name").innerHTML;
           const hwTopicId = hwItem.querySelector(".topic-id");
@@ -103,6 +104,7 @@ MemberStack.onReady.then(function (member) {
     });
 
   // Adding show and hide logic for filter buttons
+  const emptyMessages = document.querySelectorAll(".empty-text");
   const filterButtons = document.querySelectorAll(".filter-button");
   const filterAllButton = document.querySelector("#filter-all");
   const filterPendingButton = document.querySelector("#filter-pending");
@@ -118,15 +120,27 @@ MemberStack.onReady.then(function (member) {
     });
   };
 
+  //   Common logic to make empty messages hidden
+  const allEmptyMessagesHide = () => {
+    emptyMessages.forEach((message) => {
+      message.style.display = "none";
+    });
+  };
+
   //   Logic for Filter all button
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
+
     filterAllButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-wrap");
 
+    allEmptyMessagesHide();
+    document.querySelector(".empty-message").style.display = "flex";
+    document.querySelector(".empty-text.all").style.display = "block";
     allHomework.forEach((eachHomework) => {
       if (eachHomework.querySelector(".homework-status").innerHTML != "null") {
         eachHomework.style.display = "flex";
+        document.querySelector(".empty-message").style.display = "none";
       } else {
         eachHomework.style.display = "none";
       }
@@ -139,9 +153,14 @@ MemberStack.onReady.then(function (member) {
     filterPendingButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-wrap");
 
+    allEmptyMessagesHide();
+    document.querySelector(".empty-message").style.display = "flex";
+    document.querySelector(".empty-text.pending").style.display = "block";
+
     allHomework.forEach((eachHomework) => {
       if (eachHomework.querySelector(".homework-status").innerHTML == "pending") {
         eachHomework.style.display = "flex";
+        document.querySelector(".empty-message").style.display = "none";
       } else {
         eachHomework.style.display = "none";
       }
@@ -154,9 +173,14 @@ MemberStack.onReady.then(function (member) {
     filterCompletedButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-wrap");
 
+    allEmptyMessagesHide();
+    document.querySelector(".empty-message").style.display = "flex";
+    document.querySelector(".empty-text.completed").style.display = "block";
+
     allHomework.forEach((eachHomework) => {
       if (eachHomework.querySelector(".homework-status").innerHTML == "completed") {
         eachHomework.style.display = "flex";
+        document.querySelector(".empty-message").style.display = "none";
       } else {
         eachHomework.style.display = "none";
       }
@@ -169,9 +193,14 @@ MemberStack.onReady.then(function (member) {
     filterDueButton.classList.add("filter-button-active");
     const allHomework = document.querySelectorAll(".homework-wrap");
 
+    allEmptyMessagesHide();
+    document.querySelector(".empty-message").style.display = "flex";
+    document.querySelector(".empty-text.overdue").style.display = "block";
+
     allHomework.forEach((eachHomework) => {
       if (eachHomework.querySelector(".homework-status").innerHTML == "due") {
         eachHomework.style.display = "flex";
+        document.querySelector(".empty-message").style.display = "none";
       } else {
         eachHomework.style.display = "none";
       }
