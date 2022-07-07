@@ -85,6 +85,7 @@ MemberStack.onReady.then(function (member) {
 
           if (completedStatus.style.display == "flex") {
             topicsList.prepend(topic);
+            console.log("prepending");
           }
         });
       };
