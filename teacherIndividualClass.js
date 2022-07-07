@@ -41,11 +41,4 @@ MemberStack.onReady.then(function (member) {
         }
       });
     });
-
-  // Logic to refresh the page on updating the classs form
-
-  // const formEmbed = document.querySelector(".class-form-embed");
-  // const formButton = formEmbed.getElementsByTagName("button")[0];
-
-  // console.log(formButton);
 });
