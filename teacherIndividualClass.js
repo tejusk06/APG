@@ -41,4 +41,6 @@ MemberStack.onReady.then(function (member) {
         }
       });
     });
+
+  // Logic to refresh the page on updating the classs form
 });
