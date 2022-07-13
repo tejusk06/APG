@@ -32,15 +32,25 @@ MemberStack.onReady.then(function (member) {
 
       //   document.querySelector(".all-classes-stat").innerHTML = response.stats.allClasses;
       if (member.membership.name == "AP Guru SAT Students") {
-        document.querySelector(".math-topics-stat").innerHTML = response.stats.mathTopicsCompleted;
-        document.querySelectorAll(".math-topics-stat")[1].innerHTML = response.stats.mathTopicsCompleted;
-        document.querySelector(".reading-topics-stat").innerHTML = response.stats.readingTopicsCompleted;
-        document.querySelectorAll(".reading-topics-stat")[1].innerHTML = response.stats.readingTopicsCompleted;
-        document.querySelector(".writing-topics-stat").innerHTML = response.stats.writingTopicsCompleted;
-        document.querySelectorAll(".writing-topics-stat")[1].innerHTML = response.stats.writingTopicsCompleted;
-      } else {
-        // TODO stats for the ACT students
-        document.querySelector(".completed-topics-stat").innerHTML = response.stats.totalTopicsCompleted;
+        document.querySelector(".math-topics-stat").innerHTML = response.stats.satMathTopicsCompleted;
+        document.querySelectorAll(".math-topics-stat")[1].innerHTML = response.stats.satMathTopicsCompleted;
+
+        document.querySelector(".reading-topics-stat").innerHTML = response.stats.satReadingTopicsCompleted;
+        document.querySelectorAll(".reading-topics-stat")[1].innerHTML = response.stats.satReadingTopicsCompleted;
+
+        document.querySelector(".writing-topics-stat").innerHTML = response.stats.satWritingTopicsCompleted;
+        document.querySelectorAll(".writing-topics-stat")[1].innerHTML = response.stats.satWritingTopicsCompleted;
+      } else if (member.membership.name == "AP Guru ACT Students") {
+        // TODO test by creating ACT student login
+
+        document.querySelector(".reading-topics-stat").innerHTML = response.stats.actReadingTopicsCompleted;
+        document.querySelectorAll(".reading-topics-stat")[1].innerHTML = response.stats.actReadingTopicsCompleted;
+
+        document.querySelector(".english-topics-stat").innerHTML = response.stats.actEnglishTopicsCompleted;
+        document.querySelectorAll(".english-topics-stat")[1].innerHTML = response.stats.actEnglishTopicsCompleted;
+
+        document.querySelector(".science-topics-stat").innerHTML = response.stats.actScienceTopicsCompleted;
+        document.querySelectorAll(".science-topics-stat")[1].innerHTML = response.stats.actScienceTopicsCompleted;
       }
 
       document.querySelector(".pending-homework-stat").innerHTML = response.stats.homeworkPending;
