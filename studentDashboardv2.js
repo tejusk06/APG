@@ -16,6 +16,7 @@ MemberStack.onReady.then(function (member) {
       console.log("response", response);
 
       document.querySelector(".upcoming-classes-stat").innerHTML = response.stats.upcomingClasses;
+      document.querySelectorAll(".upcoming-classes-stat")[1].innerHTML = response.stats.upcomingClasses;
       //   document.querySelector(".all-classes-stat").innerHTML = response.stats.allClasses;
       if (member.membership.name == "AP Guru SAT Students") {
         document.querySelector(".math-topics-stat").innerHTML = response.stats.mathTopicsCompleted;
