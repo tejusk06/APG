@@ -71,9 +71,9 @@ MemberStack.onReady.then(function (member) {
       };
 
       const markTopicsCompleted = () => {
-        const topicItems = document.querySelectorAll(".topics-item");
+        const topicsItem = document.querySelectorAll(".topics-item");
 
-        topicItems.forEach((topicItem) => {
+        topicsItem.forEach((topicItem) => {
           const topicID = topicItem.querySelector(".topic-id").innerHTML;
           response.completedTopics.forEach((completedTopic) => {
             if (topicID == completedTopic) {
