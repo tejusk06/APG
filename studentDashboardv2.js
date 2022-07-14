@@ -319,6 +319,14 @@ MemberStack.onReady.then(function (member) {
         });
       };
 
+      //   logic to hide links for parents
+
+      if (member["Is Parent"] == "yes") {
+        document.querySelectorAll("dashboard-homework-complete").forEach((homeworkLink) => {
+          homeworkLink.style.display = "none";
+        });
+      }
+
       setDashboardStats();
       markTopicsCompleted();
       showAllClasses();
