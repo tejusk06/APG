@@ -280,7 +280,6 @@ MemberStack.onReady.then(function (member) {
         const today = new Date();
 
         completedHomework.forEach((eachHomework) => {
-          document.querySelector(".empty-message").style.display = "none";
           homeworkItems.forEach((hwItem) => {
             const hwTopicId = hwItem.querySelector(".topic-id");
 
