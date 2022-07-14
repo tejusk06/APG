@@ -324,14 +324,25 @@ MemberStack.onReady.then(function (member) {
       showAllClasses();
       showAllTests();
       showAllHomework();
-
-      //   Logic to hide links for parents
-      console.log(member["is-parent"]);
-      if (member["is-parent"] == "yes") {
-        document.querySelectorAll(".dashboard-homework-complete").forEach((homeworkLink) => {
-          homeworkLink.style.display = "none";
-          console.log("hiding link for parent");
-        });
-      }
     });
+
+  //   Logic to hide links for parents
+
+  if (member["is-parent"] == "yes") {
+    // Hide homework complete button
+    document.querySelectorAll(".dashboard-homework-complete").forEach((homeworkLink) => {
+      homeworkLink.style.display = "none";
+    });
+
+    // Hide buttons to other pages
+    document.querySelectorAll(".dashboard-button").forEach((button) => {
+      button.style.display = "none";
+    });
+
+    document.querySelectorAll(".navigation .nav-link").forEach((navLink) => {
+      navLink.style.display = "none";
+    });
+
+    document.querySelector("#logout-link").style.display = "block";
+  }
 });
