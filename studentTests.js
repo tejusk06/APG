@@ -101,16 +101,37 @@ MemberStack.onReady.then(function (member) {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
 
-          upcomingTestDiv.querySelector(
-            ".tests-wrap"
-          ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
+          // upcomingTestDiv.querySelector(
+          //   ".tests-wrap"
+          // ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
+
+          upcomingTestDiv.querySelector(".tests-wrap").addEventListener("click", () => {
+            localStorage.setItem("formName", "Update Test Status");
+            localStorage.setItem("formLink", `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`);
+            localStorage.setItem("pageName", "All Tests");
+            localStorage.setItem("pageLink", `${window.location.href}`);
+
+            window.location.replace("/update-page");
+          });
 
           if (eachTest.dueDate == null) {
             upcomingTestDiv.querySelector(".date-upcoming").style.display = "none";
             upcomingTestDiv.querySelector(".date-select").style.display = "block";
-            upcomingTestDiv.querySelector(
-              ".date-select"
-            ).href = `https://web.miniextensions.com/JaBjH4um3uXj9mqa7y5S/${eachTest.testId}`;
+            // upcomingTestDiv.querySelector(
+            //   ".date-select"
+            // ).href = `https://web.miniextensions.com/JaBjH4um3uXj9mqa7y5S/${eachTest.testId}`;
+
+            upcomingTestDiv.querySelector(".date-select").addEventListener("click", () => {
+              localStorage.setItem("formName", "Update Test Date");
+              localStorage.setItem(
+                "formLink",
+                `https://web.miniextensions.com/JaBjH4um3uXj9mqa7y5S/${eachTest.testId}`
+              );
+              localStorage.setItem("pageName", "All Tests");
+              localStorage.setItem("pageLink", `${window.location.href}`);
+
+              window.location.replace("/update-page");
+            });
           } else {
             upcomingTestDiv.querySelector(".date-upcoming").innerHTML = `${eachTest.momentDate}`;
           }
@@ -123,9 +144,18 @@ MemberStack.onReady.then(function (member) {
           missedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           missedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
 
-          missedTestDiv.querySelector(
-            ".tests-wrap"
-          ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
+          // missedTestDiv.querySelector(
+          //   ".tests-wrap"
+          // ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
+
+          missedTestDiv.querySelector(".tests-wrap").addEventListener("click", () => {
+            localStorage.setItem("formName", "Update Test Status");
+            localStorage.setItem("formLink", `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`);
+            localStorage.setItem("pageName", "All Tests");
+            localStorage.setItem("pageLink", `${window.location.href}`);
+
+            window.location.replace("/update-page");
+          });
 
           missedTestDiv.querySelector(".download-test-wrap").onclick = function () {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
@@ -201,14 +231,6 @@ MemberStack.onReady.then(function (member) {
       allEmptyMessagesHide();
       document.querySelector(".empty-text.upcoming").style.display = "block";
     }
-
-    // allTests.forEach((eachTest) => {
-    //   if (eachTest.querySelector(".test-status").innerHTML == "Upcoming") {
-    //     eachTest.style.display = "flex";
-    //   } else {
-    //     eachTest.style.display = "none";
-    //   }
-    // });
   });
 
   //   Logic for filter Completed Button
@@ -232,14 +254,6 @@ MemberStack.onReady.then(function (member) {
       allEmptyMessagesHide();
       document.querySelector(".empty-text.completed").style.display = "block";
     }
-
-    // allTests.forEach((eachTest) => {
-    //   if (eachTest.querySelector(".test-status").innerHTML == "Completed") {
-    //     eachTest.style.display = "flex";
-    //   } else {
-    //     eachTest.style.display = "none";
-    //   }
-    // });
   });
 
   //   Logic for filter due Button
@@ -263,13 +277,5 @@ MemberStack.onReady.then(function (member) {
       allEmptyMessagesHide();
       document.querySelector(".empty-text.missed").style.display = "block";
     }
-
-    // allTests.forEach((eachTest) => {
-    //   if (eachTest.querySelector(".test-status").innerHTML == "Missed") {
-    //     eachTest.style.display = "flex";
-    //   } else {
-    //     eachTest.style.display = "none";
-    //   }
-    // });
   });
 });
