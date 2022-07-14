@@ -21,7 +21,7 @@ MemberStack.onReady.then(function (member) {
     .then((response) => response.json())
     .then((response) => {
       console.log("response", response);
-      const completedTopics = response.stats.completedTopics;
+      const completedTopics = response.completedTopics;
 
       const setDashboardStats = () => {
         //   Setting the stat values
