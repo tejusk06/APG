@@ -320,8 +320,8 @@ MemberStack.onReady.then(function (member) {
       };
 
       //   Logic to hide links for parents
-      console.log(member["is parent"]);
-      if (member["is parent"] == "yes") {
+      console.log(member["is-parent"]);
+      if (member["is-parent"] == "yes") {
         document.querySelectorAll("dashboard-homework-complete").forEach((homeworkLink) => {
           homeworkLink.style.display = "none";
         });
