@@ -8,6 +8,7 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
+  // Hiding all the homework
   document.querySelectorAll(".homework-wrap").forEach((eachHomework) => {
     eachHomework.style.display = "none";
   });

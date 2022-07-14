@@ -44,6 +44,11 @@ MemberStack.onReady.then(function (member) {
 
   const studentAirtableID = member["airtableid"];
 
+  // Hiding all the homework
+  document.querySelectorAll(".homework-item").forEach((eachHomework) => {
+    eachHomework.style.display = "none";
+  });
+
   //   Making the api call to get student stats from students table
   fetch(`https://apguru-server.herokuapp.com/api/v1/student/dashboard-v2/${studentAirtableID}-${courseID}`)
     .then((response) => response.json())
@@ -268,11 +273,57 @@ MemberStack.onReady.then(function (member) {
         });
       };
 
-      //   TODO logic to show all homework
+      //  Logic to show all homework
+      const showAllHomework = () => {
+        const completedHomework = response.homeworkArray;
+        const homeworkItems = document.querySelectorAll(".homework-item");
+        const today = new Date();
+
+        completedHomework.forEach((eachHomework) => {
+          document.querySelector(".empty-message").style.display = "none";
+          homeworkItems.forEach((hwItem) => {
+            const hwTopicId = hwItem.querySelector(".topic-id");
+
+            //   First check if topic ID has been set in webflow CMS
+            if (hwTopicId) {
+              const hwTopicNumber = hwTopicId.innerHTML;
+              if (eachHomework.topicId == hwTopicNumber) {
+                hwItem.style.display = "block";
+
+                if (eachHomework.completed) {
+                  hwItem.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
+                  hwItem.querySelector(".homework-dashboard-wrap.due").style.display = "none";
+                } else {
+                  const isPast = dateInPast(new Date(eachHomework.date).addDays(1));
+
+                  if (isPast) {
+                    hwItem.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
+                    hwItem.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
+                    hwItem.querySelector(
+                      ".homework-dashboard-wrap.completed .dashboard-homework-complete"
+                    ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
+                    hwItem.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
+                  } else {
+                    hwItem.querySelector(".homework-dashboard-wrap.due").style.display = "none";
+                    hwItem.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
+                    hwItem.querySelector(
+                      ".homework-dashboard-wrap.pending .dashboard-homework-complete"
+                    ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
+                    hwItem.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
+                  }
+                }
+              }
+
+              //   Check if topic ID matches
+            }
+          });
+        });
+      };
 
       setDashboardStats();
       markTopicsCompleted();
       showAllClasses();
       showAllTests();
+      showAllHomework();
     });
 });
