@@ -94,7 +94,7 @@ MemberStack.onReady.then(function (member) {
         const completedTemplate = document.querySelectorAll(".class-dashboard-wrap.completed")[0];
         const missedTemplate = document.querySelectorAll(".class-dashboard-wrap.missed")[0];
 
-        //     Rendering divs for each upcoming class
+        //     Rendering divs for each upcoming classes
         response.classes.upcomingClasses.forEach((upcomingClassData) => {
           const upcomingClassDiv = upcomingTemplate.cloneNode(true);
           upcomingClassDiv.querySelector(".dashboard-class-name").innerHTML = `${
@@ -117,6 +117,33 @@ MemberStack.onReady.then(function (member) {
 
           // Appending the upcoming class Div
           classesHolder.appendChild(upcomingClassDiv);
+        });
+
+        //     Rendering divs for each completed classes
+        response.classes.completedClasses.forEach((completedClassData) => {
+          const completedClassDiv = completedTemplate.cloneNode(true);
+          completedClassDiv.querySelector(".dashboard-class-name").innerHTML = `${
+            completedClassData.className.split("-")[0]
+          }`;
+
+          completedClassDiv.querySelector(".dashboard-class-location").innerHTML = completedClassData.location
+            ? completedClassData.location
+            : "";
+
+          completedClassDiv.querySelector(".dashboard-class-date-time").innerHTML = completedClassData.formattedTime
+            ? completedClassData.formattedTime
+            : "";
+
+          if (completedClassData.zoomRecording) {
+            completedClassDiv.querySelector(
+              ".dashboard-class-zoom-recording"
+            ).href = `${completedClassData.zoomRecording}`;
+          } else {
+            completedClassDiv.querySelector(".dashboard-class-zoom-recording").style.display = "none";
+          }
+
+          // Appending the upcoming class Div
+          classesHolder.appendChild(completedClassDiv);
         });
       };
 
