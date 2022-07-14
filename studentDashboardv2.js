@@ -21,6 +21,9 @@ MemberStack.onReady.then(function (member) {
     .then((response) => response.json())
     .then((response) => {
       console.log("response", response);
+      const completedTopics = response.completedTopics;
+      console.log(response.completedTopics);
+      console.log(completedTopics);
 
       const setDashboardStats = () => {
         //   Setting the stat values
@@ -75,7 +78,7 @@ MemberStack.onReady.then(function (member) {
 
         topicsItem.forEach((topicItem) => {
           const topicID = topicItem.querySelector(".topic-id").innerHTML;
-          response.completedTopics.forEach((completedTopic) => {
+          completedTopics.forEach((completedTopic) => {
             if (topicID == completedTopic) {
               topicItem.querySelector(".topic-completed").style.display = "flex";
               topicItem.querySelector(".topic-not-completed-wrap").style.display = "none";
