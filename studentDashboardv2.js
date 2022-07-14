@@ -205,6 +205,8 @@ MemberStack.onReady.then(function (member) {
 
       //   Logic to show All Tests
       const showAllTests = () => {
+        document.querySelector(".dashboard-tests-templates").style.display = "none";
+
         const allTests = response.testsArray;
 
         const testsHolder = document.querySelectorAll(".tests-wrapper")[0];
