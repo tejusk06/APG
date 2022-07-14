@@ -92,9 +92,6 @@ MemberStack.onReady.then(function (member) {
 
                 if (isPast) {
                   hwItem.querySelector(".hw-due").style.display = "flex";
-                  // hwItem.querySelector(
-                  //   ".hw-due"
-                  // ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
                   hwItem.querySelector(".hw-due").addEventListener("click", () => {
                     localStorage.setItem("formName", "Update Homework");
                     localStorage.setItem(
@@ -111,9 +108,18 @@ MemberStack.onReady.then(function (member) {
                   hwItem.querySelector(".homework-status").innerHTML = "due";
                 } else {
                   hwItem.querySelector(".hw-pending").style.display = "flex";
-                  hwItem.querySelector(
-                    ".hw-pending"
-                  ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
+
+                  hwItem.querySelector(".hw-pending").addEventListener("click", () => {
+                    localStorage.setItem("formName", "Update Homework");
+                    localStorage.setItem(
+                      "formLink",
+                      `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`
+                    );
+                    localStorage.setItem("pageName", "All Homework");
+                    localStorage.setItem("pageLink", `${window.location.href}`);
+
+                    window.location.replace("/update-page");
+                  });
                   hwItem.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
                   hwItem.querySelector(".homework-status").innerHTML = "pending";
                 }
