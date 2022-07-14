@@ -87,7 +87,7 @@ MemberStack.onReady.then(function (member) {
 
       const showAllClasses = () => {
         // Hide the class templates
-        document.querySelector("class-templates").style.display = "none";
+        document.querySelector(".class-templates").style.display = "none";
 
         const classesHolder = document.querySelectorAll(".class-wrapper")[0];
         const upcomingTemplate = document.querySelectorAll(".class-dashboard-wrap.upcoming")[0];
