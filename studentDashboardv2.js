@@ -110,9 +110,9 @@ MemberStack.onReady.then(function (member) {
             : "";
 
           if (upcomingClassData.zoomLink) {
-            upcomingClassDiv.querySelector(".zoom-link").href = `${upcomingClassData.zoomLink}`;
+            upcomingClassDiv.querySelector(".dashboard-class-zoom-link").href = `${upcomingClassData.zoomLink}`;
           } else {
-            upcomingClassDiv.querySelector(".zoom-link").style.display = "none";
+            upcomingClassDiv.querySelector(".dashboard-class-zoom-link").style.display = "none";
           }
 
           // Appending the upcoming class Div
