@@ -19,7 +19,7 @@ MemberStack.onReady.then(function (member) {
   }
 
   //   Logic to set the form details
-  const updateIframe = document.getElementById("update-iframe");
+  const updateIframe = document.querySelector(".update-iframe");
   const formNameElement = document.querySelector(".form-name");
   const backButtonElement = document.querySelector(".back-to-page");
   //  console.log("Iframe is", classIframe);
