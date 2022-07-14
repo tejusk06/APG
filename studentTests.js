@@ -101,10 +101,6 @@ MemberStack.onReady.then(function (member) {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
           };
 
-          // upcomingTestDiv.querySelector(
-          //   ".tests-wrap"
-          // ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
-
           upcomingTestDiv.querySelector(".tests-wrap").addEventListener("click", () => {
             localStorage.setItem("formName", "Update Test Status");
             localStorage.setItem("formLink", `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`);
@@ -117,9 +113,6 @@ MemberStack.onReady.then(function (member) {
           if (eachTest.dueDate == null) {
             upcomingTestDiv.querySelector(".date-upcoming").style.display = "none";
             upcomingTestDiv.querySelector(".date-select").style.display = "block";
-            // upcomingTestDiv.querySelector(
-            //   ".date-select"
-            // ).href = `https://web.miniextensions.com/JaBjH4um3uXj9mqa7y5S/${eachTest.testId}`;
 
             upcomingTestDiv.querySelector(".date-select").addEventListener("click", () => {
               localStorage.setItem("formName", "Update Test Date");
@@ -143,10 +136,6 @@ MemberStack.onReady.then(function (member) {
           const missedTestDiv = missedTest.cloneNode(true);
           missedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           missedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
-
-          // missedTestDiv.querySelector(
-          //   ".tests-wrap"
-          // ).href = `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`;
 
           missedTestDiv.querySelector(".tests-wrap").addEventListener("click", () => {
             localStorage.setItem("formName", "Update Test Status");
