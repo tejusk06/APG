@@ -35,6 +35,13 @@ MemberStack.onReady.then(function (member) {
     return false;
   };
 
+  // Function to add days
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
   const studentAirtableID = member["airtableid"];
 
   //   Making the api call to get student stats from students table
@@ -44,6 +51,7 @@ MemberStack.onReady.then(function (member) {
       console.log("response", response);
       const completedTopics = response.completedTopics;
 
+      //   Logic to show Dashboard stats
       const setDashboardStats = () => {
         //   Setting the stat values
         document.querySelectorAll(".upcoming-classes-stat")[0].innerHTML = response.stats.upcomingClassesCount;
@@ -92,6 +100,7 @@ MemberStack.onReady.then(function (member) {
         document.querySelectorAll(".missed-test-stat")[1].innerHTML = response.stats.testsMissed;
       };
 
+      //   Logic to show Topics completed
       const markTopicsCompleted = () => {
         const topicsItem = document.querySelectorAll(".topics-item");
 
@@ -106,6 +115,7 @@ MemberStack.onReady.then(function (member) {
         });
       };
 
+      //   Logic to show all Classes
       const showAllClasses = () => {
         // Hide the class templates
         document.querySelector(".classes-templates").style.display = "none";
@@ -193,6 +203,7 @@ MemberStack.onReady.then(function (member) {
         });
       };
 
+      //   Logic to show All Tests
       const showAllTests = () => {
         const allTests = response.testsArray;
 
