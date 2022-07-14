@@ -213,50 +213,27 @@ MemberStack.onReady.then(function (member) {
   filterAllButton.addEventListener("click", function () {
     allButtonsInactive();
     filterAllButton.classList.add("filter-button-active");
-    // const allClasses = document.querySelectorAll(".class-wrap");
 
     statusFilter = "";
     filterClasses();
-
-    // allClasses.forEach((eachClass) => {
-    //   eachClass.style.display = "block";
-    // });
   });
 
   //   Logic for filter Upcoming Button
   filterUpcomingButton.addEventListener("click", function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add("filter-button-active");
-    // const allClasses = document.querySelectorAll(".class-wrap");
-    // const upcomingClasses = document.querySelectorAll(".class-wrap.upcoming");
 
     statusFilter = "upcoming";
     filterClasses();
-
-    // allClasses.forEach((eachClass) => {
-    //   eachClass.style.display = "none";
-    // });
-    // upcomingClasses.forEach((eachClass) => {
-    //   eachClass.style.display = "block";
-    // });
   });
 
   //   Logic for filter Completed Button
   filterCompletedButton.addEventListener("click", function () {
     allButtonsInactive();
     filterCompletedButton.classList.add("filter-button-active");
-    // const allClasses = document.querySelectorAll(".class-wrap");
-    // const completedClasses = document.querySelectorAll(".class-wrap.completed");
 
     statusFilter = "completed";
     filterClasses();
-
-    // allClasses.forEach((eachClass) => {
-    //   eachClass.style.display = "none";
-    // });
-    // completedClasses.forEach((eachClass) => {
-    //   eachClass.style.display = "block";
-    // });
   });
 
   // do things with the member object
