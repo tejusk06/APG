@@ -14,6 +14,27 @@ MemberStack.onReady.then(function (member) {
     courseID = "reccXht5MjmINAccQ";
   }
 
+  //   Function to force download
+  function forceDown(url, filename) {
+    fetch(url).then(function (t) {
+      return t.blob().then((b) => {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(b);
+        a.setAttribute("download", filename);
+        a.click();
+      });
+    });
+  }
+
+  //   Function to check if date in past
+  const dateInPast = function (firstDate) {
+    const today = new Date();
+    if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
+      return true;
+    }
+    return false;
+  };
+
   const studentAirtableID = member["airtableid"];
 
   //   Making the api call to get student stats from students table
@@ -172,12 +193,73 @@ MemberStack.onReady.then(function (member) {
         });
       };
 
-      //   TODO logic to show all tests
+      const showAllTests = () => {
+        const allTests = response.testsArray;
+
+        const testsHolder = document.querySelectorAll(".tests-wrapper")[0];
+        const upcomingTest = document.querySelectorAll(".test-dashboard-wrap.upcoming")[0];
+        const completedTest = document.querySelectorAll(".test-dashboard-wrap.completed")[0];
+        const missedTest = document.querySelectorAll(".test-dashboard-wrap.missed")[0];
+
+        response.testsArray.forEach((eachTest) => {
+          // Checking if test has report or status is checked
+          const isPast = dateInPast(new Date(eachTest.dueDate).addDays(1));
+
+          if (eachTest.report || eachTest.status) {
+            // This logc runs if test is completed - either report is present or status is completed
+            const completedTestDiv = completedTest.cloneNode(true);
+            completedTestDiv.querySelector(".dashboard-test-name").innerHTML = `${eachTest.name}`;
+            completedTestDiv.querySelector(".dashboard-test-date").innerHTML = `${eachTest.momentDate}`;
+
+            if (eachTest.report) {
+              completedTestDiv.querySelector(".dashboard-download-report-wrap").onclick = function () {
+                forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
+              };
+            } else {
+              completedTestDiv.querySelector(".dashboard-download-report-wrap").style.display = "none";
+            }
+
+            // Appending the completed test Div
+            testsHolder.appendChild(completedTestDiv);
+          } else if (!isPast || eachTest.dueDate == null) {
+            // This logic runs if test is upcoming and date is not selected
+            const upcomingTestDiv = upcomingTest.cloneNode(true);
+            upcomingTestDiv.querySelector(".dashboard-test-name").innerHTML = `${eachTest.name}`;
+            upcomingTestDiv.querySelector(".dashboard-test-date").innerHTML = `${eachTest.momentDate}`;
+
+            upcomingTestDiv.querySelector(".dashboard-download-test-wrap").onclick = function () {
+              forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+            };
+
+            if (eachTest.dueDate != null) {
+              upcomingTestDiv.querySelector(".dashboard-test-date").innerHTML = `${eachTest.momentDate}`;
+            } else {
+              upcomingTestDiv.querySelector(".dashboard-test-date").style.display = "none";
+            }
+
+            // Appending the completed test Div
+            testsHolder.appendChild(upcomingTestDiv);
+          } else if (isPast) {
+            // this logic runs is test is past due date
+            const missedTestDiv = missedTest.cloneNode(true);
+            missedTestDiv.querySelector(".dashboard-test-name").innerHTML = `${eachTest.name}`;
+            missedTestDiv.querySelector(".dashboard-test-date").innerHTML = `${eachTest.momentDate}`;
+
+            missedTestDiv.querySelector(".dashboard-download-test-wrap").onclick = function () {
+              forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+            };
+
+            // Appending the completed test Div
+            testsHolder.appendChild(missedTestDiv);
+          }
+        });
+      };
 
       //   TODO logic to show all homework
 
       setDashboardStats();
       markTopicsCompleted();
       showAllClasses();
+      showAllTests();
     });
 });
