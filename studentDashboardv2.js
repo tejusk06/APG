@@ -85,6 +85,41 @@ MemberStack.onReady.then(function (member) {
         });
       };
 
+      const showAllClasses = () => {
+        // Hide the class templates
+        document.querySelector("class-templates").style.display = "none";
+
+        const classesHolder = document.querySelectorAll(".class-wrapper")[0];
+        const upcomingTemplate = document.querySelectorAll(".class-dashboard-wrap.upcoming")[0];
+        const completedTemplate = document.querySelectorAll(".class-dashboard-wrap.completed")[0];
+        const missedTemplate = document.querySelectorAll(".class-dashboard-wrap.missed")[0];
+
+        //     Rendering divs for each upcoming class
+        response.classes.upcomingClasses.forEach((upcomingClassData) => {
+          const upcomingClassDiv = upcomingTemplate.cloneNode(true);
+          upcomingClassDiv.querySelector(".dashboard-class-name").innerHTML = `${
+            upcomingClassData.className.split("-")[0]
+          }`;
+
+          upcomingClassDiv.querySelector(".dashboard-class-location").innerHTML = upcomingClassData.location
+            ? upcomingClassData.location
+            : "";
+
+          upcomingClassDiv.querySelector(".dashboard-class-date-time").innerHTML = upcomingClassData.formattedTime
+            ? upcomingClassData.formattedTime
+            : "";
+
+          if (upcomingClassData.zoomLink) {
+            upcomingClassDiv.querySelector(".zoom-link").href = `${upcomingClassData.zoomLink}`;
+          } else {
+            upcomingClassDiv.querySelector(".zoom-link").style.display = "none";
+          }
+
+          // Appending the upcoming class Div
+          classesHolder.appendChild(upcomingClassDiv);
+        });
+      };
+
       setDashboardStats();
       markTopicsCompleted();
     });
