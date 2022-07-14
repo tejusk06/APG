@@ -122,5 +122,6 @@ MemberStack.onReady.then(function (member) {
 
       setDashboardStats();
       markTopicsCompleted();
+      showAllClasses();
     });
 });
