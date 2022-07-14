@@ -344,5 +344,7 @@ MemberStack.onReady.then(function (member) {
     });
 
     document.querySelector("#logout-link").style.display = "block";
+
+    document.querySelector(".welcome-name").style.display = "none";
   }
 });
