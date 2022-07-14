@@ -6,6 +6,16 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   }
 
+  // Logic to redirect parents to dashboard page
+  if (member["is-parent"] == "yes") {
+    // Hide homework complete button
+    if (member.membership.name == "AP Guru SAT Students") {
+      window.location.replace("/sat-program/dashboard");
+    } else if (member.membership.name == "AP Guru ACT Students") {
+      window.location.replace("/act-program/dashboard");
+    }
+  }
+
   const studentAirtableID = member["airtableid"];
 
   // Hiding all the homework

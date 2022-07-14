@@ -8,6 +8,16 @@ MemberStack.onReady.then(function (member) {
   let courseID = null;
   // If member is logged in then continue this logic
 
+  // Logic to redirect parents to dashboard page
+  if (member["is-parent"] == "yes") {
+    // Hide homework complete button
+    if (member.membership.name == "AP Guru SAT Students") {
+      window.location.replace("/sat-program/dashboard");
+    } else if (member.membership.name == "AP Guru ACT Students") {
+      window.location.replace("/act-program/dashboard");
+    }
+  }
+
   if (member.membership.name == "AP Guru SAT Students") {
     courseID = "recQ9LlXahxGsLY8I";
   } else if (member.membership.name == "AP Guru ACT Students") {
