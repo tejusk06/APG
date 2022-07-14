@@ -33,9 +33,4 @@ MemberStack.onReady.then(function (member) {
   formNameElement.innerHTML = formName;
   backButtonElement.innerHTML = "Back to " + pageName;
   backButtonElement.href = `${pageLink}`;
-
-  localStorage.setItem("formLink", "");
-  localStorage.setItem("formName", "");
-  localStorage.setItem("pageName", "");
-  localStorage.setItem("pageLink", "");
 });
