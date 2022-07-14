@@ -145,6 +145,31 @@ MemberStack.onReady.then(function (member) {
           // Appending the upcoming class Div
           classesHolder.appendChild(completedClassDiv);
         });
+
+        //     Rendering divs for each completed classes
+        response.classes.missedClasses.forEach((missedClassData) => {
+          const missedClassDiv = missedTemplate.cloneNode(true);
+          missedClassDiv.querySelector(".dashboard-class-name").innerHTML = `${
+            missedClassData.className.split("-")[0]
+          }`;
+
+          missedClassDiv.querySelector(".dashboard-class-location").innerHTML = missedClassData.location
+            ? missedClassData.location
+            : "";
+
+          missedClassDiv.querySelector(".dashboard-class-date-time").innerHTML = missedClassData.formattedTime
+            ? missedClassData.formattedTime
+            : "";
+
+          if (missedClassData.zoomRecording) {
+            missedClassDiv.querySelector(".dashboard-class-zoom-recording").href = `${missedClassData.zoomRecording}`;
+          } else {
+            missedClassDiv.querySelector(".dashboard-class-zoom-recording").style.display = "none";
+          }
+
+          // Appending the upcoming class Div
+          classesHolder.appendChild(missedClassDiv);
+        });
       };
 
       //   TODO logic to show all tests
