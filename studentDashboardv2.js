@@ -53,7 +53,6 @@ MemberStack.onReady.then(function (member) {
   fetch(`https://apguru-server.herokuapp.com/api/v1/student/dashboard-v2/${studentAirtableID}-${courseID}`)
     .then((response) => response.json())
     .then((response) => {
-      console.log("response", response);
       const completedTopics = response.completedTopics;
 
       //   Logic to show Dashboard stats
