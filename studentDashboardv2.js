@@ -319,9 +319,8 @@ MemberStack.onReady.then(function (member) {
         });
       };
 
-      //   logic to hide links for parents
-
-      if (member["Is Parent"] == "yes") {
+      //   Logic to hide links for parents
+      if (member["is-parent"] == "yes") {
         document.querySelectorAll("dashboard-homework-complete").forEach((homeworkLink) => {
           homeworkLink.style.display = "none";
         });
