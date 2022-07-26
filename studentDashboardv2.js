@@ -110,12 +110,14 @@ MemberStack.onReady.then(function (member) {
 
         topicsItem.forEach((topicItem) => {
           const topicID = topicItem.querySelector(".topic-id").innerHTML;
-          completedTopics.forEach((completedTopic) => {
-            if (topicID == completedTopic) {
-              topicItem.querySelector(".topic-completed").style.display = "flex";
-              topicItem.querySelector(".topic-not-completed-wrap").style.display = "none";
-            }
-          });
+          if (completedTopics) {
+            completedTopics.forEach((completedTopic) => {
+              if (topicID == completedTopic) {
+                topicItem.querySelector(".topic-completed").style.display = "flex";
+                topicItem.querySelector(".topic-not-completed-wrap").style.display = "none";
+              }
+            });
+          }
         });
       };
 
