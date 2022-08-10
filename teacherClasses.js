@@ -39,6 +39,7 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className.split("-")[0]}`;
         upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
+
         upcomingClassDiv.querySelector(".location-text").innerHTML = upcomingClassData.location
           ? upcomingClassData.location
           : "";
@@ -46,6 +47,12 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".time-text").innerHTML = upcomingClassData.formattedTime
           ? upcomingClassData.formattedTime
           : "";
+
+          if (upcomingClassData.students) {
+            upcomingClassDiv.querySelector(".students-text") = `${upcomingClassData.students}`
+          } else {
+            upcomingClassDiv.querySelector("students-list").style.display = "none";
+          }
 
         if (upcomingClassData.zoomLink) {
           upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
@@ -75,6 +82,12 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
         } else {
           completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
+        }
+
+        if (completedClassData.students) {
+          completedClassDiv.querySelector(".students-text") = `${completedClassData.students}`
+        } else {
+          completedClassDiv.querySelector("students-list").style.display = "none";
         }
 
         if (completedClassData.zoomRecording) {
