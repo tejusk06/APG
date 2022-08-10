@@ -76,13 +76,30 @@ MemberStack.onReady.then(function (member) {
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
           completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
 
-          completedTestDiv.querySelector(".download-test-wrap").onclick = function () {
-            forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
-          };
+          // check if question paper exists
+          if (eachTest.questionPaper) {
+            completedTestDiv.querySelector(".download-test-wrap").onclick = function () {
+              forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+            };
+          } else {
+            completedTestDiv.querySelector(".download-test-wrap").style.display = "none";
+          }
 
-          completedTestDiv.querySelector(".link-written-explanation").href = `${eachTest.writtenExplanation}`;
-          completedTestDiv.querySelector(".link-video-explanation").href = `${eachTest.videoExplanation}`;
+          // check if written explanation exists
+          if (eachTest.writtenExplanation) {
+            completedTestDiv.querySelector(".link-written-explanation").href = `${eachTest.writtenExplanation}`;
+          } else {
+            completedTestDiv.querySelector(".written-explanation").style.display = "none";
+          }
 
+          // check if video explanation exists
+          if (eachTest.videoExplanation) {
+            completedTestDiv.querySelector(".link-video-explanation").href = `${eachTest.videoExplanation}`;
+          } else {
+            completedTestDiv.querySelector(".video-explanation").style.display = "none";
+          }
+
+          // check if report exists
           if (eachTest.report) {
             completedTestDiv.querySelector(".download-report-wrap").onclick = function () {
               forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
