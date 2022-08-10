@@ -339,6 +339,7 @@ MemberStack.onReady.then(function (member) {
     // Hide buttons to other pages
     document.querySelectorAll(".dashboard-button").forEach((button) => {
       button.style.display = "none";
+      ``;
     });
 
     document.querySelectorAll(".navigation .nav-link").forEach((navLink) => {
