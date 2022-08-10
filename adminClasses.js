@@ -49,6 +49,12 @@ MemberStack.onReady.then(function (member) {
           ? upcomingClassData.formattedTime
           : "";
 
+        if (upcomingClassData.students) {
+          upcomingClassDiv.querySelector(".students-text").innerHTML = `${upcomingClassData.students}`;
+        } else {
+          upcomingClassDiv.querySelector(".students-list").style.display = "none";
+        }
+
         upcomingClassDiv.querySelector(".course-section").innerHTML = `${upcomingClassData.courseSection}`;
         upcomingClassDiv.querySelector(".course-id").innerHTML = `${upcomingClassData.courseID}`;
 
@@ -84,6 +90,13 @@ MemberStack.onReady.then(function (member) {
         } else {
           completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
         }
+
+        if (completedClassData.students) {
+          completedClassDiv.querySelector(".students-text").innerHTML = `${completedClassData.students}`;
+        } else {
+          completedClassDiv.querySelector(".students-list").style.display = "none";
+        }
+
         completedClassDiv.querySelector(".course-section").innerHTML = `${completedClassData.courseSection}`;
         completedClassDiv.querySelector(".course-id").innerHTML = `${completedClassData.courseID}`;
 
