@@ -49,7 +49,7 @@ MemberStack.onReady.then(function (member) {
           : "";
 
           if (upcomingClassData.students) {
-            upcomingClassDiv.querySelector(".students-text") = `${upcomingClassData.students}`
+            upcomingClassDiv.querySelector(".students-text") = `${upcomingClassData.students}`;
           } else {
             upcomingClassDiv.querySelector("students-list").style.display = "none";
           }
@@ -85,7 +85,7 @@ MemberStack.onReady.then(function (member) {
         }
 
         if (completedClassData.students) {
-          completedClassDiv.querySelector(".students-text") = `${completedClassData.students}`
+          completedClassDiv.querySelector(".students-text") = `${completedClassData.students}`;
         } else {
           completedClassDiv.querySelector("students-list").style.display = "none";
         }
