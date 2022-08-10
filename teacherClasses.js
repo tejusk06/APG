@@ -32,6 +32,10 @@ MemberStack.onReady.then(function (member) {
       //   Logging the templates
       console.log("response", response);
 
+
+
+
+
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         document.querySelector(".empty-message").style.display = "none";
@@ -49,9 +53,10 @@ MemberStack.onReady.then(function (member) {
           : "";
 
           if (upcomingClassData.students) {
+            console.log("div", upcomingClassDiv.querySelector(".students-text"));
             upcomingClassDiv.querySelector(".students-text") = `${upcomingClassData.students}`;
           } else {
-            upcomingClassDiv.querySelector("students-list").style.display = "none";
+            upcomingClassDiv.querySelector(".students-list").style.display = "none";
           }
 
         if (upcomingClassData.zoomLink) {
@@ -87,7 +92,7 @@ MemberStack.onReady.then(function (member) {
         if (completedClassData.students) {
           completedClassDiv.querySelector(".students-text") = `${completedClassData.students}`;
         } else {
-          completedClassDiv.querySelector("students-list").style.display = "none";
+          completedClassDiv.querySelector(".students-list").style.display = "none";
         }
 
         if (completedClassData.zoomRecording) {
