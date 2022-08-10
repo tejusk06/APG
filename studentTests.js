@@ -114,9 +114,14 @@ MemberStack.onReady.then(function (member) {
           const upcomingTestDiv = upcomingTest.cloneNode(true);
           upcomingTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
 
-          upcomingTestDiv.querySelector(".download-test-wrap").onclick = function () {
-            forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
-          };
+          // check if question paper exists
+          if (eachTest.questionPaper) {
+            upcomingTestDiv.querySelector(".download-test-wrap").onclick = function () {
+              forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+            };
+          } else {
+            upcomingTestDiv.querySelector(".download-test-wrap").style.display = "none";
+          }
 
           upcomingTestDiv.querySelector(".tests-wrap").addEventListener("click", () => {
             localStorage.setItem("formName", "Update Test Status");
@@ -163,9 +168,14 @@ MemberStack.onReady.then(function (member) {
             window.location.replace("/update-page");
           });
 
-          missedTestDiv.querySelector(".download-test-wrap").onclick = function () {
-            forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
-          };
+          // check if question paper exists
+          if (eachTest.questionPaper) {
+            missedTestDiv.querySelector(".download-test-wrap").onclick = function () {
+              forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
+            };
+          } else {
+            missedTestDiv.querySelector(".download-test-wrap").style.display = "none";
+          }
 
           // Appending the completed test Div
           testsHolder.appendChild(missedTestDiv);
