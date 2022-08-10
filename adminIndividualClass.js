@@ -20,6 +20,7 @@ MemberStack.onReady.then(function (member) {
       // Adding Class details
       document.querySelector(".class-name-heading").innerHTML = response.className.split("-")[0];
       document.querySelector(".class-date-subheading").innerHTML = response.momentDate;
+      document.querySelector(".class-location-subheading").innerHTML = response.classLocation;
       document.querySelector(".class-teacher-subheading").innerHTML = response.teacherName;
       if (response.zoomLink) {
         document.querySelector(".button-zoom-link").href = response.zoomLink;
