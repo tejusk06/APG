@@ -133,6 +133,7 @@ MemberStack.onReady.then(function (member) {
 
         //     Rendering divs for each upcoming classes
         response.classes.upcomingClasses.forEach((upcomingClassData) => {
+          classesHolder.querySelector(".empty-message").style.display = "none";
           const upcomingClassDiv = upcomingTemplate.cloneNode(true);
           upcomingClassDiv.querySelector(".dashboard-class-name").innerHTML = `${
             upcomingClassData.className.split("-")[0]
@@ -158,6 +159,7 @@ MemberStack.onReady.then(function (member) {
 
         //     Rendering divs for each completed classes
         response.classes.completedClasses.forEach((completedClassData) => {
+          classesHolder.querySelector(".empty-message").style.display = "none";
           const completedClassDiv = completedTemplate.cloneNode(true);
           completedClassDiv.querySelector(".dashboard-class-name").innerHTML = `${
             completedClassData.className.split("-")[0]
@@ -185,6 +187,7 @@ MemberStack.onReady.then(function (member) {
 
         //     Rendering divs for each completed classes
         response.classes.missedClasses.forEach((missedClassData) => {
+          classesHolder.querySelector(".empty-message").style.display = "none";
           const missedClassDiv = missedTemplate.cloneNode(true);
           missedClassDiv.querySelector(".dashboard-class-name").innerHTML = `${
             missedClassData.className.split("-")[0]
@@ -223,6 +226,7 @@ MemberStack.onReady.then(function (member) {
         response.testsArray.forEach((eachTest) => {
           // Checking if test has report or status is checked
           const isPast = dateInPast(new Date(eachTest.dueDate).addDays(1));
+          testsHolder.querySelector(".empty-message").style.display = "none";
 
           if (eachTest.report || eachTest.status) {
             // This logc runs if test is completed - either report is present or status is completed
