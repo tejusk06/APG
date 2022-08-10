@@ -32,10 +32,6 @@ MemberStack.onReady.then(function (member) {
       //   Logging the templates
       console.log("response", response);
 
-
-
-
-
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         document.querySelector(".empty-message").style.display = "none";
@@ -52,12 +48,11 @@ MemberStack.onReady.then(function (member) {
           ? upcomingClassData.formattedTime
           : "";
 
-          if (upcomingClassData.students) {
-            console.log("div", upcomingClassDiv.querySelector(".students-text"));
-            upcomingClassDiv.querySelector(".students-text") = `${upcomingClassData.students}`;
-          } else {
-            upcomingClassDiv.querySelector(".students-list").style.display = "none";
-          }
+        if (upcomingClassData.students) {
+          upcomingClassDiv.querySelector(".students-text").innerHTML = `${upcomingClassData.students}`;
+        } else {
+          upcomingClassDiv.querySelector(".students-list").style.display = "none";
+        }
 
         if (upcomingClassData.zoomLink) {
           upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
@@ -90,7 +85,7 @@ MemberStack.onReady.then(function (member) {
         }
 
         if (completedClassData.students) {
-          completedClassDiv.querySelector(".students-text") = `${completedClassData.students}`;
+          completedClassDiv.querySelector(".students-text").innerHTML = `${completedClassData.students}`;
         } else {
           completedClassDiv.querySelector(".students-list").style.display = "none";
         }
