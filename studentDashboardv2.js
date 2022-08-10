@@ -330,6 +330,7 @@ MemberStack.onReady.then(function (member) {
   //   Logic to hide links for parents
 
   if (member["is-parent"] == "yes") {
+    console.log("Parent Dashboard");
     // Hide homework complete button
     document.querySelectorAll(".dashboard-homework-complete").forEach((homeworkLink) => {
       homeworkLink.style.display = "none";
