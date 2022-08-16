@@ -82,11 +82,11 @@ MemberStack.onReady.then(function (member) {
           }
 
           if (eachTest.report) {
-            completedTestDiv.querySelector(".dashboard-download-report-wrap").onclick = function () {
+            completedTestDiv.querySelector(".download-report-wrap").onclick = function () {
               forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
             };
           } else {
-            completedTestDiv.querySelector(".dashboard-download-report-wrap").style.display = "none";
+            completedTestDiv.querySelector(".download-report-wrap").style.display = "none";
           }
 
           // check if question paper exists
