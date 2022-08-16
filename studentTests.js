@@ -74,7 +74,20 @@ MemberStack.onReady.then(function (member) {
           // This logc runs if test is completed - either report is present or status is completed
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
-          completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
+
+          if (eachTest.momentDate) {
+            completedTestDiv.querySelector(".dashboard-test-date").innerHTML = `${eachTest.momentDate}`;
+          } else {
+            completedTestDiv.querySelector(".dashboard-test-date").style.display = "none";
+          }
+
+          if (eachTest.report) {
+            completedTestDiv.querySelector(".dashboard-download-report-wrap").onclick = function () {
+              forceDown(`${eachTest.report}`, `${eachTest.name} - Report`);
+            };
+          } else {
+            completedTestDiv.querySelector(".dashboard-download-report-wrap").style.display = "none";
+          }
 
           // check if question paper exists
           if (eachTest.questionPaper) {
