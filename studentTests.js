@@ -76,9 +76,9 @@ MemberStack.onReady.then(function (member) {
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
 
           if (eachTest.momentDate) {
-            completedTestDiv.querySelector(".dashboard-test-date").innerHTML = `${eachTest.momentDate}`;
+            completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
           } else {
-            completedTestDiv.querySelector(".dashboard-test-date").style.display = "none";
+            completedTestDiv.querySelector(".test-date").style.display = "none";
           }
 
           if (eachTest.report) {
