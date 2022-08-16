@@ -337,7 +337,6 @@ MemberStack.onReady.then(function (member) {
     });
 
   //   Logic to hide links for parents
-
   if (member["is-parent"] == "yes") {
     console.log("Parent Dashboard");
     // Hide homework complete button
@@ -351,6 +350,20 @@ MemberStack.onReady.then(function (member) {
       ``;
     });
 
+    // Hide zoom links
+    document.querySelectorAll(".dashboard-class-zoom-link").forEach((homeworkLink) => {
+      homeworkLink.style.display = "none";
+    });
+    document.querySelectorAll(".dashboard-class-zoom-recording").forEach((homeworkLink) => {
+      homeworkLink.style.display = "none";
+    });
+
+    // Hide download test wordWrap:
+    document.querySelectorAll(".dashboard-download-test-wrap").forEach((homeworkLink) => {
+      homeworkLink.style.display = "none";
+    });
+
+    // Hide navbar links
     document.querySelectorAll(".navigation .nav-link").forEach((navLink) => {
       navLink.style.display = "none";
     });
