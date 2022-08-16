@@ -72,7 +72,12 @@ MemberStack.onReady.then(function (member) {
         if (eachTest.report || eachTest.status) {
           const completedTestDiv = completedTest.cloneNode(true);
           completedTestDiv.querySelector(".test-name").innerHTML = `${eachTest.name}`;
-          completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
+
+          if (eachTest.momentDate) {
+            completedTestDiv.querySelector(".test-date").innerHTML = `${eachTest.momentDate}`;
+          } else {
+            completedTestDiv.querySelector(".test-date").style.display = "none";
+          }
 
           completedTestDiv.querySelector(".download-test-wrap").onclick = function () {
             forceDown(`${eachTest.questionPaper}`, `${eachTest.name} - Question Paper`);
