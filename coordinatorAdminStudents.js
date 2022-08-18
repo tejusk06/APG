@@ -125,7 +125,7 @@ MemberStack.onReady.then(function (member) {
 
         studentDiv.querySelector(".student-topics").innerHTML = eachStudent.topics + " completed";
         studentDiv.querySelector(".student-course-id").innerHTML = eachStudent.courseID;
-        studentDiv.href = `/admin/student-classes/?studentID=${eachStudent.studentID}&courseID=${eachStudent.courseID}`;
+        studentDiv.href = `/coordinator-admin/student-classes/?studentID=${eachStudent.studentID}&courseID=${eachStudent.courseID}`;
         studentsHolder.append(studentDiv);
       });
     });
