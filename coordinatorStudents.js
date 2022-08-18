@@ -1,13 +1,19 @@
-console.log("Students logic for coordinator");
+console.log("Students logic for coordinator and admin");
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
   if (!member.loggedIn) {
-    // window.location.replace(window.location.hostname);
+    window.location.replace(window.location.hostname);
   }
+  let airtableIdOrRole = null;
 
-  const coordinatorAirtableID = member["airtableid"];
+  // Get the course Id to send in API
+  if (member.membership.name == "AP Guru Coordinators") {
+    coordinatorAirtableID = member["airtableid"];
+  } else if (member.membership.name == "AP Guru Admin") {
+    airtableIdOrRole = "admin";
+  }
 
   document.querySelector(".student-templates").style.display = "none";
 
@@ -92,7 +98,7 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Making the api call to get classes data for the student
-  fetch(`https://apguru-server.herokuapp.com/api/v1/coordinator/students/${coordinatorAirtableID}`)
+  fetch(`https://apguru-server.herokuapp.com/api/v1/coordinatorAdmin/students/${airtableIdOrRole}`)
     .then((response) => response.json())
     .then((response) => {
       //   console.log("response", response);
