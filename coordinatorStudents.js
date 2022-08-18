@@ -10,7 +10,7 @@ MemberStack.onReady.then(function (member) {
 
   // Get the course Id to send in API
   if (member.membership.name == "AP Guru Coordinators") {
-    coordinatorAirtableID = member["airtableid"];
+    airtableIdOrRole = member["airtableid"];
   } else if (member.membership.name == "AP Guru Admin") {
     airtableIdOrRole = "admin";
   }
