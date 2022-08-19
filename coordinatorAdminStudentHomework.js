@@ -48,7 +48,7 @@ MemberStack.onReady.then(function (member) {
 
   //   Making the api call to get classes data for the student from Classes Table
   //   Making the api call to get classes data for the student
-  fetch(`https://apguru-server.herokuapp.com/api/v1/homework/student/${studentAirtableID}`)
+  fetch(`https://apguru-server.herokuapp.com/api/v1/homework/student/${studentID}`)
     .then((response) => response.json())
     .then((response) => {
       const assignedHomework = response.homeworkArray;
