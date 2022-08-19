@@ -42,7 +42,7 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
       document.querySelector(".student-subheading").innerHTML = response.student.email;
 
-      document.querySelector("#student-classes").classList.add("w--current");
+      document.querySelector("#student-homework").classList.add("w--current");
 
       //   Adding Button Links
       document.querySelector(
@@ -75,6 +75,8 @@ MemberStack.onReady.then(function (member) {
           if (isPast) {
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.due .homework-name").innerHTML =
+              eachHomework.courseSectionHomeworkName;
             homeworkItemDiv.querySelector(
               ".homework-dashboard-wrap.due .dashboard-homework-complete"
             ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
@@ -82,6 +84,8 @@ MemberStack.onReady.then(function (member) {
           } else {
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.due").style.display = "none";
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending .homework-name").innerHTML =
+              eachHomework.courseSectionHomeworkName;
             homeworkItemDiv.querySelector(
               ".homework-dashboard-wrap.pending .dashboard-homework-complete"
             ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
