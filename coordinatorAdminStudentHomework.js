@@ -63,8 +63,9 @@ MemberStack.onReady.then(function (member) {
       const today = new Date();
 
       assignedHomework.forEach((eachHomework) => {
-        const homeworkName = eachHomework.courseSectionHomeworkName.split("-")[0].toUpperCase() + " - ";
-        eachHomework.courseSectionHomeworkName;
+        const homeworkName = eachHomework.courseSectionHomeworkName;
+        // .split("-")[0].toUpperCase() + " - ";
+        // eachHomework.courseSectionHomeworkName;
         //   .charAt(0).toUpperCase() +
         //   eachHomework.courseSectionHomeworkName.split("-")[1].slice(1);
 
