@@ -32,12 +32,16 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
       document.querySelector(".student-subheading").innerHTML = response.student.email;
 
-      document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
+      document.querySelector("#student-classes").classList.add("w--current");
+
+      //   Adding Button Links
+      document.querySelector(
+        "#student-classes"
+      ).href = `/coordinator-admin/student-classes/?studentID=${response.student.id}&courseID=${response.student.courseID}`;
       document.querySelector(
         "#student-form"
       ).href = `/coordinator-admin/student-form/?studentID=${response.student.id}`;
-      document.querySelector("#student-classes").href = `#`;
-      document.querySelector("#student-classes").classList.add("w--current");
+      document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
     });
 
   //   Making the api call to get classes data for the student from Classes Table

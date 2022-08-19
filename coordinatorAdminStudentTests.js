@@ -43,14 +43,16 @@ MemberStack.onReady.then(function (member) {
       }
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
       document.querySelector(".student-subheading").innerHTML = response.student.email ? response.student.email : "";
-      document.querySelector("#student-tests").href = `#`;
       document.querySelector("#student-tests").classList.add("w--current");
+
+      //   Adding Button Links
       document.querySelector(
         "#student-classes"
       ).href = `/coordinator-admin/student-classes/?studentID=${response.student.id}&courseID=${response.student.courseID}`;
       document.querySelector(
         "#student-form"
       ).href = `/coordinator-admin/student-form/?studentID=${response.student.id}`;
+      document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
     });
 
   //   Making the api call to get tests data for the student
