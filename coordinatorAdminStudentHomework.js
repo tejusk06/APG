@@ -63,20 +63,20 @@ MemberStack.onReady.then(function (member) {
       const today = new Date();
 
       assignedHomework.forEach((eachHomework) => {
+        const homeworkName = eachHomework.split("-")[0].toUpperCase() + eachHomework.split("-")[1];
+
         const homeworkItemDiv = homeworkItem.cloneNode(true);
         if (eachHomework.completed) {
           homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
           homeworkItemDiv.querySelector(".homework-dashboard-wrap.due").style.display = "none";
-          homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed .homework-name").innerHTML =
-            eachHomework.courseSectionHomeworkName;
+          homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed .homework-name").innerHTML = homeworkName;
         } else {
           const isPast = dateInPast(new Date(eachHomework.date).addDays(1));
 
           if (isPast) {
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
-            homeworkItemDiv.querySelector(".homework-dashboard-wrap.due .homework-name").innerHTML =
-              eachHomework.courseSectionHomeworkName;
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.due .homework-name").innerHTML = homeworkName;
             homeworkItemDiv.querySelector(
               ".homework-dashboard-wrap.due .dashboard-homework-complete"
             ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
@@ -84,8 +84,7 @@ MemberStack.onReady.then(function (member) {
           } else {
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.due").style.display = "none";
             homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
-            homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending .homework-name").innerHTML =
-              eachHomework.courseSectionHomeworkName;
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending .homework-name").innerHTML = homeworkName;
             homeworkItemDiv.querySelector(
               ".homework-dashboard-wrap.pending .dashboard-homework-complete"
             ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
