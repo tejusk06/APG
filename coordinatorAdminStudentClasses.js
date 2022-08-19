@@ -76,7 +76,7 @@ MemberStack.onReady.then(function (member) {
         upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
         upcomingClassDiv.querySelector(
           ".view-class-button"
-        ).href = `/admin/class/?classID=${upcomingClassData.classID}`;
+        ).href = `/coordinatorAdmin/class/?classID=${upcomingClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
@@ -100,7 +100,7 @@ MemberStack.onReady.then(function (member) {
 
         completedClassDiv.querySelector(
           ".view-class-button"
-        ).href = `/admin/class/?classID=${completedClassData.classID}`;
+        ).href = `/coordinatorAdmin/class/?classID=${completedClassData.classID}`;
 
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
