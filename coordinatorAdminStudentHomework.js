@@ -25,6 +25,13 @@ MemberStack.onReady.then(function (member) {
     return false;
   };
 
+  // Function to add days
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
   //   Making the api call to get student data from students table
   fetch(`https://apguru-server.herokuapp.com/api/v1/admin/student/${studentID}`)
     .then((response) => response.json())
