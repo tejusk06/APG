@@ -33,6 +33,9 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".student-subheading").innerHTML = response.student.email;
 
       document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
+      document.querySelector(
+        "#student-form"
+      ).href = `/coordinator-admin/student-form/?studentID=${response.student.id}`;
       document.querySelector("#student-classes").href = `#`;
       document.querySelector("#student-classes").classList.add("w--current");
     });
