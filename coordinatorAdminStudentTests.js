@@ -48,11 +48,10 @@ MemberStack.onReady.then(function (member) {
       //   Adding Button Links
       document.querySelector(
         "#student-classes"
-      ).href = `/coordinator-admin/student-classes/?studentID=${response.student.id}&courseID=${response.student.courseID}`;
-      document.querySelector(
-        "#student-form"
-      ).href = `/coordinator-admin/student-form/?studentID=${response.student.id}`;
+      ).href = `/coordinator-admin/student-classes/?studentID=${studentID}&courseID=${courseID}`;
+      document.querySelector("#student-form").href = `/coordinator-admin/student-form/?studentID=${studentID}`;
       document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
+      document.querySelector("#student-homework").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
     });
 
   //   Making the api call to get tests data for the student
