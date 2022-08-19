@@ -44,87 +44,40 @@ MemberStack.onReady.then(function (member) {
     });
 
   //   Making the api call to get classes data for the student from Classes Table
-  fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentID}-${courseID}`)
+  //   Making the api call to get classes data for the student
+  fetch(`https://apguru-server.herokuapp.com/api/v1/homework/student/${studentAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
-      // Getting the Classes holder and all the templates
-      const classesHolder = document.querySelectorAll(".classes-holder")[0];
-      const upcomingTemplate = document.querySelectorAll(".class-wrap.upcoming")[0];
-      const completedTemplate = document.querySelectorAll(".class-wrap.completed")[0];
-      const missedTemplate = document.querySelectorAll(".class-wrap.missed")[0];
+      const assignedHomework = response.homeworkArray;
+      const homeworkItem = document.querySelector(".dashboard-homework-wrap");
+      const today = new Date();
 
-      //   Logging the templates
-      console.log("response", response);
-      //   console.log("upcomingTemplate", upcomingTemplate);
-      //   console.log("completedTemplate", completedTemplate);
-      //   console.log("missedTemplate", missedTemplate);
-
-      //     Rendering divs for each upcoming class
-      response.upcomingClasses.forEach((upcomingClassData) => {
-        const upcomingClassDiv = upcomingTemplate.cloneNode(true);
-        upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
-        upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
-        upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
-        upcomingClassDiv.querySelector(".location-text").innerHTML = upcomingClassData.location
-          ? upcomingClassData.location
-          : "";
-
-        upcomingClassDiv.querySelector(".time-text").innerHTML = upcomingClassData.formattedTime
-          ? upcomingClassData.formattedTime
-          : "";
-        upcomingClassDiv.querySelector(".button-zoom-link").href = `${upcomingClassData.zoomLink}`;
-        upcomingClassDiv.querySelector(".button-zoom-recording").href = `${upcomingClassData.zoomRecording}`;
-        upcomingClassDiv.querySelector(
-          ".view-class-button"
-        ).href = `/admin/class/?classID=${upcomingClassData.classID}`;
-
-        // Appending the upcoming class Div
-        classesHolder.appendChild(upcomingClassDiv);
-      });
-
-      //   Rendering divs for each missed class
-      response.completedClasses.forEach((completedClassData) => {
-        const completedClassDiv = completedTemplate.cloneNode(true);
-        completedClassDiv.querySelector(".class-date-text").innerHTML = `${completedClassData.formattedTime}`;
-        completedClassDiv.querySelector(".class-name").innerHTML = `${completedClassData.className}`;
-        completedClassDiv.querySelector(".teacher-name").innerHTML = `${completedClassData.teacherName}`;
-        if (completedClassData.classTopics) {
-          const classTopics = replaceCourseNames(completedClassData.classTopics);
-          completedClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
-          completedClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
+      assignedHomework.forEach((eachHomework) => {
+        if (eachHomework.completed) {
+          const homeworkItemDiv = homeworkItem.cloneNode(true);
+          homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
+          homeworkItemDiv.querySelector(".homework-dashboard-wrap.due").style.display = "none";
+          homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed .homework-name").innerHTML =
+            eachHomework.courseSectionHomeworkName;
         } else {
-          completedClassDiv.querySelector(".class-details-wrap").style.display = "none";
+          const isPast = dateInPast(new Date(eachHomework.date).addDays(1));
+
+          if (isPast) {
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
+            homeworkItemDiv.querySelector(
+              ".homework-dashboard-wrap.due .dashboard-homework-complete"
+            ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
+            homeworkItemDiv.querySelector(".hw-due-date").innerHTML = eachHomework.momentDate;
+          } else {
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.due").style.display = "none";
+            homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed").style.display = "none";
+            homeworkItemDiv.querySelector(
+              ".homework-dashboard-wrap.pending .dashboard-homework-complete"
+            ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
+            homeworkItemDiv.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
+          }
         }
-        completedClassDiv.querySelector(".button-zoom-link").href = `${completedClassData.zoomLink}`;
-        completedClassDiv.querySelector(".button-zoom-recording").href = `${completedClassData.zoomRecording}`;
-
-        completedClassDiv.querySelector(
-          ".view-class-button"
-        ).href = `/admin/class/?classID=${completedClassData.classID}`;
-
-        // Appending the upcoming class Div
-        classesHolder.appendChild(completedClassDiv);
-      });
-
-      //   Rendering divs for each completed class
-      response.missedClasses.forEach((missedClassData) => {
-        const missedClassDiv = missedTemplate.cloneNode(true);
-        missedClassDiv.querySelector(".class-date-text").innerHTML = `${missedClassData.formattedTime}`;
-        missedClassDiv.querySelector(".class-name").innerHTML = `${missedClassData.className}`;
-        missedClassDiv.querySelector(".teacher-name").innerHTML = `${missedClassData.teacherName}`;
-        if (missedClassData.classTopics) {
-          const classTopics = replaceCourseNames(missedClassData.classTopics);
-          missedClassDiv.querySelector(".topics-text").innerHTML = `${classTopics}`;
-          missedClassDiv.querySelector(".homework-text").innerHTML = `${classTopics}`;
-        } else {
-          missedClassDiv.querySelector(".class-details-wrap").style.display = "none";
-        }
-        missedClassDiv.querySelector(".button-zoom-link").href = `${missedClassData.zoomLink}`;
-        missedClassDiv.querySelector(".button-zoom-recording").href = `${missedClassData.zoomRecording}`;
-        missedClassDiv.querySelector(".view-class-button").href = `/admin/class/?classID=${missedClassData.classID}`;
-
-        // Appending the upcoming class Div
-        classesHolder.appendChild(missedClassDiv);
       });
     });
 });
