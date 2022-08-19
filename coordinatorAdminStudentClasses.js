@@ -37,7 +37,7 @@ MemberStack.onReady.then(function (member) {
       //   Adding Button Links
       document.querySelector(
         "#student-classes"
-      ).href = `/coordinator-admin/student-classes/?studentID=${studentID}&courseID=${courseID}`;
+      ).href = `/coordinator-admin/student-classes/?studentID=${studentID}&courseID=${response.student.courseID}`;
       document.querySelector("#student-form").href = `/coordinator-admin/student-form/?studentID=${studentID}`;
       document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
       document.querySelector("#student-homework").href = `/coordinator-admin/student-homework?studentID=${studentID}`;
