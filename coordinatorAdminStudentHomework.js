@@ -10,8 +10,8 @@ MemberStack.onReady.then(function (member) {
   const courseID = classCourse.split("&")[1].split("=")[1];
 
   // Hiding the templates
-  const classTemplates = document.querySelector(".class-templates");
-  classTemplates.style.display = "none";
+  const homeworkTemplate = document.querySelector(".homework-template");
+  homeworkTemplate.style.display = "none";
 
   if (!member.loggedIn) {
     window.location.replace(window.location.hostname);
@@ -57,8 +57,8 @@ MemberStack.onReady.then(function (member) {
       const today = new Date();
 
       assignedHomework.forEach((eachHomework) => {
+        const homeworkItemDiv = homeworkItem.cloneNode(true);
         if (eachHomework.completed) {
-          const homeworkItemDiv = homeworkItem.cloneNode(true);
           homeworkItemDiv.querySelector(".homework-dashboard-wrap.pending").style.display = "none";
           homeworkItemDiv.querySelector(".homework-dashboard-wrap.due").style.display = "none";
           homeworkItemDiv.querySelector(".homework-dashboard-wrap.completed .homework-name").innerHTML =
@@ -82,6 +82,8 @@ MemberStack.onReady.then(function (member) {
             homeworkItemDiv.querySelector(".hw-pending-date").innerHTML = eachHomework.momentDate;
           }
         }
+
+        document.querySelector(".homework-holder").appendChild(homeworkItemDiv);
       });
     });
 });
