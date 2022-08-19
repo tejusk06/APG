@@ -47,7 +47,7 @@ MemberStack.onReady.then(function (member) {
       document.querySelector("#student-tests").classList.add("w--current");
       document.querySelector(
         "#student-classes"
-      ).href = `/admin/student-classes/?studentID=${response.student.id}&courseID=${response.student.courseID}`;
+      ).href = `/coordinator-admin/student-classes/?studentID=${response.student.id}&courseID=${response.student.courseID}`;
     });
 
   //   Making the api call to get tests data for the student
