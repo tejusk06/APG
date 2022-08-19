@@ -17,9 +17,13 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   }
 
-  // Function to remove course name from the topic
-  const replaceCourseNames = (classTopics) => {
-    return classTopics.replaceAll("SAT - ", " ").replaceAll("ACT - ", " ");
+  //   Function to check if date in past
+  const dateInPast = function (firstDate) {
+    const today = new Date();
+    if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
+      return true;
+    }
+    return false;
   };
 
   //   Making the api call to get student data from students table
