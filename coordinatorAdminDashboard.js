@@ -18,7 +18,7 @@ MemberStack.onReady.then(function (member) {
   }
 
   //   Making the api call to get student data from students table
-  fetch(`https://apguru-server.herokuapp.com/api/v1/admin/dashboard/${airtableIdOrRole}`)
+  fetch(`https://apguru-server.herokuapp.com/api/v1/coordinatorAdmin/dashboard/${airtableIdOrRole}`)
     .then((response) => response.json())
     .then((response) => {
       document.querySelector(".upcoming-classes").innerHTML = response.stats.upcomingClasses;
