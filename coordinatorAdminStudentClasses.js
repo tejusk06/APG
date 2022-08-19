@@ -40,7 +40,7 @@ MemberStack.onReady.then(function (member) {
       ).href = `/coordinator-admin/student-classes/?studentID=${studentID}&courseID=${courseID}`;
       document.querySelector("#student-form").href = `/coordinator-admin/student-form/?studentID=${studentID}`;
       document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
-      document.querySelector("#student-homework").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
+      document.querySelector("#student-homework").href = `/coordinator-admin/student-homework?studentID=${studentID}`;
     });
 
   //   Making the api call to get classes data for the student from Classes Table
