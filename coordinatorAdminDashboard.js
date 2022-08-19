@@ -8,8 +8,17 @@ MemberStack.onReady.then(function (member) {
     window.location.replace(window.location.hostname);
   }
 
+  let airtableIdOrRole = null;
+
+  // Get the course Id to send in API
+  if (member.membership.name == "AP Guru Coordinators") {
+    airtableIdOrRole = member["airtableid"];
+  } else if (member.membership.name == "AP Guru Admin") {
+    airtableIdOrRole = "admin";
+  }
+
   //   Making the api call to get student data from students table
-  fetch(`https://apguru-server.herokuapp.com/api/v1/admin/dashboard`)
+  fetch(`https://apguru-server.herokuapp.com/api/v1/admin/dashboard/${airtableIdOrRole}`)
     .then((response) => response.json())
     .then((response) => {
       document.querySelector(".upcoming-classes").innerHTML = response.stats.upcomingClasses;
