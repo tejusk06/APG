@@ -7,7 +7,6 @@ MemberStack.onReady.then(function (member) {
   const classCourse = window.location.href.split("?")[1];
 
   const studentID = classCourse.split("&")[0].split("=")[1];
-  const courseID = classCourse.split("&")[1].split("=")[1];
 
   // Hiding the templates
   const homeworkTemplate = document.querySelector(".homework-template");
