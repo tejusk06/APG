@@ -8,6 +8,13 @@ MemberStack.onReady.then(function (member) {
 
   // If member is logged in then continue this logic
 
+  // Get the course Id to send in API
+  if (member.membership.name == "AP Guru Coordinators") {
+    airtableIdOrRole = member["airtableid"];
+  } else if (member.membership.name == "AP Guru Admin") {
+    airtableIdOrRole = "admin";
+  }
+
   // Hiding the templates
   const classTemplates = document.querySelector(".class-templates");
   classTemplates.style.display = "none";
@@ -17,8 +24,8 @@ MemberStack.onReady.then(function (member) {
     return classTopics.replaceAll("SAT - ", " ").replaceAll("ACT - ", " ");
   };
 
-  //   Making the api call to get classes data for the student
-  fetch("https://apguru-server.herokuapp.com/api/v1/classes/admin")
+  //   Making the api call to get classes data for coordinator or admin
+  fetch("https://apguru-server.herokuapp.com/api/v1/coordinatorAdmin/classes/airtableIdOrRole")
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates
