@@ -63,11 +63,9 @@ MemberStack.onReady.then(function (member) {
       const today = new Date();
 
       assignedHomework.forEach((eachHomework) => {
-        const homeworkName = eachHomework.courseSectionHomeworkName;
-        // .split("-")[0].toUpperCase() + " - ";
-        // eachHomework.courseSectionHomeworkName;
-        //   .charAt(0).toUpperCase() +
-        //   eachHomework.courseSectionHomeworkName.split("-")[1].slice(1);
+        const hwsplit = eachHomework.courseSectionHomeworkName.split("-");
+        const homeworkName = hwsplit[0].toUpperCase() + " - ";
+        hwsplit[1].charAt(0).toUpperCase() + hwsplit[1].slice(1);
 
         const homeworkItemDiv = homeworkItem.cloneNode(true);
         if (eachHomework.completed) {
