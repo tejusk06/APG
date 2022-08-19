@@ -64,9 +64,9 @@ MemberStack.onReady.then(function (member) {
 
       assignedHomework.forEach((eachHomework) => {
         const homeworkName =
-          eachHomework.name.split("-")[0].toUpperCase() +
-          eachHomework.name.split("-")[1].charAt(0).toUpperCase() +
-          eachHomework.name.split("-")[1].slice(1);
+          eachHomework.courseSectionHomeworkName.split("-")[0].toUpperCase() +
+          eachHomework.courseSectionHomeworkName.split("-")[1].charAt(0).toUpperCase() +
+          eachHomework.courseSectionHomeworkName.split("-")[1].slice(1);
 
         const homeworkItemDiv = homeworkItem.cloneNode(true);
         if (eachHomework.completed) {
