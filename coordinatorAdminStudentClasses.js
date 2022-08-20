@@ -64,7 +64,11 @@ MemberStack.onReady.then(function (member) {
         const upcomingClassDiv = upcomingTemplate.cloneNode(true);
         upcomingClassDiv.querySelector(".class-date-text").innerHTML = `${upcomingClassData.formattedTime}`;
         upcomingClassDiv.querySelector(".class-name").innerHTML = `${upcomingClassData.className}`;
-        upcomingClassDiv.querySelector(".teacher-name").innerHTML = `${upcomingClassData.teacherName}`;
+        upcomingClassDiv.querySelector(".teacher-name").innerHTML = upcomingClassData.teacherName;
+
+        console.log("teacher element", upcomingClassDiv.querySelector(".teacher-name"));
+        console.log("teacher teacher name", upcomingClassData.teacherName);
+
         upcomingClassDiv.querySelector(".location-text").innerHTML = upcomingClassData.location
           ? upcomingClassData.location
           : "";
