@@ -41,7 +41,7 @@ MemberStack.onReady.then(function (member) {
       response.student.completedTopics.forEach((topicName) => {
         const topicDiv = topicItem.cloneNode(true);
         topicDiv.querySelector(".student-topic-name").innerHTML = topicName;
-        topicDiv.document.querySelector(".student-topics-holder").appendChild(topicDiv);
+        document.querySelector(".student-topics-holder").appendChild(topicDiv);
       });
     });
 });
