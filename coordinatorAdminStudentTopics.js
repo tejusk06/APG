@@ -1,14 +1,34 @@
-console.log("Admin Individual Students Classes logic for admin");
+console.log("Individual Students Homework logic for Coordinator/Admin role");
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
 
+  const classCourse = window.location.href.split("?")[1];
+  const studentID = classCourse.split("&")[0].split("=")[1];
+
+  // Hiding the templates
+  document.querySelector(".student-topics-template").display.style = "none";
+
   if (!member.loggedIn) {
     window.location.replace(window.location.hostname);
   }
 
-  const studentID = window.location.href.split("?studentID=")[1];
+  //   Function to check if date in past
+  const dateInPast = function (firstDate) {
+    const today = new Date();
+    if (firstDate.setHours(0, 0, 0, 0) <= today.setHours(0, 0, 0, 0)) {
+      return true;
+    }
+    return false;
+  };
+
+  // Function to add days
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
 
   //   Making the api call to get student data from students table
   fetch(`https://apguru-server.herokuapp.com/api/v1/admin/student/${studentID}`)
@@ -18,8 +38,9 @@ MemberStack.onReady.then(function (member) {
         document.querySelector(".student-image").src = response.student.image;
       }
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
-      document.querySelector(".student-subheading").innerHTML = response.student.email ? response.student.email : "";
-      document.querySelector("#student-form").classList.add("w--current");
+      document.querySelector(".student-subheading").innerHTML = response.student.email;
+
+      document.querySelector("#student-homework").classList.add("w--current");
 
       //   Adding Button Links
       document.querySelector(
@@ -29,5 +50,14 @@ MemberStack.onReady.then(function (member) {
       document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
       document.querySelector("#student-homework").href = `/coordinator-admin/student-homework?studentID=${studentID}`;
       document.querySelector("#student-topics").href = `/coordinator-admin/student-topics?studentID=${studentID}`;
+
+      //   Adding the topics
+      const topicItem = document.querySelector(".topics-admin-wrap");
+
+      response.student.completedTopics.forEach((topicName) => {
+        const topicDiv = topicItem.cloneNode(true);
+        topicDiv.querySelector(".student-topic-name").innerHTML = topicName;
+        topicDiv.document.querySelector(".student-topics-holder").appendChild(topicDiv);
+      });
     });
 });

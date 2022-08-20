@@ -52,6 +52,7 @@ MemberStack.onReady.then(function (member) {
       document.querySelector("#student-form").href = `/coordinator-admin/student-form/?studentID=${studentID}`;
       document.querySelector("#student-tests").href = `/coordinator-admin/student-tests?studentID=${studentID}`;
       document.querySelector("#student-homework").href = `/coordinator-admin/student-homework?studentID=${studentID}`;
+      document.querySelector("#student-topics").href = `/coordinator-admin/student-topics?studentID=${studentID}`;
     });
 
   //   Making the api call to get tests data for the student
