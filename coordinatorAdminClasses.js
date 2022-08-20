@@ -62,7 +62,7 @@ MemberStack.onReady.then(function (member) {
           upcomingClassDiv.querySelector(".students-list").style.display = "none";
         }
 
-        if (upcomingClassData.notes) {
+        if (upcomingClassData.notes && upcomingClassData.notes != "") {
           upcomingClassDiv.querySelector(".notes-text").innerHTML = `${upcomingClassData.notes}`;
         } else {
           upcomingClassDiv.querySelector(".notes-pointer").style.display = "none";
@@ -110,7 +110,7 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector(".students-list").style.display = "none";
         }
 
-        if (completedClassData.notes) {
+        if (completedClassData.notes && completedClassData.notes != "") {
           completedClassDiv.querySelector(".notes-text").innerHTML = `${completedClassData.notes}`;
         } else {
           completedClassDiv.querySelector(".notes-pointer").style.display = "none";
