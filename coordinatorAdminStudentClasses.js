@@ -78,6 +78,12 @@ MemberStack.onReady.then(function (member) {
           ".view-class-button"
         ).href = `/coordinator-admin/class/?classID=${upcomingClassData.classID}`;
 
+        if (upcomingClassData.notes && upcomingClassData.notes != "") {
+          upcomingClassDiv.querySelector(".notes-text").innerHTML = `${upcomingClassData.notes}`;
+        } else {
+          upcomingClassDiv.querySelector(".notes-pointer").style.display = "none";
+        }
+
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
       });
@@ -102,6 +108,12 @@ MemberStack.onReady.then(function (member) {
           ".view-class-button"
         ).href = `/coordinator-admin/class/?classID=${completedClassData.classID}`;
 
+        if (completedClassData.notes && completedClassData.notes != "") {
+          completedClassDiv.querySelector(".notes-text").innerHTML = `${completedClassData.notes}`;
+        } else {
+          completedClassDiv.querySelector(".notes-pointer").style.display = "none";
+        }
+
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
       });
@@ -122,6 +134,12 @@ MemberStack.onReady.then(function (member) {
         missedClassDiv.querySelector(".button-zoom-link").href = `${missedClassData.zoomLink}`;
         missedClassDiv.querySelector(".button-zoom-recording").href = `${missedClassData.zoomRecording}`;
         missedClassDiv.querySelector(".view-class-button").href = `/admin/class/?classID=${missedClassData.classID}`;
+
+        if (missedClassData.notes && missedClassData.notes != "") {
+          missedClassDiv.querySelector(".notes-text").innerHTML = `${missedClassData.notes}`;
+        } else {
+          missedClassDiv.querySelector(".notes-pointer").style.display = "none";
+        }
 
         // Appending the upcoming class Div
         classesHolder.appendChild(missedClassDiv);
