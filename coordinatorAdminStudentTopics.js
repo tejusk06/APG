@@ -24,7 +24,7 @@ MemberStack.onReady.then(function (member) {
       document.querySelector(".student-name-heading").innerHTML = response.student.name;
       document.querySelector(".student-subheading").innerHTML = response.student.email;
 
-      document.querySelector("#student-homework").classList.add("w--current");
+      document.querySelector("#student-topics").classList.add("w--current");
 
       //   Adding Button Links
       document.querySelector(
