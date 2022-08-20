@@ -73,6 +73,12 @@ MemberStack.onReady.then(function (member) {
           upcomingClassDiv.querySelector(".button-zoom-link").style.display = "none";
         }
 
+        if (upcomingClassData.notes && upcomingClassData.notes.trim() != "") {
+          upcomingClassDiv.querySelector(".notes-text").innerHTML = `${upcomingClassData.notes}`;
+        } else {
+          upcomingClassDiv.querySelector(".notes-pointer").style.display = "none";
+        }
+
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
       });
@@ -99,6 +105,12 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector(".button-zoom-recording").style.display = "none";
         }
 
+        if (completedClassData.notes && completedClassData.notes.trim() != "") {
+          completedClassDiv.querySelector(".notes-text").innerHTML = `${completedClassData.notes}`;
+        } else {
+          completedClassDiv.querySelector(".notes-pointer").style.display = "none";
+        }
+
         // Appending the upcoming class Div
         classesHolder.appendChild(completedClassDiv);
       });
@@ -123,6 +135,12 @@ MemberStack.onReady.then(function (member) {
           missedClassDiv.querySelector(".button-zoom-recording").href = `${missedClassData.zoomRecording}`;
         } else {
           missedClassDiv.querySelector(".button-zoom-recording").style.display = "none";
+        }
+
+        if (missedClassData.notes && missedClassData.notes.trim() != "") {
+          missedClassDiv.querySelector(".notes-text").innerHTML = `${missedClassData.notes}`;
+        } else {
+          missedClassDiv.querySelector(".notes-pointer").style.display = "none";
         }
 
         // Appending the upcoming class Div
