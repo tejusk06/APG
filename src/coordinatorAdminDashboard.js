@@ -1,4 +1,4 @@
-console.log("Admin Dashboard logic");
+console.log('Admin Dashboard logic');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
@@ -11,18 +11,18 @@ MemberStack.onReady.then(function (member) {
   let airtableIdOrRole = null;
 
   // Get the course Id to send in API
-  if (member.membership.name == "AP Guru Coordinators") {
-    airtableIdOrRole = member["airtableid"];
-  } else if (member.membership.name == "AP Guru Admin") {
-    airtableIdOrRole = "admin";
+  if (member.membership.name === 'AP Guru Coordinators') {
+    airtableIdOrRole = member['airtableid'];
+  } else if (member.membership.name === 'AP Guru Admin') {
+    airtableIdOrRole = 'admin';
   }
 
   //   Making the api call to get student data from students table
   fetch(`https://apguru-server.herokuapp.com/api/v1/coordinatorAdmin/dashboard/${airtableIdOrRole}`)
     .then((response) => response.json())
     .then((response) => {
-      document.querySelector(".upcoming-classes").innerHTML = response.stats.upcomingClasses;
-      document.querySelector(".completed-classes").innerHTML = response.stats.completedClasses;
-      document.querySelector(".total-students").innerHTML = response.stats.totalStudents;
+      document.querySelector('.upcoming-classes').innerHTML = response.stats.upcomingClasses;
+      document.querySelector('.completed-classes').innerHTML = response.stats.completedClasses;
+      document.querySelector('.total-students').innerHTML = response.stats.totalStudents;
     });
 });
