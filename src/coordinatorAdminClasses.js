@@ -7,6 +7,7 @@ MemberStack.onReady.then(function (member) {
   }
 
   // If member is logged in then continue this logic
+  let airtableIdOrRole;
 
   // Get the course Id to send in API
   if (member.membership.name === 'AP Guru Coordinators') {
@@ -31,6 +32,7 @@ MemberStack.onReady.then(function (member) {
       // Getting the Classes holder and all the templates
       const classesHolder = document.querySelectorAll('.classes-holder')[0];
       const upcomingTemplate = document.querySelectorAll('.class-wrap.upcoming')[0];
+      const overdueTemplate = document.querySelectorAll('.class-wrap.overdue')[0];
       const completedTemplate = document.querySelectorAll('.class-wrap.completed')[0];
 
       //   Logging the templates
@@ -95,11 +97,76 @@ MemberStack.onReady.then(function (member) {
           '.view-class-button'
         ).href = `/coordinator-admin/class/?classID=${upcomingClassData.classID}`;
 
+        upcomingClassDiv.querySelector(
+          '.days-from-today'
+        ).innerHTML = `${upcomingClassData.daysFromToday}`;
+
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
       });
 
-      //   Rendering divs for each missed class
+      //     Rendering divs for each overdue class
+      response.overdueClasses.forEach((overdueClassData) => {
+        const overdueClassDiv = overdueTemplate.cloneNode(true);
+        overdueClassDiv.querySelector(
+          '.class-date-text'
+        ).innerHTML = `${overdueClassData.formattedTime}`;
+        overdueClassDiv.querySelector('.class-name').innerHTML = `${
+          overdueClassData.className.split('-')[0]
+        }`;
+        overdueClassDiv.querySelector(
+          '.teacher-name'
+        ).innerHTML = `${overdueClassData.teacherName}`;
+        overdueClassDiv.querySelector('.student-names').innerHTML = overdueClassData.studentNames
+          ? `${overdueClassData.studentNames}`
+          : ' ';
+
+        overdueClassDiv.querySelector(
+          '.teacher-name'
+        ).innerHTML = `${overdueClassData.teacherName}`;
+
+        overdueClassDiv.querySelector('.location-text').innerHTML = overdueClassData.location
+          ? overdueClassData.location
+          : '';
+
+        overdueClassDiv.querySelector('.time-text').innerHTML = overdueClassData.formattedTime
+          ? overdueClassData.formattedTime
+          : '';
+
+        if (overdueClassData.students) {
+          overdueClassDiv.querySelector(
+            '.students-text'
+          ).innerHTML = `${overdueClassData.students}`;
+        } else {
+          overdueClassDiv.querySelector('.students-list').style.display = 'none';
+        }
+
+        if (overdueClassData.notes && overdueClassData.notes.trim() !== '') {
+          overdueClassDiv.querySelector('.notes-text').innerHTML = `${overdueClassData.notes}`;
+        } else {
+          overdueClassDiv.querySelector('.notes-pointer').style.display = 'none';
+        }
+
+        overdueClassDiv.querySelector(
+          '.course-section'
+        ).innerHTML = `${overdueClassData.courseSection}`;
+        overdueClassDiv.querySelector('.course-id').innerHTML = `${overdueClassData.courseID}`;
+
+        if (overdueClassData.zoomLink) {
+          overdueClassDiv.querySelector('.button-zoom-link').href = `${overdueClassData.zoomLink}`;
+        } else {
+          overdueClassDiv.querySelector('.button-zoom-link').style.display = 'none';
+        }
+
+        overdueClassDiv.querySelector(
+          '.view-class-button'
+        ).href = `/coordinator-admin/class/?classID=${overdueClassData.classID}`;
+
+        // Appending the overdue class Div
+        classesHolder.appendChild(overdueClassDiv);
+      });
+
+      //   Rendering divs for each completed class
       response.completedClasses.forEach((completedClassData) => {
         const completedClassDiv = completedTemplate.cloneNode(true);
         completedClassDiv.querySelector(
@@ -163,6 +230,7 @@ MemberStack.onReady.then(function (member) {
 
   //   Getting value of fitlers
   const classCourse = document.querySelector('.classes-course');
+  const classDate = document.querySelector('.classes-date');
   const classSearch = document.querySelector('.classes-search');
   const classSubject = document.querySelector('.classes-subject');
 
@@ -170,11 +238,13 @@ MemberStack.onReady.then(function (member) {
   let searchFilter = '';
   let subjectFilter = '';
   let statusFilter = '';
+  let dateFilter = '';
 
   // Adding show and hide logic for filter buttons
   const filterButtons = document.querySelectorAll('.filter-button');
   const filterAllButton = document.querySelector('#filter-all');
   const filterUpcomingButton = document.querySelector('#filter-upcoming');
+  const filterOverdueButton = document.querySelector('#filter-overdue');
   const filterCompletedButton = document.querySelector('#filter-completed');
 
   const filterClasses = () => {
@@ -204,6 +274,26 @@ MemberStack.onReady.then(function (member) {
           if (!eachClass.classList.contains('hide')) {
             eachClass.classList.add('hide');
           }
+        }
+      });
+    }
+
+    // hide if date is not within range
+    if (dateFilter) {
+      console.log('date filter entered', dateFilter);
+      allClasses.forEach((eachClass) => {
+        if (eachClass.classList.contains(`upcoming`)) {
+          if (
+            eachClass.querySelector('.days-from-today').innerHTML > dateFilter ||
+            eachClass.querySelector('.days-from-today').innerHTML < 0
+          ) {
+            console.log(dateFilter);
+            if (!eachClass.classList.contains('hide')) {
+              eachClass.classList.add('hide');
+            }
+          }
+        } else {
+          eachClass.classList.add('hide');
         }
       });
     }
@@ -249,6 +339,13 @@ MemberStack.onReady.then(function (member) {
     filterClasses();
   });
 
+  classDate.addEventListener('change', (event) => {
+    // console.log(`You selected course ${event.target.value}`);
+    dateFilter = event.target.value;
+
+    filterClasses();
+  });
+
   classSubject.addEventListener('change', (event) => {
     // console.log(`You selected subject ${event.target.value}`);
     subjectFilter = event.target.value;
@@ -287,6 +384,15 @@ MemberStack.onReady.then(function (member) {
     filterUpcomingButton.classList.add('filter-button-active');
 
     statusFilter = 'upcoming';
+    filterClasses();
+  });
+
+  //   Logic for filter Overdue Button
+  filterOverdueButton.addEventListener('click', function () {
+    allButtonsInactive();
+    filterOverdueButton.classList.add('filter-button-active');
+
+    statusFilter = 'overdue';
     filterClasses();
   });
 

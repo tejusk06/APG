@@ -1,4 +1,4 @@
-console.log('Student Dashboard logic v2 from local');
+console.log('Student Dashboard logic v2');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page

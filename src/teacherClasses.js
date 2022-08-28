@@ -27,7 +27,7 @@ MemberStack.onReady.then(function (member) {
       const classesHolder = document.querySelectorAll('.classes-holder')[0];
       const upcomingTemplate = document.querySelectorAll('.class-wrap.upcoming')[0];
       const completedTemplate = document.querySelectorAll('.class-wrap.completed')[0];
-      const missedTemplate = document.querySelectorAll('.class-wrap.missed')[0];
+      const overdueTemplate = document.querySelectorAll('.class-wrap.overdue')[0];
 
       //   Logging the templates
       console.log('response', response);
@@ -80,11 +80,76 @@ MemberStack.onReady.then(function (member) {
           upcomingClassDiv.querySelector('.notes-pointer').style.display = 'none';
         }
 
+        upcomingClassDiv.querySelector(
+          '.days-from-today'
+        ).innerHTML = `${upcomingClassData.daysFromToday}`;
+
         // Appending the upcoming class Div
         classesHolder.appendChild(upcomingClassDiv);
       });
 
-      //   Rendering divs for each missed class
+      //     Rendering divs for each overdue class
+      response.overdueClasses.forEach((overdueClassData) => {
+        const overdueClassDiv = overdueTemplate.cloneNode(true);
+        overdueClassDiv.querySelector(
+          '.class-date-text'
+        ).innerHTML = `${overdueClassData.formattedTime}`;
+        overdueClassDiv.querySelector('.class-name').innerHTML = `${
+          overdueClassData.className.split('-')[0]
+        }`;
+        overdueClassDiv.querySelector(
+          '.teacher-name'
+        ).innerHTML = `${overdueClassData.teacherName}`;
+        overdueClassDiv.querySelector('.student-names').innerHTML = overdueClassData.studentNames
+          ? `${overdueClassData.studentNames}`
+          : ' ';
+
+        overdueClassDiv.querySelector(
+          '.teacher-name'
+        ).innerHTML = `${overdueClassData.teacherName}`;
+
+        overdueClassDiv.querySelector('.location-text').innerHTML = overdueClassData.location
+          ? overdueClassData.location
+          : '';
+
+        overdueClassDiv.querySelector('.time-text').innerHTML = overdueClassData.formattedTime
+          ? overdueClassData.formattedTime
+          : '';
+
+        if (overdueClassData.students) {
+          overdueClassDiv.querySelector(
+            '.students-text'
+          ).innerHTML = `${overdueClassData.students}`;
+        } else {
+          overdueClassDiv.querySelector('.students-list').style.display = 'none';
+        }
+
+        if (overdueClassData.notes && overdueClassData.notes.trim() !== '') {
+          overdueClassDiv.querySelector('.notes-text').innerHTML = `${overdueClassData.notes}`;
+        } else {
+          overdueClassDiv.querySelector('.notes-pointer').style.display = 'none';
+        }
+
+        overdueClassDiv.querySelector(
+          '.course-section'
+        ).innerHTML = `${overdueClassData.courseSection}`;
+        overdueClassDiv.querySelector('.course-id').innerHTML = `${overdueClassData.courseID}`;
+
+        if (overdueClassData.zoomLink) {
+          overdueClassDiv.querySelector('.button-zoom-link').href = `${overdueClassData.zoomLink}`;
+        } else {
+          overdueClassDiv.querySelector('.button-zoom-link').style.display = 'none';
+        }
+
+        overdueClassDiv.querySelector(
+          '.view-class-button'
+        ).href = `/coordinator-admin/class/?classID=${overdueClassData.classID}`;
+
+        // Appending the overdue class Div
+        classesHolder.appendChild(overdueClassDiv);
+      });
+
+      //   Rendering divs for each completed class
       response.completedClasses.forEach((completedClassData) => {
         document.querySelector('.empty-message').style.display = 'none';
         const completedClassDiv = completedTemplate.cloneNode(true);
@@ -137,6 +202,13 @@ MemberStack.onReady.then(function (member) {
       });
     });
 
+  // Filters logic below
+  //   Getting value of filters
+  const classDate = document.querySelector('.classes-date');
+
+  let statusFilter = '';
+  let dateFilter = '';
+
   // Adding show and hide logic for filter buttons
   const emptyMessages = document.querySelectorAll('.empty-text');
   const classesHolder = document.querySelector('.classes-holder');
@@ -144,6 +216,65 @@ MemberStack.onReady.then(function (member) {
   const filterAllButton = document.querySelector('#filter-all');
   const filterUpcomingButton = document.querySelector('#filter-upcoming');
   const filterCompletedButton = document.querySelector('#filter-completed');
+  const filterOverdueButton = document.querySelector('#filter-overdue');
+
+  const filterClasses = () => {
+    //   TODO filter classes logic
+    const allClasses = classesHolder.querySelectorAll('.class-wrap');
+
+    // Show all classes first
+    allClasses.forEach((eachClass) => {
+      if (eachClass.classList.contains('hide')) {
+        eachClass.classList.remove('hide');
+      }
+    });
+
+    // hide the ones that don't match status
+    if (statusFilter) {
+      allClasses.forEach((eachClass) => {
+        if (!eachClass.classList.contains(`${statusFilter}`)) {
+          eachClass.classList.add('hide');
+        }
+      });
+    }
+
+    // hide if date is not within range
+    if (dateFilter) {
+      console.log('date filter entered', dateFilter);
+      allClasses.forEach((eachClass) => {
+        if (eachClass.classList.contains(`upcoming`)) {
+          if (
+            eachClass.querySelector('.days-from-today').innerHTML > dateFilter ||
+            eachClass.querySelector('.days-from-today').innerHTML < 0
+          ) {
+            console.log(dateFilter);
+            if (!eachClass.classList.contains('hide')) {
+              eachClass.classList.add('hide');
+            }
+          }
+        } else {
+          eachClass.classList.add('hide');
+        }
+      });
+    }
+
+    document.querySelector('.empty-message').style.display = 'flex';
+
+    // Show empty message if no classes match the criteria
+    allClasses.forEach((eachClass) => {
+      if (!eachClass.classList.contains('hide')) {
+        document.querySelector('.empty-message').style.display = 'none';
+        console.log('hiding the empty message');
+      }
+    });
+  };
+
+  classDate.addEventListener('change', (event) => {
+    // console.log(`You selected course ${event.target.value}`);
+    dateFilter = event.target.value;
+
+    filterClasses();
+  });
 
   //   Common logic to make all button inactive
   const allButtonsInactive = () => {
@@ -165,61 +296,119 @@ MemberStack.onReady.then(function (member) {
   filterAllButton.addEventListener('click', function () {
     allButtonsInactive();
     filterAllButton.classList.add('filter-button-active');
-    const allClasses = classesHolder.querySelectorAll('.class-wrap');
 
-    allClasses.forEach((eachClass) => {
-      document.querySelector('.empty-message').style.display = 'none';
-      eachClass.style.display = 'block';
-    });
-
-    if (allClasses.length === 0) {
-      document.querySelector('.empty-message').style.display = 'flex';
-      allEmptyMessagesHide();
-      document.querySelector('.empty-text.all').style.display = 'block';
-    }
+    statusFilter = '';
+    filterClasses();
   });
 
   //   Logic for filter Upcoming Button
   filterUpcomingButton.addEventListener('click', function () {
     allButtonsInactive();
     filterUpcomingButton.classList.add('filter-button-active');
-    const allClasses = classesHolder.querySelectorAll('.class-wrap');
-    const upcomingClasses = classesHolder.querySelectorAll('.class-wrap.upcoming');
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = 'none';
-    });
-    upcomingClasses.forEach((eachClass) => {
-      document.querySelector('.empty-message').style.display = 'none';
-      eachClass.style.display = 'block';
-    });
+    statusFilter = 'upcoming';
+    filterClasses();
+  });
 
-    if (upcomingClasses.length === 0) {
-      document.querySelector('.empty-message').style.display = 'flex';
-      allEmptyMessagesHide();
-      document.querySelector('.empty-text.upcoming').style.display = 'block';
-    }
+  //   Logic for filter Overdue Button
+  filterOverdueButton.addEventListener('click', function () {
+    allButtonsInactive();
+    filterOverdueButton.classList.add('filter-button-active');
+
+    statusFilter = 'overdue';
+    filterClasses();
   });
 
   //   Logic for filter Completed Button
   filterCompletedButton.addEventListener('click', function () {
     allButtonsInactive();
     filterCompletedButton.classList.add('filter-button-active');
-    const allClasses = classesHolder.querySelectorAll('.class-wrap');
-    const completedClasses = classesHolder.querySelectorAll('.class-wrap.completed');
 
-    allClasses.forEach((eachClass) => {
-      eachClass.style.display = 'none';
-    });
-    completedClasses.forEach((eachClass) => {
-      document.querySelector('.empty-message').style.display = 'none';
-      eachClass.style.display = 'block';
-    });
-
-    if (completedClasses.length === 0) {
-      document.querySelector('.empty-message').style.display = 'flex';
-      allEmptyMessagesHide();
-      document.querySelector('.empty-text.completed').style.display = 'block';
-    }
+    statusFilter = 'completed';
+    filterClasses();
   });
+
+  // //   Logic for Filter all button
+  // filterAllButton.addEventListener('click', function () {
+  //   allButtonsInactive();
+  //   filterAllButton.classList.add('filter-button-active');
+  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
+
+  //   allClasses.forEach((eachClass) => {
+  //     document.querySelector('.empty-message').style.display = 'none';
+  //     eachClass.style.display = 'block';
+  //   });
+
+  //   if (allClasses.length === 0) {
+  //     document.querySelector('.empty-message').style.display = 'flex';
+  //     allEmptyMessagesHide();
+  //     document.querySelector('.empty-text.all').style.display = 'block';
+  //   }
+  // });
+
+  // //   Logic for filter Upcoming Button
+  // filterUpcomingButton.addEventListener('click', function () {
+  //   allButtonsInactive();
+  //   filterUpcomingButton.classList.add('filter-button-active');
+  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
+  //   const upcomingClasses = classesHolder.querySelectorAll('.class-wrap.upcoming');
+
+  //   allClasses.forEach((eachClass) => {
+  //     eachClass.style.display = 'none';
+  //   });
+  //   upcomingClasses.forEach((eachClass) => {
+  //     document.querySelector('.empty-message').style.display = 'none';
+  //     eachClass.style.display = 'block';
+  //   });
+
+  //   if (upcomingClasses.length === 0) {
+  //     document.querySelector('.empty-message').style.display = 'flex';
+  //     allEmptyMessagesHide();
+  //     document.querySelector('.empty-text.upcoming').style.display = 'block';
+  //   }
+  // });
+
+  // //   Logic for filter Overdue Button
+  // filterOverdueButton.addEventListener('click', function () {
+  //   allButtonsInactive();
+  //   filterOverdueButton.classList.add('filter-button-active');
+  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
+  //   const overdueClasses = classesHolder.querySelectorAll('.class-wrap.overdue');
+
+  //   allClasses.forEach((eachClass) => {
+  //     eachClass.style.display = 'none';
+  //   });
+  //   overdueClasses.forEach((eachClass) => {
+  //     document.querySelector('.empty-message').style.display = 'none';
+  //     eachClass.style.display = 'block';
+  //   });
+
+  //   if (overdueClasses.length === 0) {
+  //     document.querySelector('.empty-message').style.display = 'flex';
+  //     allEmptyMessagesHide();
+  //     document.querySelector('.empty-text.overdue').style.display = 'block';
+  //   }
+  // });
+
+  // //   Logic for filter Completed Button
+  // filterCompletedButton.addEventListener('click', function () {
+  //   allButtonsInactive();
+  //   filterCompletedButton.classList.add('filter-button-active');
+  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
+  //   const completedClasses = classesHolder.querySelectorAll('.class-wrap.completed');
+
+  //   allClasses.forEach((eachClass) => {
+  //     eachClass.style.display = 'none';
+  //   });
+  //   completedClasses.forEach((eachClass) => {
+  //     document.querySelector('.empty-message').style.display = 'none';
+  //     eachClass.style.display = 'block';
+  //   });
+
+  //   if (completedClasses.length === 0) {
+  //     document.querySelector('.empty-message').style.display = 'flex';
+  //     allEmptyMessagesHide();
+  //     document.querySelector('.empty-text.completed').style.display = 'block';
+  //   }
+  // });
 });
