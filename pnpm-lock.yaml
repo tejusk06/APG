@@ -15,11 +15,13 @@ specifiers:
   eslint: ^8.21.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.2.1
+  lodash: ^4.17.21
   prettier: ^2.7.1
   typescript: ^4.7.4
 
 dependencies:
   '@finsweet/ts-utils': 0.33.1
+  lodash: 4.17.21
 
 devDependencies:
   '@changesets/changelog-git': 0.1.12
@@ -2151,7 +2153,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /lru-cache/4.1.5:
     resolution: {integrity: sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==}
