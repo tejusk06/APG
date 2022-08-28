@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 console.log('Individual Students Homework logic for Coordinator/Admin role');
 // Logic for Class form embed is in the webflow page below attendance
 
@@ -46,9 +48,23 @@ MemberStack.onReady.then(function (member) {
       //   Adding the topics
       const topicItem = document.querySelector('.topics-admin-wrap');
 
-      response.student.completedTopics.forEach((topicName) => {
+      let topicsWithSection = [];
+
+      response.student.completedTopics.forEach((topicName, n) => {
+        const topicWithSection = `${response.student.completedTopicsSections[n]} - ${
+          topicName.split('-')[1]
+        }`;
+
+        topicsWithSection.push(topicWithSection);
+      });
+
+      const sortedTopics = _.sortBy(topicsWithSection, function (topic) {
+        return topic;
+      });
+
+      sortedTopics.forEach((topic) => {
         const topicDiv = topicItem.cloneNode(true);
-        topicDiv.querySelector('.student-topic-name').innerHTML = topicName;
+        topicDiv.querySelector('.student-topic-name').innerHTML = topic;
         document.querySelector('.student-topics-holder').appendChild(topicDiv);
       });
     });
