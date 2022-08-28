@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 console.log('Individual Students Homework logic for Coordinator/Admin role');
 // Logic for Class form embed is in the webflow page below attendance
 
@@ -67,9 +69,11 @@ MemberStack.onReady.then(function (member) {
   fetch(`https://apguru-server.herokuapp.com/api/v1/homework/student/${studentID}`)
     .then((response) => response.json())
     .then((response) => {
-      const assignedHomework = response.homeworkArray;
+      const assignedHomework = _.sortBy(response.homeworkArray, function (homework) {
+        return homework.courseSection;
+      });
       const homeworkItem = document.querySelector('.dashboard-homework-wrap');
-      const today = new Date();
+      // const today = new Date();
 
       assignedHomework.forEach((eachHomework) => {
         const hwsplit = eachHomework.courseSectionHomeworkName.split('-');
