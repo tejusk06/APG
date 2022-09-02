@@ -244,10 +244,9 @@ MemberStack.onReady.then(function (member) {
       allClasses.forEach((eachClass) => {
         if (eachClass.classList.contains(`upcoming`)) {
           if (
-            eachClass.querySelector('.days-from-today').innerHTML > dateFilter ||
-            eachClass.querySelector('.days-from-today').innerHTML < 0
+            parseInt(eachClass.querySelector('.days-from-today').innerHTML) > dateFilter ||
+            parseInt(eachClass.querySelector('.days-from-today').innerHTML) < 0
           ) {
-            console.log(dateFilter);
             if (!eachClass.classList.contains('hide')) {
               eachClass.classList.add('hide');
             }
