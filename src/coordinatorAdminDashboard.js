@@ -23,6 +23,7 @@ MemberStack.onReady.then(function (member) {
     .then((response) => {
       document.querySelector('.upcoming-classes').innerHTML = response.stats.upcomingClasses;
       document.querySelector('.completed-classes').innerHTML = response.stats.completedClasses;
+      document.querySelector('.missed-classes').innerHTML = response.stats.missedClasses;
       document.querySelector('.total-students').innerHTML = response.stats.totalStudents;
     });
 });
