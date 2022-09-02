@@ -36,7 +36,6 @@ MemberStack.onReady.then(function (member) {
       const completedTemplate = document.querySelectorAll('.class-wrap.completed')[0];
 
       //   Logging the templates
-      // console.log("response", response);
 
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
@@ -280,14 +279,12 @@ MemberStack.onReady.then(function (member) {
 
     // hide if date is not within range
     if (dateFilter) {
-      console.log('date filter entered', dateFilter);
       allClasses.forEach((eachClass) => {
         if (eachClass.classList.contains(`upcoming`)) {
           if (
-            eachClass.querySelector('.days-from-today').innerHTML > dateFilter ||
-            eachClass.querySelector('.days-from-today').innerHTML < 0
+            parseInt(eachClass.querySelector('.days-from-today').innerHTML) > dateFilter ||
+            parseInt(eachClass.querySelector('.days-from-today').innerHTML) < 0
           ) {
-            console.log(dateFilter);
             if (!eachClass.classList.contains('hide')) {
               eachClass.classList.add('hide');
             }
@@ -333,28 +330,24 @@ MemberStack.onReady.then(function (member) {
   };
 
   classCourse.addEventListener('change', (event) => {
-    // console.log(`You selected course ${event.target.value}`);
     courseFilter = event.target.value;
 
     filterClasses();
   });
 
   classDate.addEventListener('change', (event) => {
-    // console.log(`You selected course ${event.target.value}`);
     dateFilter = event.target.value;
 
     filterClasses();
   });
 
   classSubject.addEventListener('change', (event) => {
-    // console.log(`You selected subject ${event.target.value}`);
     subjectFilter = event.target.value;
 
     filterClasses();
   });
 
   classSearch.addEventListener('input', (event) => {
-    // console.log(`You selected search ${event.target.value}`);
     searchFilter = event.target.value.trim().toLowerCase();
 
     filterClasses();
