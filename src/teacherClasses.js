@@ -29,9 +29,6 @@ MemberStack.onReady.then(function (member) {
       const completedTemplate = document.querySelectorAll('.class-wrap.completed')[0];
       const overdueTemplate = document.querySelectorAll('.class-wrap.overdue')[0];
 
-      //   Logging the templates
-      console.log('response', response);
-
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {
         document.querySelector('.empty-message').style.display = 'none';
@@ -210,7 +207,6 @@ MemberStack.onReady.then(function (member) {
   let dateFilter = '';
 
   // Adding show and hide logic for filter buttons
-  const emptyMessages = document.querySelectorAll('.empty-text');
   const classesHolder = document.querySelector('.classes-holder');
   const filterButtons = document.querySelectorAll('.filter-button');
   const filterAllButton = document.querySelector('#filter-all');
@@ -240,7 +236,6 @@ MemberStack.onReady.then(function (member) {
 
     // hide if date is not within range
     if (dateFilter) {
-      console.log('date filter entered', dateFilter);
       allClasses.forEach((eachClass) => {
         if (eachClass.classList.contains(`upcoming`)) {
           if (
@@ -263,7 +258,6 @@ MemberStack.onReady.then(function (member) {
     allClasses.forEach((eachClass) => {
       if (!eachClass.classList.contains('hide')) {
         document.querySelector('.empty-message').style.display = 'none';
-        console.log('hiding the empty message');
       }
     });
   };
@@ -281,13 +275,6 @@ MemberStack.onReady.then(function (member) {
       if (button.classList.contains('filter-button-active')) {
         button.classList.remove('filter-button-active');
       }
-    });
-  };
-
-  //   Common logic to make empty messages hidden
-  const allEmptyMessagesHide = () => {
-    emptyMessages.forEach((message) => {
-      message.style.display = 'none';
     });
   };
 
@@ -326,88 +313,4 @@ MemberStack.onReady.then(function (member) {
     statusFilter = 'completed';
     filterClasses();
   });
-
-  // //   Logic for Filter all button
-  // filterAllButton.addEventListener('click', function () {
-  //   allButtonsInactive();
-  //   filterAllButton.classList.add('filter-button-active');
-  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
-
-  //   allClasses.forEach((eachClass) => {
-  //     document.querySelector('.empty-message').style.display = 'none';
-  //     eachClass.style.display = 'block';
-  //   });
-
-  //   if (allClasses.length === 0) {
-  //     document.querySelector('.empty-message').style.display = 'flex';
-  //     allEmptyMessagesHide();
-  //     document.querySelector('.empty-text.all').style.display = 'block';
-  //   }
-  // });
-
-  // //   Logic for filter Upcoming Button
-  // filterUpcomingButton.addEventListener('click', function () {
-  //   allButtonsInactive();
-  //   filterUpcomingButton.classList.add('filter-button-active');
-  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
-  //   const upcomingClasses = classesHolder.querySelectorAll('.class-wrap.upcoming');
-
-  //   allClasses.forEach((eachClass) => {
-  //     eachClass.style.display = 'none';
-  //   });
-  //   upcomingClasses.forEach((eachClass) => {
-  //     document.querySelector('.empty-message').style.display = 'none';
-  //     eachClass.style.display = 'block';
-  //   });
-
-  //   if (upcomingClasses.length === 0) {
-  //     document.querySelector('.empty-message').style.display = 'flex';
-  //     allEmptyMessagesHide();
-  //     document.querySelector('.empty-text.upcoming').style.display = 'block';
-  //   }
-  // });
-
-  // //   Logic for filter Overdue Button
-  // filterOverdueButton.addEventListener('click', function () {
-  //   allButtonsInactive();
-  //   filterOverdueButton.classList.add('filter-button-active');
-  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
-  //   const overdueClasses = classesHolder.querySelectorAll('.class-wrap.overdue');
-
-  //   allClasses.forEach((eachClass) => {
-  //     eachClass.style.display = 'none';
-  //   });
-  //   overdueClasses.forEach((eachClass) => {
-  //     document.querySelector('.empty-message').style.display = 'none';
-  //     eachClass.style.display = 'block';
-  //   });
-
-  //   if (overdueClasses.length === 0) {
-  //     document.querySelector('.empty-message').style.display = 'flex';
-  //     allEmptyMessagesHide();
-  //     document.querySelector('.empty-text.overdue').style.display = 'block';
-  //   }
-  // });
-
-  // //   Logic for filter Completed Button
-  // filterCompletedButton.addEventListener('click', function () {
-  //   allButtonsInactive();
-  //   filterCompletedButton.classList.add('filter-button-active');
-  //   const allClasses = classesHolder.querySelectorAll('.class-wrap');
-  //   const completedClasses = classesHolder.querySelectorAll('.class-wrap.completed');
-
-  //   allClasses.forEach((eachClass) => {
-  //     eachClass.style.display = 'none';
-  //   });
-  //   completedClasses.forEach((eachClass) => {
-  //     document.querySelector('.empty-message').style.display = 'none';
-  //     eachClass.style.display = 'block';
-  //   });
-
-  //   if (completedClasses.length === 0) {
-  //     document.querySelector('.empty-message').style.display = 'flex';
-  //     allEmptyMessagesHide();
-  //     document.querySelector('.empty-text.completed').style.display = 'block';
-  //   }
-  // });
 });
