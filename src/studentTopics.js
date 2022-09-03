@@ -12,9 +12,9 @@ MemberStack.onReady.then(function (member) {
   if (member['is-parent'] === 'yes') {
     // Hide homework complete button
     if (member.membership.name === 'AP Guru SAT Students') {
-      window.location.replace('/sat-program/dashboard');
+      window.location.replace('/sat-new-program/dashboard');
     } else if (member.membership.name === 'AP Guru ACT Students') {
-      window.location.replace('/act-program/dashboard');
+      window.location.replace('/act-new-program/dashboard');
     }
   }
 
