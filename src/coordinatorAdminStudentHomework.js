@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-console.log('Individual Students Homework logic for Coordinator/Admin role');
+console.log('Individual Students Homework logic for Coordinator/Admin role local');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
@@ -87,6 +87,12 @@ MemberStack.onReady.then(function (member) {
           homeworkItemDiv.querySelector(
             '.homework-dashboard-wrap.completed .homework-name'
           ).innerHTML = homeworkName;
+          homeworkItemDiv.querySelector(
+            '.homework-dashboard-wrap.completed .hw-completed-date'
+          ).innerHTML = eachHomework.completedDate;
+          homeworkItemDiv.querySelector(
+            '.homework-dashboard-wrap.completed .hw-assigned-date'
+          ).innerHTML = eachHomework.assignedDate;
         } else {
           const isPast = dateInPast(new Date(eachHomework.date).addDays(1));
 
@@ -100,7 +106,11 @@ MemberStack.onReady.then(function (member) {
             homeworkItemDiv.querySelector(
               '.homework-dashboard-wrap.due .dashboard-homework-complete'
             ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
-            homeworkItemDiv.querySelector('.hw-due-date').innerHTML = eachHomework.momentDate;
+            homeworkItemDiv.querySelector('.homework-dashboard-wrap.due .hw-due-date').innerHTML =
+              eachHomework.momentDate;
+            homeworkItemDiv.querySelector(
+              '.homework-dashboard-wrap.due .hw-assigned-date'
+            ).innerHTML = eachHomework.assignedDate;
           } else {
             homeworkItemDiv.querySelector('.homework-dashboard-wrap.due').style.display = 'none';
             homeworkItemDiv.querySelector('.homework-dashboard-wrap.completed').style.display =
@@ -111,7 +121,12 @@ MemberStack.onReady.then(function (member) {
             homeworkItemDiv.querySelector(
               '.homework-dashboard-wrap.pending .dashboard-homework-complete'
             ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
-            homeworkItemDiv.querySelector('.hw-pending-date').innerHTML = eachHomework.momentDate;
+            homeworkItemDiv.querySelector(
+              '.homework-dashboard-wrap.pending .hw-pending-date'
+            ).innerHTML = eachHomework.momentDate;
+            homeworkItemDiv.querySelector(
+              '.homework-dashboard-wrap.pending .hw-assigned-date'
+            ).innerHTML = eachHomework.assignedDate;
           }
         }
 
