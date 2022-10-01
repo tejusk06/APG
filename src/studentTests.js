@@ -140,18 +140,6 @@ MemberStack.onReady.then(function (member) {
             upcomingTestDiv.querySelector('.download-test-wrap').style.display = 'none';
           }
 
-          upcomingTestDiv.querySelector('.tests-wrap').addEventListener('click', () => {
-            localStorage.setItem('formName', 'Update Test Status');
-            localStorage.setItem(
-              'formLink',
-              `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`
-            );
-            localStorage.setItem('pageName', 'All Tests');
-            localStorage.setItem('pageLink', `${window.location.href}`);
-
-            window.location.replace('/update-page');
-          });
-
           if (eachTest.dueDate === null) {
             upcomingTestDiv.querySelector('.date-upcoming').style.display = 'none';
             upcomingTestDiv.querySelector('.date-select').style.display = 'block';
@@ -178,18 +166,6 @@ MemberStack.onReady.then(function (member) {
           const missedTestDiv = missedTest.cloneNode(true);
           missedTestDiv.querySelector('.test-name').innerHTML = `${eachTest.name}`;
           missedTestDiv.querySelector('.test-date').innerHTML = `${eachTest.momentDate}`;
-
-          missedTestDiv.querySelector('.tests-wrap').addEventListener('click', () => {
-            localStorage.setItem('formName', 'Update Test Status');
-            localStorage.setItem(
-              'formLink',
-              `https://web.miniextensions.com/OZXtLcp3k47yTO1G6nYf/${eachTest.testId}`
-            );
-            localStorage.setItem('pageName', 'All Tests');
-            localStorage.setItem('pageLink', `${window.location.href}`);
-
-            window.location.replace('/update-page');
-          });
 
           // check if question paper exists
           if (eachTest.questionPaper) {
