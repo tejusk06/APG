@@ -48,24 +48,50 @@ MemberStack.onReady.then(function (member) {
       //   Adding the topics
       const topicItem = document.querySelector('.topics-admin-wrap');
 
-      let topicsWithSection = [];
+      let topicsAndSections = [];
+
+      // Getting unique sections
+      const uniqueSections = new Set(response.student.completedTopicsSections);
+      const arrayUniqueSections = Array.from(uniqueSections);
 
       response.student.completedTopics.forEach((topicName, n) => {
-        const topicWithSection = `${response.student.completedTopicsSections[n]} - ${
-          topicName.split('-')[1]
-        }`;
+        let topicAndSection = {
+          topicName: topicName.split('-')[1],
+          sectionName: response.student.completedTopicsSections[n],
+        };
 
-        topicsWithSection.push(topicWithSection);
+        topicsAndSections.push(topicAndSection);
       });
 
-      const sortedTopics = _.sortBy(topicsWithSection, function (topic) {
-        return topic;
+      // Sorting topics and sections
+      const sortedTopicsAndSections = _.sortBy(topicsAndSections, function (topicAndSection) {
+        return topicAndSection.sectionName;
       });
 
-      sortedTopics.forEach((topic) => {
-        const topicDiv = topicItem.cloneNode(true);
-        topicDiv.querySelector('.student-topic-name').innerHTML = topic;
-        document.querySelector('.student-topics-holder').appendChild(topicDiv);
+      const sortedUniqueSections = _.sortBy(arrayUniqueSections, function (uniqueSection) {
+        return uniqueSection;
+      });
+
+      // rendering the topics sorted within their sections
+      sortedUniqueSections.forEach((sectionName) => {
+        const sectionDiv = topicItem.cloneNode(true);
+
+        sectionDiv.querySelector('.topics-section').innerHTML = sectionName
+          .toUpperCase()
+          .replaceAll('-', ' ');
+
+        const topicsWrapper = sectionDiv.querySelector('.topics-text-wrapper').cloneNode(true);
+        sectionDiv.querySelector('.topics-text-wrapper').remove();
+
+        sortedTopicsAndSections.forEach((topic) => {
+          if (topic.sectionName === sectionName) {
+            const topicWrap = topicsWrapper.cloneNode(true);
+            topicWrap.querySelector('.student-topic-name').innerHTML = topic.topicName;
+            sectionDiv.appendChild(topicWrap);
+          }
+        });
+
+        document.querySelector('.student-topics-holder').appendChild(sectionDiv);
       });
     });
 });

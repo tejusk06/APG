@@ -63,7 +63,7 @@ MemberStack.onReady.then(function (member) {
       const missedTemplate = document.querySelectorAll('.class-wrap.missed')[0];
 
       //   Logging the templates
-      console.log('response', response);
+      // console.log('response', response);
       //   console.log("upcomingTemplate", upcomingTemplate);
       //   console.log("completedTemplate", completedTemplate);
       //   console.log("missedTemplate", missedTemplate);
