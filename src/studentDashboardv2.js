@@ -345,17 +345,11 @@ MemberStack.onReady.then(function (member) {
                     hwItem.querySelector('.homework-dashboard-wrap.pending').style.display = 'none';
                     hwItem.querySelector('.homework-dashboard-wrap.completed').style.display =
                       'none';
-                    hwItem.querySelector(
-                      '.homework-dashboard-wrap.due .dashboard-homework-complete'
-                    ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
                     hwItem.querySelector('.hw-due-date').innerHTML = eachHomework.momentDate;
                   } else {
                     hwItem.querySelector('.homework-dashboard-wrap.due').style.display = 'none';
                     hwItem.querySelector('.homework-dashboard-wrap.completed').style.display =
                       'none';
-                    hwItem.querySelector(
-                      '.homework-dashboard-wrap.pending .dashboard-homework-complete'
-                    ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
                     hwItem.querySelector('.hw-pending-date').innerHTML = eachHomework.momentDate;
                   }
                 }
@@ -377,10 +371,6 @@ MemberStack.onReady.then(function (member) {
   //   Logic to hide links for parents
   if (member['is-parent'] === 'yes') {
     console.log('Parent Dashboard');
-    // Hide homework complete button
-    document.querySelectorAll('.dashboard-homework-complete').forEach((homeworkLink) => {
-      homeworkLink.style.display = 'none';
-    });
 
     // Hide buttons to other pages
     document.querySelectorAll('.dashboard-button').forEach((button) => {
