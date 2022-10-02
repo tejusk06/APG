@@ -72,56 +72,75 @@ MemberStack.onReady.then(function (member) {
       const assignedHomework = _.sortBy(response.homeworkArray, function (homework) {
         return homework.courseSection;
       });
-      const homeworkItem = document.querySelector('.dashboard-homework-wrap');
-      // const today = new Date();
+      // const homeworkItem = document.querySelector('.dashboard-homework-wrap');
+      const homeworkSection = document.querySelector('.student-homework-wrap');
+      const homeworkCompleted = document.querySelector('.homework-dashboard-wrap.completed');
+      const homeworkPending = document.querySelector('.homework-dashboard-wrap.pending');
+      const homeworkDue = document.querySelector('.homework-dashboard-wrap.due');
+      let topicsAndSections = [];
+      let allSections = [];
 
       assignedHomework.forEach((eachHomework) => {
-        const hwsplit = eachHomework.courseSectionHomeworkName.split('-');
-        const homeworkName = eachHomework.courseSectionHomeworkName;
-        //   .charAt(0).toUpperCase() + hwsplit[1].slice(1);
+        const hwItem = {
+          section: eachHomework.courseSectionHomeworkName.split(' - ')[0],
+          topic: eachHomework.courseSectionHomeworkName.split(' - ')[1],
+          eachHomework: eachHomework,
+        };
 
-        const homeworkItemDiv = homeworkItem.cloneNode(true);
-        if (eachHomework.completed) {
-          homeworkItemDiv.querySelector('.homework-dashboard-wrap.pending').style.display = 'none';
-          homeworkItemDiv.querySelector('.homework-dashboard-wrap.due').style.display = 'none';
-          homeworkItemDiv.querySelector(
-            '.homework-dashboard-wrap.completed .homework-name'
-          ).innerHTML = homeworkName;
-          homeworkItemDiv.querySelector(
-            '.homework-dashboard-wrap.completed .hw-completed-date'
-          ).innerHTML = eachHomework.completedDate;
-        } else {
-          const isPast = dateInPast(new Date(eachHomework.date).addDays(1));
+        topicsAndSections.push(hwItem);
 
-          if (isPast) {
-            homeworkItemDiv.querySelector('.homework-dashboard-wrap.pending').style.display =
-              'none';
-            homeworkItemDiv.querySelector('.homework-dashboard-wrap.completed').style.display =
-              'none';
-            homeworkItemDiv.querySelector('.homework-dashboard-wrap.due .homework-name').innerHTML =
-              homeworkName;
-            homeworkItemDiv.querySelector(
-              '.homework-dashboard-wrap.due .dashboard-homework-complete'
-            ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
-            homeworkItemDiv.querySelector('.homework-dashboard-wrap.due .hw-due-date').innerHTML =
-              eachHomework.momentDate;
-          } else {
-            homeworkItemDiv.querySelector('.homework-dashboard-wrap.due').style.display = 'none';
-            homeworkItemDiv.querySelector('.homework-dashboard-wrap.completed').style.display =
-              'none';
-            homeworkItemDiv.querySelector(
-              '.homework-dashboard-wrap.pending .homework-name'
-            ).innerHTML = homeworkName;
-            homeworkItemDiv.querySelector(
-              '.homework-dashboard-wrap.pending .dashboard-homework-complete'
-            ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${eachHomework.homeworkId}`;
-            homeworkItemDiv.querySelector(
-              '.homework-dashboard-wrap.pending .hw-pending-date'
-            ).innerHTML = eachHomework.momentDate;
+        allSections.push(eachHomework.courseSectionHomeworkName.split(' - ')[0]);
+      });
+
+      const uniqueSections = Array.from(new Set(allSections));
+
+      uniqueSections.forEach((section) => {
+        const homeworkSectionDiv = homeworkSection.cloneNode(true);
+
+        homeworkSectionDiv.querySelector('.topics-section').innerHTML = section.toUpperCase();
+
+        topicsAndSections.forEach((topicAndSection) => {
+          if (topicAndSection.section === section) {
+            if (topicAndSection.eachHomework.completed) {
+              const homeworkCompletedDiv = homeworkCompleted.cloneNode(true);
+
+              homeworkCompletedDiv.querySelector('.homework-name').innerHTML =
+                topicAndSection.topic;
+              homeworkCompletedDiv.querySelector('.hw-completed-date').innerHTML =
+                topicAndSection.eachHomework.completedDate;
+
+              homeworkSectionDiv.appendChild(homeworkCompletedDiv);
+            } else {
+              const isPast = dateInPast(new Date(topicAndSection.eachHomework.date).addDays(1));
+
+              if (isPast) {
+                const homeworkDueDiv = homeworkDue.cloneNode(true);
+
+                homeworkDueDiv.querySelector('.homework-name').innerHTML = topicAndSection.topic;
+                homeworkDueDiv.querySelector('.hw-due-date').innerHTML =
+                  topicAndSection.eachHomework.momentDate;
+                homeworkDueDiv.querySelector(
+                  '.dashboard-homework-complete'
+                ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${topicAndSection.eachHomework.homeworkId}`;
+
+                homeworkSectionDiv.appendChild(homeworkDueDiv);
+              } else {
+                const homeworkPendingDiv = homeworkPending.cloneNode(true);
+                homeworkPendingDiv.querySelector('.homework-name').innerHTML =
+                  topicAndSection.topic;
+                homeworkPendingDiv.querySelector('.hw-pending-date').innerHTML =
+                  topicAndSection.eachHomework.momentDate;
+                homeworkPendingDiv.querySelector(
+                  '.dashboard-homework-complete'
+                ).href = `https://web.miniextensions.com/p9ejiPufAv3sWKtq87oe/${topicAndSection.eachHomework.homeworkId}`;
+
+                homeworkSectionDiv.appendChild(homeworkPendingDiv);
+              }
+            }
           }
-        }
+        });
 
-        document.querySelector('.homework-holder').appendChild(homeworkItemDiv);
+        document.querySelector('.homework-holder').appendChild(homeworkSectionDiv);
       });
     });
 });
