@@ -71,7 +71,6 @@ MemberStack.onReady.then(function (member) {
         document.querySelector('#english-topics').style.display = 'none';
       } else if (studentCourse === 'ACT') {
         document.querySelector('#writing-topics').style.display = 'none';
-        document.querySelector('.total-math-topics').innerHTML = '23';
         document.querySelector('.total-reading-topics').innerHTML = '12';
 
         document.querySelector('.reading-topics-completed').innerHTML =

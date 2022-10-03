@@ -140,7 +140,7 @@ MemberStack.onReady.then(function (member) {
 
         overdueClassDiv.querySelector(
           '.view-class-button'
-        ).href = `/coordinator-admin/class/?classID=${overdueClassData.classID}`;
+        ).href = `/teacher/class/?classID=${overdueClassData.classID}`;
 
         // Appending the overdue class Div
         classesHolder.appendChild(overdueClassDiv);
