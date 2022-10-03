@@ -1,6 +1,4 @@
-import _ from 'lodash';
-
-console.log('Individual Students Homework logic for Coordinator/Admin role');
+console.log('Individual Students Dashboard logic for Coordinator/Admin role');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
@@ -18,10 +16,6 @@ MemberStack.onReady.then(function (member) {
   } else if (courseID === reccXht5MjmINAccQ) {
     studentCourse = 'ACT';
   }
-
-  // Hiding the templates
-  const homeworkTemplate = document.querySelector('.homework-template');
-  homeworkTemplate.style.display = 'none';
 
   if (!member.loggedIn) {
     window.location.replace(window.location.hostname);
@@ -47,10 +41,7 @@ MemberStack.onReady.then(function (member) {
       document.querySelector('.overdue-tests').innerHTML = response.student.pendingTests;
       document.querySelector('.math-topics-completed').innerHTML =
         response.student.satMathTopicsCompleted;
-      document.querySelector('.reading-topics-completed').innerHTML =
-        response.student.satReadingTopicsCompleted;
-      document.querySelector('.writing-topics-completed').innerHTML =
-        response.student.satWritingTopicsCompleted;
+
       document.querySelector('.completed-tests').innerHTML = response.student.completedTests;
       document.querySelector('.overdue-tests').innerHTML = response.student.pendingTests;
       document.querySelector('.math-homework-completed').innerHTML =
@@ -68,10 +59,27 @@ MemberStack.onReady.then(function (member) {
 
       // Conditions if the student belongs to either SAT or ACT
       if (studentCourse === 'SAT') {
+        document.querySelector('.reading-topics-completed').innerHTML =
+          response.student.satReadingTopicsCompleted;
+
+        document.querySelector('.writing-topics-completed').innerHTML =
+          response.student.satWritingTopicsCompleted;
+
         document.querySelector('#science-classes').style.display = 'none';
         document.querySelector('#science-topics').style.display = 'none';
         document.querySelector('#science-homework').style.display = 'none';
+        document.querySelector('#english-topics').style.display = 'none';
       } else if (studentCourse === 'ACT') {
+        document.querySelector('#writing-topics').style.display = 'none';
+        document.querySelector('.total-math-topics').innerHTML = '23';
+        document.querySelector('.total-reading-topics').innerHTML = '12';
+
+        document.querySelector('.reading-topics-completed').innerHTML =
+          response.student.actReadingTopicsCompleted;
+
+        document.querySelector('.english-topics-completed').innerHTML =
+          response.student.actEnglishTopicsCompleted;
+
         document.querySelector('.science-classes-attended').innerHTML =
           response.student.scienceClassesAttended;
         document.querySelector('.science-topics-completed').innerHTML =
