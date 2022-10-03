@@ -110,6 +110,12 @@ MemberStack.onReady.then(function (member) {
             response.stats.actScienceTopicsCompleted;
           document.querySelectorAll('.science-topics-stat')[1].innerHTML =
             response.stats.actScienceTopicsCompleted;
+
+          // Math topics are the same for both courses hence using Sat stats
+          document.querySelector('.math-topics-stat').innerHTML =
+            response.stats.satMathTopicsCompleted;
+          document.querySelectorAll('.math-topics-stat')[1].innerHTML =
+            response.stats.satMathTopicsCompleted;
         }
 
         document.querySelector('.pending-homework-stat').innerHTML = response.stats.homeworkPending;
