@@ -49,6 +49,9 @@ MemberStack.onReady.then(function (member) {
 
       //   Adding Button Links
       document.querySelector(
+        '#student-dashboard'
+      ).href = `/coordinator-admin/student-dashboard/?studentID=${studentID}&courseID=${response.student.courseID}`;
+      document.querySelector(
         '#student-classes'
       ).href = `/coordinator-admin/student-classes/?studentID=${studentID}&courseID=${response.student.courseID}`;
       document.querySelector(

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-// console.log('Individual Students Homework logic for Coordinator/Admin role');
+console.log('Individual Students Homework logic for Coordinator/Admin role');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
@@ -9,6 +9,15 @@ MemberStack.onReady.then(function (member) {
   const classCourse = window.location.href.split('?')[1];
 
   const studentID = classCourse.split('&')[0].split('=')[1];
+  const courseID = classCourse.split('&')[1].split('=')[1];
+
+  let studentCourse = null;
+
+  if (courseID === 'recQ9LlXahxGsLY8I') {
+    studentCourse = 'SAT';
+  } else if (courseID === reccXht5MjmINAccQ) {
+    studentCourse = 'ACT';
+  }
 
   // Hiding the templates
   const homeworkTemplate = document.querySelector('.homework-template');
@@ -28,9 +37,56 @@ MemberStack.onReady.then(function (member) {
       document.querySelector('.student-name-heading').innerHTML = response.student.name;
       document.querySelector('.student-subheading').innerHTML = response.student.email;
 
-      document.querySelector('#student-homework').classList.add('w--current');
+      document.querySelector('#student-dashboard').classList.add('w--current');
+
+      document.querySelector('.english-classes-attended').innerHTML =
+        response.student.englishClassesAttended;
+      document.querySelector('.math-classes-attended').innerHTML =
+        response.student.mathClassesAttended;
+      document.querySelector('.completed-tests').innerHTML = response.student.completedTests;
+      document.querySelector('.overdue-tests').innerHTML = response.student.pendingTests;
+      document.querySelector('.math-topics-completed').innerHTML =
+        response.student.satMathTopicsCompleted;
+      document.querySelector('.reading-topics-completed').innerHTML =
+        response.student.satReadingTopicsCompleted;
+      document.querySelector('.writing-topics-completed').innerHTML =
+        response.student.satWritingTopicsCompleted;
+      document.querySelector('.completed-tests').innerHTML = response.student.completedTests;
+      document.querySelector('.overdue-tests').innerHTML = response.student.pendingTests;
+      document.querySelector('.math-homework-completed').innerHTML =
+        response.student.mathHomeworkCompleted;
+      document.querySelector('.math-homework-pending').innerHTML =
+        response.student.mathHomeworkPending;
+      document.querySelector('.reading-homework-completed').innerHTML =
+        response.student.readingHomeworkCompleted;
+      document.querySelector('.reading-homework-pending').innerHTML =
+        response.student.readingHomeworkPending;
+      document.querySelector('.writing-homework-completed').innerHTML =
+        response.student.writingHomeworkCompleted;
+      document.querySelector('.writing-homework-pending').innerHTML =
+        response.student.writingHomeworkPending;
+
+      // Conditions if the student belongs to either SAT or ACT
+      if (studentCourse === 'SAT') {
+        document.querySelector('#science-classes').style.display = 'none';
+        document.querySelector('#science-topics').style.display = 'none';
+        document.querySelector('#science-homework').style.display = 'none';
+      } else if (studentCourse === 'ACT') {
+        document.querySelector('.science-classes-attended').innerHTML =
+          response.student.scienceClassesAttended;
+        document.querySelector('.science-topics-completed').innerHTML =
+          response.student.actScienceTopicsCompleted;
+
+        document.querySelector('.science-homework-completed').innerHTML =
+          response.student.scienceHomeworkCompleted;
+        document.querySelector('.science-homework-pending').innerHTML =
+          response.student.scienceHomeworkPending;
+      }
 
       //   Adding Button Links
+      document.querySelector(
+        '#student-dashboard'
+      ).href = `/coordinator-admin/student-dashboard/?studentID=${studentID}&courseID=${response.student.courseID}`;
       document.querySelector(
         '#student-classes'
       ).href = `/coordinator-admin/student-classes/?studentID=${studentID}&courseID=${response.student.courseID}`;

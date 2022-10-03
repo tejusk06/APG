@@ -8,6 +8,7 @@ const production = process.env.NODE_ENV === 'production';
 const entryPoints = [
   'src/coordinatorAdminClasses.js',
   'src/coordinatorAdminDashboard.js',
+  'src/coordinatorAdminStudentDashboard.js',
   'src/coordinatorAdminStudentClass.js',
   'src/coordinatorAdminStudentClasses.js',
   'src/coordinatorAdminStudentForm.js',
