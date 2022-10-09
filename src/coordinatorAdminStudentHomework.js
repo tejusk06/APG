@@ -100,7 +100,13 @@ MemberStack.onReady.then(function (member) {
       uniqueSections.forEach((section) => {
         const homeworkSectionDiv = homeworkSection.cloneNode(true);
 
-        homeworkSectionDiv.querySelector('.topics-section').innerHTML = section.toUpperCase();
+        // homeworkSectionDiv.querySelector('.topics-section').innerHTML = section.toUpperCase();
+        homeworkSectionDiv.querySelector('.topics-section').innerHTML =
+          section.split('-')[0].toUpperCase() +
+          ' ' +
+          section.split('-')[1][0].toUpperCase() +
+          section.split('-')[1].slice(1) +
+          ' Homework';
 
         topicsAndSections.forEach((topicAndSection) => {
           if (topicAndSection.section === section) {

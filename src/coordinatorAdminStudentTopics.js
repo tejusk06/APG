@@ -79,9 +79,12 @@ MemberStack.onReady.then(function (member) {
       sortedUniqueSections.forEach((sectionName) => {
         const sectionDiv = topicItem.cloneNode(true);
 
-        sectionDiv.querySelector('.topics-section').innerHTML = sectionName
-          .toUpperCase()
-          .replaceAll('-', ' ');
+        sectionDiv.querySelector('.topics-section').innerHTML =
+          sectionName.split('-')[0].toUpperCase() +
+          ' ' +
+          sectionName.split('-')[1][0].toUpperCase() +
+          sectionName.split('-')[1].slice(1) +
+          ' Topics Completed';
 
         const topicsWrapper = sectionDiv.querySelector('.topics-text-wrapper').cloneNode(true);
         sectionDiv.querySelector('.topics-text-wrapper').remove();
