@@ -391,35 +391,37 @@ MemberStack.onReady.then(function (member) {
     });
 
   //   Logic to hide links for parents
-  if (member['is-parent'].toLowerCase() === 'yes') {
-    console.log('Parent Dashboard');
+  if (member['is-parent']) {
+    if (member['is-parent'].toLowerCase() === 'yes') {
+      console.log('Parent Dashboard');
 
-    // Hide buttons to other pages
-    document.querySelectorAll('.dashboard-button').forEach((button) => {
-      button.style.display = 'none';
-      ``;
-    });
+      // Hide buttons to other pages
+      document.querySelectorAll('.dashboard-button').forEach((button) => {
+        button.style.display = 'none';
+        ``;
+      });
 
-    // Hide zoom links
-    document.querySelectorAll('.dashboard-class-zoom-link').forEach((homeworkLink) => {
-      homeworkLink.style.display = 'none';
-    });
-    document.querySelectorAll('.dashboard-class-zoom-recording').forEach((homeworkLink) => {
-      homeworkLink.style.display = 'none';
-    });
+      // Hide zoom links
+      document.querySelectorAll('.dashboard-class-zoom-link').forEach((homeworkLink) => {
+        homeworkLink.style.display = 'none';
+      });
+      document.querySelectorAll('.dashboard-class-zoom-recording').forEach((homeworkLink) => {
+        homeworkLink.style.display = 'none';
+      });
 
-    // Hide download test wordWrap:
-    document.querySelectorAll('.dashboard-download-test-wrap').forEach((homeworkLink) => {
-      homeworkLink.style.display = 'none';
-    });
+      // Hide download test wordWrap:
+      document.querySelectorAll('.dashboard-download-test-wrap').forEach((homeworkLink) => {
+        homeworkLink.style.display = 'none';
+      });
 
-    // Hide navbar links
-    document.querySelectorAll('.navigation .nav-link').forEach((navLink) => {
-      navLink.style.display = 'none';
-    });
+      // Hide navbar links
+      document.querySelectorAll('.navigation .nav-link').forEach((navLink) => {
+        navLink.style.display = 'none';
+      });
 
-    document.querySelector('#logout-link').style.display = 'block';
+      document.querySelector('#logout-link').style.display = 'block';
 
-    document.querySelector('.welcome-name').style.display = 'none';
+      document.querySelector('.welcome-name').style.display = 'none';
+    }
   }
 });
