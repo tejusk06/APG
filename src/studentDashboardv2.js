@@ -378,7 +378,7 @@ MemberStack.onReady.then(function (member) {
     });
 
   //   Logic to hide links for parents
-  if (member['is-parent'] === 'yes') {
+  if (member['is-parent'].toLowerCase() === 'yes') {
     console.log('Parent Dashboard');
 
     // Hide buttons to other pages
