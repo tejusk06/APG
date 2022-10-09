@@ -338,6 +338,10 @@ MemberStack.onReady.then(function (member) {
           homeworkItems.forEach((hwItem) => {
             const hwTopicId = hwItem.querySelector('.topic-id');
 
+            const homeworkDueWrapper = document.querySelector('.homework-list-due');
+            const homeworkPendingWrapper = document.querySelector('.homework-list-pending');
+            const homeworkCompletedWrapper = document.querySelector('.homework-list-completed');
+
             //   First check if topic ID has been set in webflow CMS
             if (hwTopicId) {
               const hwTopicNumber = hwTopicId.innerHTML;
@@ -347,6 +351,9 @@ MemberStack.onReady.then(function (member) {
                 if (eachHomework.completed) {
                   hwItem.querySelector('.homework-dashboard-wrap.pending').style.display = 'none';
                   hwItem.querySelector('.homework-dashboard-wrap.due').style.display = 'none';
+                  homeworkCompletedWrapper.append(
+                    hwItem.querySelector('.homework-dashboard-wrap.completed')
+                  );
                 } else {
                   const isPast = dateInPast(new Date(eachHomework.date).addDays(1));
 
@@ -355,11 +362,17 @@ MemberStack.onReady.then(function (member) {
                     hwItem.querySelector('.homework-dashboard-wrap.completed').style.display =
                       'none';
                     hwItem.querySelector('.hw-due-date').innerHTML = eachHomework.momentDate;
+
+                    homeworkDueWrapper.append(hwItem.querySelector('.homework-dashboard-wrap.due'));
                   } else {
                     hwItem.querySelector('.homework-dashboard-wrap.due').style.display = 'none';
                     hwItem.querySelector('.homework-dashboard-wrap.completed').style.display =
                       'none';
                     hwItem.querySelector('.hw-pending-date').innerHTML = eachHomework.momentDate;
+
+                    homeworkPendingWrapper.append(
+                      hwItem.querySelector('.homework-dashboard-wrap.pending')
+                    );
                   }
                 }
               }
