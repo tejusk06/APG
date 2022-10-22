@@ -17,8 +17,8 @@
     "url": "https://github.com/tejusk06/APG/issues"
   },
   "type": "module",
-  "main": "src/studentDashboardv2.js",
-  "module": "src/studentDashboardv2.js",
+  "main": "src/studentDashboard.js",
+  "module": "src/studentDashboard.js",
   "files": [
     "dist"
   ],
