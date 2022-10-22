@@ -1,4 +1,4 @@
-console.log('Admin Dashboard logic');
+// console.log('Admin Dashboard logic');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {

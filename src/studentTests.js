@@ -1,4 +1,4 @@
-console.log('Student Tests logic');
+// console.log('Student Tests logic');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -60,9 +60,6 @@ MemberStack.onReady.then(function (member) {
       const upcomingTest = document.querySelectorAll('.test-wrap.test-upcoming')[0];
       const completedTest = document.querySelectorAll('.test-wrap.test-completed')[0];
       const missedTest = document.querySelectorAll('.test-wrap.test-missed')[0];
-
-      //   Logging the templates
-      console.log('response', response);
 
       allTests.forEach((eachTest) => {
         document.querySelector('.empty-message').style.display = 'none';

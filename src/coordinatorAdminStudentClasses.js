@@ -1,4 +1,4 @@
-console.log('Admin Individual Students Classes logic for admin');
+// console.log('Admin Individual Students Classes logic for admin');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
@@ -64,12 +64,6 @@ MemberStack.onReady.then(function (member) {
       const upcomingTemplate = document.querySelectorAll('.class-wrap.upcoming')[0];
       const completedTemplate = document.querySelectorAll('.class-wrap.completed')[0];
       const missedTemplate = document.querySelectorAll('.class-wrap.missed')[0];
-
-      //   Logging the templates
-      // console.log('response', response);
-      //   console.log("upcomingTemplate", upcomingTemplate);
-      //   console.log("completedTemplate", completedTemplate);
-      //   console.log("missedTemplate", missedTemplate);
 
       //     Rendering divs for each upcoming class
       response.upcomingClasses.forEach((upcomingClassData) => {

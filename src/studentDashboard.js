@@ -1,4 +1,4 @@
-console.log('Student Dashboard logic v2');
+// console.log('Student Dashboard logic');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -392,7 +392,7 @@ MemberStack.onReady.then(function (member) {
   //   Logic to hide links for parents
   if (member['is-parent']) {
     if (member['is-parent'].toLowerCase() === 'yes') {
-      console.log('Parent Dashboard');
+      // console.log('Parent Dashboard');
 
       // Hide buttons to other pages
       document.querySelectorAll('.dashboard-button').forEach((button) => {

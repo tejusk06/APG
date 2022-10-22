@@ -1,4 +1,4 @@
-console.log('Admin classes logic ');
+// console.log('Admin classes logic ');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page

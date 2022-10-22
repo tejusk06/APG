@@ -1,4 +1,4 @@
-console.log('student Topics logic');
+// console.log('student Topics logic');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -52,9 +52,6 @@ MemberStack.onReady.then(function (member) {
       const topicsList = document.querySelector('.topic-list');
       const topicsItems = document.querySelectorAll('.topic-wrap-cms');
       const { completedTopics } = response;
-
-      //   Logging the templates
-      console.log('response', response);
 
       topicsItems.forEach((topic) => {
         const topicId = topic.querySelector('.topic-id');

@@ -1,4 +1,4 @@
-console.log('Students logic for coordinator and admin');
+// console.log('Students logic for coordinator and admin');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {
@@ -28,14 +28,11 @@ MemberStack.onReady.then(function (member) {
   let searchFilter = null;
 
   studentCourse.addEventListener('change', (event) => {
-    console.log(`You selected course ${event.target.value}`);
     courseFilter = event.target.value;
-
     filterStudents();
   });
 
   studentSearch.addEventListener('input', (event) => {
-    console.log(`You selected search ${event.target.value}`);
     searchFilter = event.target.value.trim().toLowerCase();
 
     filterStudents();
@@ -43,9 +40,6 @@ MemberStack.onReady.then(function (member) {
 
   const filterStudents = () => {
     const allStudents = document.querySelectorAll('.students-wrap');
-    console.log('got all students');
-    console.log('course filter is -', courseFilter);
-    console.log('search filter is -', searchFilter);
 
     // If both course and search filter have value
     if (courseFilter && searchFilter) {
@@ -67,23 +61,17 @@ MemberStack.onReady.then(function (member) {
 
     // If only course filter has a value
     if (courseFilter && !searchFilter) {
-      //   console.log("course filter has value");
       allStudents.forEach((eachStudent) => {
-        // console.log("enter student loop");
-
         if (eachStudent.querySelector('.student-course-id').innerHTML === courseFilter) {
           eachStudent.style.display = 'flex';
-          //   console.log("student belongs to course");
         } else {
           eachStudent.style.display = 'none';
-          //   console.log("student doesn't belong to course");
         }
       });
     }
 
     // If only search filter has value
     if (searchFilter && !courseFilter) {
-      console.log('course filter has value');
       // TODO
       allStudents.forEach((eachStudent) => {
         if (
@@ -111,8 +99,6 @@ MemberStack.onReady.then(function (member) {
   fetch(`https://apguru-server.herokuapp.com/api/v1/coordinatorAdmin/students/${airtableIdOrRole}`)
     .then((response) => response.json())
     .then((response) => {
-      //   console.log("response", response);
-
       //   looping through each student and rendering the div
       response.allStudents.forEach((eachStudent) => {
         const studentDiv = studentTemplate.cloneNode(true);

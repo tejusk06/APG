@@ -1,4 +1,4 @@
-console.log('Individual Students Dashboard logic for Coordinator/Admin role');
+// console.log('Individual Students Dashboard logic for Coordinator/Admin role');
 // Logic for Class form embed is in the webflow page below attendance
 
 MemberStack.onReady.then(function (member) {

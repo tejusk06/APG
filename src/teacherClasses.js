@@ -1,4 +1,4 @@
-console.log('teacher classes logic ');
+// console.log('teacher classes logic ');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -263,7 +263,6 @@ MemberStack.onReady.then(function (member) {
   };
 
   classDate.addEventListener('change', (event) => {
-    // console.log(`You selected course ${event.target.value}`);
     dateFilter = event.target.value;
 
     filterClasses();

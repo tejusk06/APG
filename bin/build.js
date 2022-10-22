@@ -17,7 +17,7 @@ const entryPoints = [
   'src/coordinatorAdminStudentTests.js',
   'src/coordinatorAdminStudentTopics.js',
   'src/studentClasses.js',
-  'src/studentDashboardv2.js',
+  'src/studentDashboard.js',
   'src/studentHomework.js',
   'src/studentTests.js',
   'src/studentTopics.js',

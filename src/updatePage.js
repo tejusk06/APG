@@ -1,4 +1,4 @@
-console.log('student Topics logic');
+// console.log('update page logic');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -22,7 +22,6 @@ MemberStack.onReady.then(function (member) {
   const updateIframe = document.querySelector('.update-iframe');
   const formNameElement = document.querySelector('.form-name');
   const backButtonElement = document.querySelector('.back-to-page');
-  //  console.log("Iframe is", classIframe);
 
   const formSrc = localStorage.getItem('formLink');
   const formName = localStorage.getItem('formName');
