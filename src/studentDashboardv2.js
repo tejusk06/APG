@@ -331,7 +331,6 @@ MemberStack.onReady.then(function (member) {
         const homeworkItems = document.querySelectorAll('.homework-item');
 
         const homeworkWrapper = document.querySelector('.homework-wrapper');
-        const today = new Date();
 
         completedHomework.forEach((eachHomework) => {
           homeworkWrapper.querySelector('.empty-message').style.display = 'none';

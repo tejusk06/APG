@@ -1,4 +1,4 @@
-console.log('Student Homework logic');
+// console.log('Student Homework logic');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -38,9 +38,6 @@ MemberStack.onReady.then(function (member) {
       const completedHomework = response.homeworkArray;
 
       const homeworkItems = document.querySelectorAll('.homework-wrap');
-
-      //   Logging the templates
-      console.log('response', response);
 
       //   Function to force download homework
       function forceDown(url, filename) {
