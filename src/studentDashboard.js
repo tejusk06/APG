@@ -53,7 +53,7 @@ MemberStack.onReady.then(function (member) {
 
   //   Making the api call to get student stats from students table
   fetch(
-    `https://apguru-server.herokuapp.com/api/v1/student/dashboard/${studentAirtableID}-${courseID}`
+    `https://apguru-apis.herokuapp.com/api/v1/student/dashboard/${studentAirtableID}-${courseID}`
   )
     .then((response) => response.json())
     .then((response) => {

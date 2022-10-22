@@ -50,7 +50,7 @@ MemberStack.onReady.then(function (member) {
   document.querySelectorAll('.tests-templates')[0].style.display = 'none';
 
   //   Making the api call to get tests data for the student
-  fetch(`https://apguru-server.herokuapp.com/api/v1/tests/student/${studentAirtableID}`)
+  fetch(`https://apguru-apis.herokuapp.com/api/v1/tests/student/${studentAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates

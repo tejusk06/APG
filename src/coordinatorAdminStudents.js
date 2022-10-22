@@ -96,7 +96,7 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Making the api call to get classes data for the student
-  fetch(`https://apguru-server.herokuapp.com/api/v1/coordinatorAdmin/students/${airtableIdOrRole}`)
+  fetch(`https://apguru-apis.herokuapp.com/api/v1/coordinatorAdmin/students/${airtableIdOrRole}`)
     .then((response) => response.json())
     .then((response) => {
       //   looping through each student and rendering the div

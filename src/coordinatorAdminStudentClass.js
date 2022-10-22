@@ -10,7 +10,7 @@ MemberStack.onReady.then(function (member) {
   const classID = window.location.href.split('?classID=')[1];
 
   //   Making the api call to get class data
-  fetch(`https://apguru-server.herokuapp.com/api/v1/class/${classID}`)
+  fetch(`https://apguru-apis.herokuapp.com/api/v1/class/${classID}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting all the topics

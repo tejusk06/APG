@@ -26,7 +26,7 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Making the api call to get classes data for coordinator or admin
-  fetch(`https://apguru-server.herokuapp.com/api/v1/coordinatorAdmin/classes/${airtableIdOrRole}`)
+  fetch(`https://apguru-apis.herokuapp.com/api/v1/coordinatorAdmin/classes/${airtableIdOrRole}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates

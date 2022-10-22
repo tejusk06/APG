@@ -23,7 +23,7 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Making the api call to get student data from students table
-  fetch(`https://apguru-server.herokuapp.com/api/v1/admin/student/${studentID}`)
+  fetch(`https://apguru-apis.herokuapp.com/api/v1/admin/student/${studentID}`)
     .then((response) => response.json())
     .then((response) => {
       if (response.student.image) {
@@ -56,7 +56,7 @@ MemberStack.onReady.then(function (member) {
     });
 
   //   Making the api call to get classes data for the student from Classes Table
-  fetch(`https://apguru-server.herokuapp.com/api/v1/classes/student/${studentID}-${courseID}`)
+  fetch(`https://apguru-apis.herokuapp.com/api/v1/classes/student/${studentID}-${courseID}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates

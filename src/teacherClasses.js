@@ -20,7 +20,7 @@ MemberStack.onReady.then(function (member) {
   };
 
   //   Making the api call to get classes data for the student
-  fetch(`https://apguru-server.herokuapp.com/api/v1/classes/teacher/${teacherAirtableID}`)
+  fetch(`https://apguru-apis.herokuapp.com/api/v1/classes/teacher/${teacherAirtableID}`)
     .then((response) => response.json())
     .then((response) => {
       // Getting the Classes holder and all the templates
