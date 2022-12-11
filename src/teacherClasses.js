@@ -165,7 +165,8 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector('.topics-text').innerHTML = `${classTopics}`;
           completedClassDiv.querySelector('.homework-text').innerHTML = `${classTopics}`;
         } else {
-          completedClassDiv.querySelector('.class-details-wrap').style.display = 'none';
+          completedClassDiv.querySelector('.topics-text').innerHTML = ``;
+          completedClassDiv.querySelector('.homework-text').innerHTML = ``;
         }
 
         if (completedClassData.students) {

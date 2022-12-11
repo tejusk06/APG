@@ -116,8 +116,10 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector('.topics-text').innerHTML = `${classTopics}`;
           completedClassDiv.querySelector('.homework-text').innerHTML = `${classTopics}`;
         } else {
-          completedClassDiv.querySelector('.class-details-wrap').style.display = 'none';
+          completedClassDiv.querySelector('.topics-text').innerHTML = ``;
+          completedClassDiv.querySelector('.homework-text').innerHTML = ``;
         }
+
         completedClassDiv.querySelector(
           '.button-zoom-link'
         ).href = `${completedClassData.zoomLink}`;
@@ -152,7 +154,8 @@ MemberStack.onReady.then(function (member) {
           missedClassDiv.querySelector('.topics-text').innerHTML = `${classTopics}`;
           missedClassDiv.querySelector('.homework-text').innerHTML = `${classTopics}`;
         } else {
-          missedClassDiv.querySelector('.class-details-wrap').style.display = 'none';
+          missedClassDiv.querySelector('.topics-text').innerHTML = ``;
+          missedClassDiv.querySelector('.homework-text').innerHTML = ``;
         }
         missedClassDiv.querySelector('.button-zoom-link').href = `${missedClassData.zoomLink}`;
         missedClassDiv.querySelector(

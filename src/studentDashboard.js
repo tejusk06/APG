@@ -1,4 +1,4 @@
-// console.log('Student Dashboard logic');
+console.log('Student Dashboard logic');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -148,6 +148,7 @@ MemberStack.onReady.then(function (member) {
               if (topicID === completedTopic) {
                 topicItem.querySelector('.topic-completed').style.display = 'flex';
                 topicItem.querySelector('.topic-not-completed-wrap').style.display = 'none';
+                topicItem.parentNode.prepend(topicItem);
               }
             });
           }

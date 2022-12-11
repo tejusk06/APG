@@ -1,4 +1,4 @@
-// console.log('student classes logic');
+console.log('student classes logic');
 
 MemberStack.onReady.then(function (member) {
   //   If member is not logged in redirect to main page
@@ -104,7 +104,8 @@ MemberStack.onReady.then(function (member) {
           completedClassDiv.querySelector('.topics-text').innerHTML = `${classTopics}`;
           completedClassDiv.querySelector('.homework-text').innerHTML = `${classTopics}`;
         } else {
-          completedClassDiv.querySelector('.class-details-wrap').style.display = 'none';
+          completedClassDiv.querySelector('.topics-text').innerHTML = ``;
+          completedClassDiv.querySelector('.homework-text').innerHTML = ``;
         }
 
         if (completedClassData.zoomRecording) {
@@ -142,7 +143,8 @@ MemberStack.onReady.then(function (member) {
           missedClassDiv.querySelector('.topics-text').innerHTML = `${classTopics}`;
           missedClassDiv.querySelector('.homework-text').innerHTML = `${classTopics}`;
         } else {
-          missedClassDiv.querySelector('.class-details-wrap').style.display = 'none';
+          missedClassDiv.querySelector('.topics-text').innerHTML = ``;
+          missedClassDiv.querySelector('.homework-text').innerHTML = ``;
         }
 
         if (missedClassData.zoomRecording) {

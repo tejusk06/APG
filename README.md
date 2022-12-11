@@ -1,25 +1,29 @@
-# Finsweet Developer Starter
+# AP Guru Front-end
 
-A starter template for both Client & Power projects.
 
-Before starting to work with this template, please take some time to read through the documentation.
+This is the front-end code for AP Guru portal. The Finsweet developer starter was used as a boilerplate for this project. 
+
+Below is all the content from the developer starter template.
 
 ## Reference
 
-- [Included tools](#included-tools)
-- [Requirements](#requirements)
-- [Getting started](#getting-started)
-  - [Installing](#installing)
-  - [Building](#building)
+- [AP Guru Front-end](#ap-guru-front-end)
+  - [Reference](#reference)
+  - [Included tools](#included-tools)
+  - [Requirements](#requirements)
+  - [Getting started](#getting-started)
+    - [Installing](#installing)
+    - [Building](#building)
     - [Serving files on development mode](#serving-files-on-development-mode)
     - [Building multiple files](#building-multiple-files)
     - [Setting up a path alias](#setting-up-a-path-alias)
-- [Contributing guide](#contributing-guide)
-- [Pre-defined scripts](#pre-defined-scripts)
-- [CI/CD](#cicd)
-  - [Continuous Integration](#continuous-integration)
-  - [Continuous Deployment](#continuous-deployment)
-  - [How to automatically deploy updates to npm](#how-to-automatically-deploy-updates-to-npm)
+  - [Testing](#testing)
+  - [Contributing guide](#contributing-guide)
+  - [Pre-defined scripts](#pre-defined-scripts)
+  - [CI/CD](#cicd)
+    - [Continuous Integration](#continuous-integration)
+    - [Continuous Deployment](#continuous-deployment)
+      - [How to automatically deploy updates to npm](#how-to-automatically-deploy-updates-to-npm)
 
 ## Included tools
 
